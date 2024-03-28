@@ -10,13 +10,16 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.DeleteConfirmationCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.ConfirmationStageParser;
 import seedu.address.logic.parser.PayBackParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyPayBack;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
+
 
 /**
  * The main LogicManager of the app.
@@ -32,6 +35,8 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final PayBackParser payBackParser;
+    private final ConfirmationStageParser confirmationStageParser;
+    private PayBackParserState state = PayBackParserState.NORMAL;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -40,6 +45,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         payBackParser = new PayBackParser();
+        confirmationStageParser = new ConfirmationStageParser();
     }
 
     @Override
@@ -47,8 +53,24 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = payBackParser.parseCommand(model, commandText);
+        Command command = null;
+
+        switch(state) {
+        case NORMAL:
+            command = payBackParser.parseCommand(model, commandText);
+            break;
+        case CONFIRMDELETE:
+            command = confirmationStageParser.parseCommand(commandText);
+            break;
+        }
+
         commandResult = command.execute(model);
+
+        if (command instanceof DeleteConfirmationCommand) {
+            state = PayBackParserState.CONFIRMDELETE;
+        } else {
+            state = PayBackParserState.NORMAL;
+        }
 
         try {
             storage.savePayBack(model.getPayBack());

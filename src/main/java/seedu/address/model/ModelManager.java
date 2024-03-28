@@ -23,6 +23,7 @@ public class ModelManager implements Model {
     private final PayBack payBack;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private Person lastMentionedPerson;
 
     /**
      * Initializes a ModelManager with the given PayBack and userPrefs.
@@ -133,6 +134,15 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void setLastMentionedPerson(Person person) {
+        this.lastMentionedPerson = person;
+    }
+    @Override
+    public Person getLastMentionedPerson() {
+        return lastMentionedPerson;
     }
 
     @Override
