@@ -1,11 +1,14 @@
-package seedu.address.logic.commands.exceptions;
-
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.model.Model;
+package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.model.Model;
+
+
+
+/**
+ * Aborts the deletion of command.
+ */
 public class AbortDeleteCommand extends Command {
     private static final String MESSAGE_SUCCESS = "Delete aborted.";
 

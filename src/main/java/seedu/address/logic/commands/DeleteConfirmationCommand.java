@@ -13,7 +13,7 @@ import seedu.address.model.person.Person;
 
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Displays details of user to be deleted, allowing user to confirm/abort.
  */
 public class DeleteConfirmationCommand extends Command {
 
@@ -24,7 +24,7 @@ public class DeleteConfirmationCommand extends Command {
     private final Id id;
 
     /**
-     * Creates a DeleteCommand to delete the worker by specific ID.
+     * Creates a DeleteConfirmationCommand to allow user to confirm/abort the deletion of employee.
      *
      * @param id ID of the worker to be deleted.
      */

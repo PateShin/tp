@@ -1,13 +1,16 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteConfirmationCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Id;
 
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
-public class DeleteConfirmationCommandParser implements Parser<DeleteConfirmationCommand>{
+/**
+ * Parses user input and creates a DeleteConfirmationCommand object.
+ */
+public class DeleteConfirmationCommandParser implements Parser<DeleteConfirmationCommand> {
 
     @Override
     public DeleteConfirmationCommand parse(String args) throws ParseException {

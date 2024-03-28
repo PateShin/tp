@@ -36,7 +36,7 @@ public class LogicManager implements Logic {
     private final Storage storage;
     private final PayBackParser payBackParser;
     private final ConfirmationStageParser confirmationStageParser;
-    private PayBackParserState state = PayBackParserState.NORMAL;
+    private LogicState state = LogicState.NORMAL;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -62,14 +62,15 @@ public class LogicManager implements Logic {
         case CONFIRMDELETE:
             command = confirmationStageParser.parseCommand(commandText);
             break;
+        default:
         }
 
         commandResult = command.execute(model);
 
         if (command instanceof DeleteConfirmationCommand) {
-            state = PayBackParserState.CONFIRMDELETE;
+            state = LogicState.CONFIRMDELETE;
         } else {
-            state = PayBackParserState.NORMAL;
+            state = LogicState.NORMAL;
         }
 
         try {
