@@ -21,7 +21,7 @@ public interface Parser<T extends Command> {
      * @return Arguments with prefixes appended.
      */
     static String appendPrefixes(String args, Prefix... prefixes) {
-        StringBuilder result = new StringBuilder(args);
+        StringBuilder result = new StringBuilder();
         String[] argsArr = args.trim().split(";\\s+");
         for (int i = 0; i < Math.min(prefixes.length, argsArr.length); i++) {
             result.append(" ").append(prefixes[i]).append(" ").append(argsArr[i]);

@@ -11,7 +11,6 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.TransactionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
 import seedu.address.model.person.Id;
 import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.DateTime;
