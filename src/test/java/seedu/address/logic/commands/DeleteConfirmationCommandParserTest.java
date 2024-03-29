@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteConfirmationCommand;
 import seedu.address.model.person.Id;
 
 /**
@@ -16,13 +17,13 @@ import seedu.address.model.person.Id;
  * The path variation for those two cases occur inside the ParserUtil, and
  * therefore should be covered by the ParserUtilTest.
  */
-public class DeleteCommandParserTest {
+public class DeleteConfirmationCommandParserTest {
 
-    private DeleteCommandParser parser = new DeleteCommandParser();
+    private DeleteConfirmationCommandParser parser = new DeleteConfirmationCommandParser();
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "240001", new DeleteCommand(new Id(240001)));
+        assertParseSuccess(parser, "240001", new DeleteConfirmationCommand(new Id(240001)));
     }
 
     @Test

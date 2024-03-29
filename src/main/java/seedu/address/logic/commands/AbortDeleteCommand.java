@@ -4,13 +4,11 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.Model;
 
-
-
 /**
  * Aborts the deletion of command.
  */
 public class AbortDeleteCommand extends Command {
-    private static final String MESSAGE_SUCCESS = "Delete aborted.";
+    public static final String MESSAGE_SUCCESS = "Deletion aborted.";
 
     @Override
     public CommandResult execute(Model model) {
