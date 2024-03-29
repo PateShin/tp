@@ -7,6 +7,7 @@ import javafx.scene.layout.Region;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import org.controlsfx.control.textfield.TextFields;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -28,7 +29,9 @@ public class CommandBox extends UiPart<Region> {
         super(FXML);
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
-        commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        String commands[] = {"/add", "/edit", "/delete", "/list"};
+
+        TextFields.bindAutoCompletion(commandTextField, commands);
     }
 
     /**
