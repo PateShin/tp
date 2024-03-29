@@ -18,7 +18,7 @@ import seedu.address.model.person.Person;
 public class DeleteConfirmationCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Are you sure you want to delete the following person?:\n"
-            + " %1$s"
+            + " %1$s\n"
             + "(Y/N)";
 
     private final Id id;
