@@ -44,7 +44,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         if (args.matches("\\s+[^;].*(?:;\\s+[^;].*){3,}")) {
-            args = appendPrefixes(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+            args = Parser.appendPrefixes(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                     PREFIX_YEAR_JOINED, PREFIX_TAG);
         }
 
@@ -77,20 +77,4 @@ public class AddCommandParser implements Parser<AddCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
-    /**
-     * Appends prefixes to the arguments in the context of the AddCommand.
-     * @param args the {@code String} of arguments
-     * @param prefixes the prefixes to append
-     * @return the {@code String} of arguments with the prefixes appended
-     */
-    private static String appendPrefixes(String args, Prefix... prefixes) {
-        StringBuilder result = new StringBuilder();
-        String[] argsArr = args.trim().split(";\\s+");
-        for (int i = 0; i < Math.min(prefixes.length, argsArr.length); i++) {
-            result.append(" ").append(prefixes[i]).append(" ").append(argsArr[i]);
-        }
-        return result.toString();
-    }
-
 }

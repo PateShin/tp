@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
 
-public class IdEqualsPredicateTest {
+public class TransactionIdEqualsPredicateTest {
 
     @Test
     public void equals() {

@@ -13,6 +13,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.YearJoined;
+import seedu.address.model.transaction.Transaction;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,6 +24,7 @@ public class ModelManager implements Model {
     private final PayBack payBack;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Transaction> filteredTransactions;
 
     /**
      * Initializes a ModelManager with the given PayBack and userPrefs.
@@ -35,6 +37,7 @@ public class ModelManager implements Model {
         this.payBack = new PayBack(payBack);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.payBack.getPersonList());
+        filteredTransactions = new FilteredList<>(this.payBack.getTransactionList());
     }
 
     public ModelManager() {
@@ -88,6 +91,8 @@ public class ModelManager implements Model {
         return payBack;
     }
 
+    //=========== Person =================================================================================
+
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
@@ -135,6 +140,37 @@ public class ModelManager implements Model {
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Transaction ============================================================================
+
+    @Override
+    public boolean hasTransaction(Transaction transaction) {
+        requireNonNull(transaction);
+        return payBack.hasTransaction(transaction);
+    }
+
+    @Override
+    public void addTransaction(Transaction transaction) {
+        payBack.addTransaction(transaction);
+        updateFilteredTransactionList(PREDICATE_SHOW_ALL_TRANSACTIONS);
+    }
+
+    //=========== Filtered Transaction List Accessors ========================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Transaction} backed by the internal list of
+     * {@code versionedPayBack}
+     */
+    @Override
+    public ObservableList<Transaction> getFilteredTransactionList() {
+        return filteredTransactions;
+    }
+
+    @Override
+    public void updateFilteredTransactionList(Predicate<Transaction> predicate) {
+        requireNonNull(predicate);
+        filteredTransactions.setPredicate(predicate);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -149,7 +185,8 @@ public class ModelManager implements Model {
         ModelManager otherModelManager = (ModelManager) other;
         return payBack.equals(otherModelManager.payBack)
                 && userPrefs.equals(otherModelManager.userPrefs)
-                && filteredPersons.equals(otherModelManager.filteredPersons);
+                && filteredPersons.equals(otherModelManager.filteredPersons)
+                && filteredTransactions.equals(otherModelManager.filteredTransactions);
     }
 
 }
