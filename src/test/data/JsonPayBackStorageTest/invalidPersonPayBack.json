@@ -7,5 +7,6 @@
     "yearJoined": 2024,
     "address": "4th street",
     "tags" : [ ]
-  } ]
+  } ],
+  "transactions": []
 }

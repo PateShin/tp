@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.HOON;
 import static seedu.address.testutil.TypicalPersons.IDA;
 import static seedu.address.testutil.TypicalPersons.getTypicalPayBack;
+import static seedu.address.testutil.TypicalTransactions.TRANSACTION_4;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -61,6 +62,11 @@ public class JsonPayBackStorageTest {
     }
 
     @Test
+    public void readPayBack_invalidTransactionPayBack_throwDataLoadingException() {
+        assertThrows(DataLoadingException.class, () -> readPayBack("invalidTransactionPayBack.json"));
+    }
+
+    @Test
     public void readAndSavePayBack_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempPayBack.json");
         PayBack original = getTypicalPayBack();
@@ -74,6 +80,12 @@ public class JsonPayBackStorageTest {
         // Modify data, overwrite exiting file, and read back
         original.addPerson(HOON);
         original.removePerson(ALICE);
+        jsonPayBackStorage.savePayBack(original, filePath);
+        readBack = jsonPayBackStorage.readPayBack(filePath).get();
+        assertEquals(original, new PayBack(readBack));
+
+        // Modify data, overwrite exiting file, and read back
+        original.addTransaction(TRANSACTION_4);
         jsonPayBackStorage.savePayBack(original, filePath);
         readBack = jsonPayBackStorage.readPayBack(filePath).get();
         assertEquals(original, new PayBack(readBack));

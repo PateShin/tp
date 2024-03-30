@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.parser.Prefix;
 import seedu.address.model.person.Person;
+import seedu.address.model.transaction.Transaction;
 
 /**
  * Container for user visible messages.
@@ -17,7 +18,7 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String TAG_INVALID_INDEX = "The tag index provided is invalid";
     public static final String TAG_NO_INDEX = "The tag index provided is not provided";
-    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_ID = "The person id provided is invalid";
+    public static final String MESSAGE_INVALID_PERSON_DISPLAYED_ID = "The person with the ID provided is not found";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
@@ -40,6 +41,8 @@ public class Messages {
     public static String format(Person person) {
         final StringBuilder builder = new StringBuilder();
         builder.append(person.getName())
+                .append("; ID: ")
+                .append(person.getId())
                 .append("; Phone: ")
                 .append(person.getPhone())
                 .append("; Email: ")
@@ -48,6 +51,24 @@ public class Messages {
                 .append(person.getAddress())
                 .append("; Tags: ");
         person.getTags().forEach(builder::append);
+        return builder.toString();
+    }
+
+    /**
+     * Formats the {@code transaction} for display to the user.
+     */
+    public static String format(Transaction transaction) {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Transaction ID: ")
+                .append(transaction.getId())
+                .append("; DateTime: ")
+                .append(transaction.getDateTime())
+                .append("; Employee ID: ")
+                .append(transaction.getEmployeeId())
+                .append("; Amount: ")
+                .append(transaction.getAmount())
+                .append("; Description: ")
+                .append(transaction.getDescription());
         return builder.toString();
     }
 

@@ -13,4 +13,19 @@ public interface Parser<T extends Command> {
      * @throws ParseException if {@code userInput} does not conform the expected format
      */
     T parse(String userInput) throws ParseException;
+
+    /**
+     * Appends prefixes to the given arguments.
+     * @param args Arguments to append prefixes to.
+     * @param prefixes Prefixes to append.
+     * @return Arguments with prefixes appended.
+     */
+    static String appendPrefixes(String args, Prefix... prefixes) {
+        StringBuilder result = new StringBuilder();
+        String[] argsArr = args.trim().split(";\\s+");
+        for (int i = 0; i < Math.min(prefixes.length, argsArr.length); i++) {
+            result.append(" ").append(prefixes[i]).append(" ").append(argsArr[i]);
+        }
+        return result.toString();
+    }
 }

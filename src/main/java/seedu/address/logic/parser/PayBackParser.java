@@ -18,6 +18,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.TagCommand;
+import seedu.address.logic.commands.TransactionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 
@@ -81,6 +82,9 @@ public class PayBackParser {
 
         case TagCommand.COMMAND_WORD:
             return new TagCommandParser().parse(arguments);
+
+        case TransactionCommand.COMMAND_WORD:
+            return new TransactionCommandParser(model).parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

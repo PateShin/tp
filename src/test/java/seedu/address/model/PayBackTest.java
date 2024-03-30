@@ -20,6 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.transaction.Transaction;
 import seedu.address.testutil.PersonBuilder;
 
 public class PayBackTest {
@@ -49,7 +50,7 @@ public class PayBackTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        PayBackStub newData = new PayBackStub(newPersons);
+        PayBackStub newData = new PayBackStub(newPersons, payBack.getTransactionList());
 
         assertThrows(DuplicatePersonException.class, () -> payBack.resetData(newData));
     }
@@ -85,7 +86,8 @@ public class PayBackTest {
 
     @Test
     public void toStringMethod() {
-        String expected = PayBack.class.getCanonicalName() + "{persons=" + payBack.getPersonList() + "}";
+        String expected = PayBack.class.getCanonicalName() + "{persons=" + payBack.getPersonList()
+                + ", transactions=" + payBack.getTransactionList() + "}";
         assertEquals(expected, payBack.toString());
     }
 
@@ -94,14 +96,21 @@ public class PayBackTest {
      */
     private static class PayBackStub implements ReadOnlyPayBack {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Transaction> transactions = FXCollections.observableArrayList();
 
-        PayBackStub(Collection<Person> persons) {
+        PayBackStub(Collection<Person> persons, Collection<Transaction> transactions) {
             this.persons.setAll(persons);
+            this.transactions.setAll(transactions);
         }
 
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Transaction> getTransactionList() {
+            return transactions;
         }
     }
 

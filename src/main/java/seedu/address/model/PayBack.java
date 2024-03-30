@@ -6,17 +6,21 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.util.ToStringBuilder;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.YearJoined;
+import seedu.address.model.transaction.Transaction;
+import seedu.address.model.transaction.UniqueTransactionList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSamePerson comparison)
+ * Duplicates are not allowed (by .isSamePerson comparison) and (by .isSameTransaction comparison)
  */
 public class PayBack implements ReadOnlyPayBack {
 
     private final UniquePersonList persons;
+    private final UniqueTransactionList transactions;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -27,6 +31,7 @@ public class PayBack implements ReadOnlyPayBack {
      */
     {
         persons = new UniquePersonList();
+        transactions = new UniqueTransactionList();
     }
 
     public PayBack() {}
@@ -50,12 +55,21 @@ public class PayBack implements ReadOnlyPayBack {
     }
 
     /**
+     * Replaces the contents of the transaction list with {@code transactions}.
+     * {@code transactions} must not contain duplicate transactions.
+     */
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions.setTransactions(transactions);
+    }
+
+    /**
      * Resets the existing data of this {@code PayBack} with {@code newData}.
      */
     public void resetData(ReadOnlyPayBack newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setTransactions(newData.getTransactionList());
     }
 
     //// person-level operations
@@ -66,6 +80,14 @@ public class PayBack implements ReadOnlyPayBack {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return persons.contains(person);
+    }
+
+    /**
+     * Returns true if a person with the same ID as {@code id} exists in the address book.
+     */
+    public boolean hasPersonId(Id id) {
+        requireNonNull(id);
+        return persons.containsId(id);
     }
 
     /**
@@ -95,12 +117,31 @@ public class PayBack implements ReadOnlyPayBack {
         persons.remove(key);
     }
 
+    //// transaction-level operations
+
+    /**
+     * Returns true if a transaction with the same ID as {@code transaction} exists in the address book.
+     */
+    public boolean hasTransaction(Transaction transaction) {
+        requireNonNull(transaction);
+        return transactions.contains(transaction);
+    }
+
+    /**
+     * Adds a transaction to the address book.
+     * The transaction must not already exist in the address book.
+     */
+    public void addTransaction(Transaction transaction) {
+        transactions.add(transaction);
+    }
+
     //// util methods
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("persons", persons)
+                .add("transactions", transactions)
                 .toString();
     }
 
@@ -117,6 +158,10 @@ public class PayBack implements ReadOnlyPayBack {
                 .orElse(yearJoined.value % 100 * 10000);
     }
 
+    public ObservableList<Transaction> getTransactionList() {
+        return transactions.asUnmodifiableObservableList();
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -129,7 +174,8 @@ public class PayBack implements ReadOnlyPayBack {
         }
 
         PayBack otherPayBack = (PayBack) other;
-        return persons.equals(otherPayBack.persons);
+        return persons.equals(otherPayBack.persons)
+                && transactions.equals(otherPayBack.transactions);
     }
 
     @Override
