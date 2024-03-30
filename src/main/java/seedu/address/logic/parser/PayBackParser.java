@@ -84,7 +84,7 @@ public class PayBackParser {
             return new TagCommandParser().parse(arguments);
 
         case TransactionCommand.COMMAND_WORD:
-            return new TransactionCommandParser().parse(arguments);
+            return new TransactionCommandParser(model).parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

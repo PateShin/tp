@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.YearJoined;
 import seedu.address.model.transaction.Transaction;
@@ -97,6 +98,12 @@ public class ModelManager implements Model {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return payBack.hasPerson(person);
+    }
+
+    @Override
+    public boolean hasPersonId(Id id) {
+        requireNonNull(id);
+        return payBack.hasPersonId(id);
     }
 
     @Override

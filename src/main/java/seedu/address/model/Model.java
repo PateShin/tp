@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.YearJoined;
 import seedu.address.model.transaction.Transaction;
@@ -61,6 +62,11 @@ public interface Model {
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
+
+    /**
+     * Returns true if a person with the same ID as {@code id} exists in the address book.
+     */
+    boolean hasPersonId(Id id);
 
     /**
      * Deletes the given person.

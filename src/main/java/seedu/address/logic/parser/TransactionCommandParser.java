@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -11,6 +12,7 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.TransactionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Model;
 import seedu.address.model.person.Id;
 import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.DateTime;
@@ -21,6 +23,16 @@ import seedu.address.model.transaction.Transaction;
  * Parses input arguments and creates a new TransactionCommand object
  */
 public class TransactionCommandParser implements Parser<TransactionCommand> {
+
+    private final Model model;
+
+    /**
+     * Constructs a new TransactionCommandParser.
+     * @param model Model to be used in parsing.
+     */
+    TransactionCommandParser(Model model) {
+        this.model = model;
+    }
 
     /**
      * Parses the given {@code String} of arguments in the context of the TransactionCommand
@@ -48,6 +60,9 @@ public class TransactionCommandParser implements Parser<TransactionCommand> {
             dateTime = new DateTime(LocalDateTime.now());
         }
         Id employeeId = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
+        if (!model.hasPersonId(employeeId)) {
+            throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_ID);
+        }
         Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
