@@ -28,7 +28,7 @@ public class TransactionBuilder {
      * Creates a {@code TransactionBuilder} with the default details.
      */
     public TransactionBuilder() {
-        id = new TransactionId(DEFAULT_ID);
+        id = new TransactionId();
         dateTime = new DateTime(DEFAULT_DATETIME);
         employeeId = new Id(DEFAULT_EMPLOYEEID);
         amount = new Amount(DEFAULT_AMOUNT);
