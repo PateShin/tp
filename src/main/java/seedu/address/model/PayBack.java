@@ -55,12 +55,21 @@ public class PayBack implements ReadOnlyPayBack {
     }
 
     /**
+     * Replaces the contents of the transaction list with {@code transactions}.
+     * {@code transactions} must not contain duplicate transactions.
+     */
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions.setTransactions(transactions);
+    }
+
+    /**
      * Resets the existing data of this {@code PayBack} with {@code newData}.
      */
     public void resetData(ReadOnlyPayBack newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
+        setTransactions(newData.getTransactionList());
     }
 
     //// person-level operations
