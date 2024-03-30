@@ -1,5 +1,7 @@
 package seedu.address.model.transaction;
 
+import static seedu.address.commons.util.AppUtil.checkArgument;
+
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
@@ -9,6 +11,12 @@ import java.time.ZoneOffset;
  */
 public class TransactionId {
 
+    public static final String MESSAGE_CONSTRAINTS =
+            "ID should only contain numbers "
+                    + "and it must be the unix timestamp between 1/1/2010 to the current datetime.";
+
+    private static final long MIN_ID = LocalDateTime.of(2010, 1, 1, 0, 0).toEpochSecond(ZoneOffset.UTC);
+
     public final long value;
 
     /**
@@ -16,6 +24,23 @@ public class TransactionId {
      */
     public TransactionId() {
         value = LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
+    }
+
+    /**
+     * Constructs a {@code Id}.
+     *
+     * @param id A valid ID.
+     */
+    public TransactionId(long id) {
+        checkArgument(isValidId(id), MESSAGE_CONSTRAINTS);
+        value = id;
+    }
+
+    /**
+     * Returns true if a given long is a valid ID.
+     */
+    public static boolean isValidId(long test) {
+        return test >= MIN_ID && test <= LocalDateTime.now().toEpochSecond(ZoneOffset.UTC);
     }
 
     @Override

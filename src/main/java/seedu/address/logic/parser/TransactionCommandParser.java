@@ -33,25 +33,25 @@ public class TransactionCommandParser implements Parser<TransactionCommand> {
         }
 
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ID, PREFIX_AMOUNT, PREFIX_DESCRIPTION, PREFIX_DATETIME);
+                ArgumentTokenizer.tokenize(args, PREFIX_DATETIME, PREFIX_ID, PREFIX_AMOUNT, PREFIX_DESCRIPTION);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_ID, PREFIX_AMOUNT, PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TransactionCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_ID, PREFIX_AMOUNT, PREFIX_DESCRIPTION, PREFIX_DATETIME);
-        Id employeeId = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
-        Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
-        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_DATETIME, PREFIX_ID, PREFIX_AMOUNT, PREFIX_DESCRIPTION);
         DateTime dateTime;
         if (argMultimap.getValue(PREFIX_DATETIME).isPresent()) {
             dateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_DATETIME).get());
         } else {
             dateTime = new DateTime(LocalDateTime.now());
         }
+        Id employeeId = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
+        Amount amount = ParserUtil.parseAmount(argMultimap.getValue(PREFIX_AMOUNT).get());
+        Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
-        Transaction transaction = new Transaction(employeeId, amount, description, dateTime);
+        Transaction transaction = new Transaction(dateTime, employeeId, amount, description);
         return new TransactionCommand(transaction);
     }
 

@@ -59,7 +59,8 @@ public class Messages {
      */
     public static String format(Transaction transaction) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(transaction.getId())
+        builder.append("Transaction ID: ")
+                .append(transaction.getId())
                 .append("; DateTime: ")
                 .append(transaction.getDateTime())
                 .append("; Employee ID: ")

@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 public class Id {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "ID should only contain numbers and it must be between 100000 to 999999 inclusive.";
+            "ID should be a 6-digit number between 100001 and 999999 inclusive.";
 
     public final int value;
 

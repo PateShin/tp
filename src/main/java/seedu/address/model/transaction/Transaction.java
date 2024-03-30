@@ -15,25 +15,41 @@ import seedu.address.model.person.Id;
 public class Transaction {
 
     private final TransactionId id;
+    private final DateTime dateTime;
     private final Id employeeId;
     private final Amount amount;
     private final Description description;
-    private final DateTime dateTime;
 
     /**
      * Every field must be present and not null.
      */
-    public Transaction(Id employeeId, Amount amount, Description description, DateTime dateTime) {
+    public Transaction(DateTime dateTime, Id employeeId, Amount amount, Description description) {
         requireAllNonNull(employeeId, dateTime, amount, description);
         this.id = new TransactionId();
+        this.dateTime = dateTime;
         this.employeeId = employeeId;
         this.amount = amount;
         this.description = description;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Transaction(TransactionId id, DateTime dateTime, Id employeeId, Amount amount, Description description) {
+        requireAllNonNull(id, dateTime, employeeId, amount, description);
+        this.id = id;
         this.dateTime = dateTime;
+        this.employeeId = employeeId;
+        this.amount = amount;
+        this.description = description;
     }
 
     public TransactionId getId() {
         return id;
+    }
+
+    public DateTime getDateTime() {
+        return dateTime;
     }
 
     public Id getEmployeeId() {
@@ -46,10 +62,6 @@ public class Transaction {
 
     public Description getDescription() {
         return description;
-    }
-
-    public DateTime getDateTime() {
-        return dateTime;
     }
 
     /**
@@ -81,26 +93,26 @@ public class Transaction {
 
         Transaction otherTransaction = (Transaction) other;
         return otherTransaction.getId().equals(getId())
+                && otherTransaction.getDateTime().equals(getDateTime())
                 && otherTransaction.getEmployeeId().equals(getEmployeeId())
                 && otherTransaction.getAmount().equals(getAmount())
-                && otherTransaction.getDescription().equals(getDescription())
-                && otherTransaction.getDateTime().equals(getDateTime());
+                && otherTransaction.getDescription().equals(getDescription());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(id, employeeId, amount, description, dateTime);
+        return Objects.hash(id, dateTime, employeeId, amount, description);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("id", id)
+                .add("dateTime", dateTime)
                 .add("employeeId", employeeId)
                 .add("amount", amount)
                 .add("description", description)
-                .add("dateTime", dateTime)
                 .toString();
     }
 }

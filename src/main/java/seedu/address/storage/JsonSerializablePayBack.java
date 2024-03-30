@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.PayBack;
 import seedu.address.model.ReadOnlyPayBack;
 import seedu.address.model.person.Person;
+import seedu.address.model.transaction.Transaction;
 
 /**
  * An Immutable PayBack that is serializable to JSON format.
@@ -20,15 +21,19 @@ import seedu.address.model.person.Person;
 class JsonSerializablePayBack {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_TRANSACTION = "Transactions list contains duplicate transaction(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedTransaction> transactions = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializablePayBack} with the given persons.
      */
     @JsonCreator
-    public JsonSerializablePayBack(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializablePayBack(@JsonProperty("persons") List<JsonAdaptedPerson> persons,
+            @JsonProperty("transactions") List<JsonAdaptedTransaction> transactions) {
         this.persons.addAll(persons);
+        this.transactions.addAll(transactions);
     }
 
     /**
@@ -38,6 +43,8 @@ class JsonSerializablePayBack {
      */
     public JsonSerializablePayBack(ReadOnlyPayBack source) {
         persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        transactions.addAll(source.getTransactionList().stream()
+                .map(JsonAdaptedTransaction::new).collect(Collectors.toList()));
     }
 
     /**
@@ -53,6 +60,13 @@ class JsonSerializablePayBack {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
             payBack.addPerson(person);
+        }
+        for (JsonAdaptedTransaction jsonAdaptedTransaction : transactions) {
+            Transaction transaction = jsonAdaptedTransaction.toModelType();
+            if (payBack.hasTransaction(transaction)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_TRANSACTION);
+            }
+            payBack.addTransaction(transaction);
         }
         return payBack;
     }

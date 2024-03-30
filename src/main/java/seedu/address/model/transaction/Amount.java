@@ -21,7 +21,7 @@ public class Amount {
     public Amount(String amount) {
         requireNonNull(amount);
         checkArgument(isValidAmount(amount), MESSAGE_CONSTRAINTS);
-        value = Double.parseDouble(amount);
+        value = Math.round(Double.parseDouble(amount) * 100 / 100.0);
     }
 
     /**
@@ -38,7 +38,7 @@ public class Amount {
 
     @Override
     public String toString() {
-        return Double.toString(value);
+        return String.format("%.2f", value);
     }
 
     @Override
