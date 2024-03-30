@@ -156,6 +156,22 @@ Format: `/tag ID :tag TAG...`
 Examples:
 * `/tag 240001 :tag finance :tag manager` tags the person with `240001` ID with `finance` and `manager`.
 
+### Adding a transaction: `/transaction`
+
+Adds a transaction to the specified person.
+
+Format:
+* `/transaction ID; AMOUNT; DESCRIPTION; [DATETIME]`
+* `/transaction :id ID :amount AMOUNT :description DESCRIPTION [:datetime DATETIME]`
+
+Examples:
+* `/transaction 240001; 2000; Salary; 30/09/2021 12:00`
+* `/transaction :id 240001 :amount 2000 :description Salary :datetime 30/09/2021 12:00`
+
+### Listing all persons : `/list`
+
+Show workers as a list. This can be used as “refresh” (e.g. after find command)
+
 ### Saving the data
 
 PayBack data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
