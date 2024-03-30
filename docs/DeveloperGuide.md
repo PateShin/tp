@@ -445,6 +445,42 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at Step 2.
 
+**Use case: Add a transaction**
+
+**MSS**
+
+1. User requests to add a transaction to an employee
+2. User enters the employee's ID, amount, description, and optionally, date and time
+3. PayBack adds the transaction to the transaction list
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The fields other than the date and time are not specified.
+
+    * 2a1. PayBack shows an error message.
+
+      Use case resumes at Step 2.
+
+* 2b. The parameters are not specified in the correct order.
+
+    * 2b1. PayBack shows an error message.
+
+      Use case resumes at Step 2.
+
+* 2c. Some parameters are specified, some are not.
+
+    * 2c1. PayBack shows an error message.
+
+      Use case resumes at Step 2.
+
+* 2d. The information entered is not in the correct format.
+
+    * 2d1. PayBack shows an error message.
+
+      Use case resumes at Step 2.
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
