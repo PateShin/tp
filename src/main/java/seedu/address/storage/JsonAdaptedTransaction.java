@@ -67,6 +67,9 @@ public class JsonAdaptedTransaction {
         }
         final DateTime modelDateTime = new DateTime(dateTime);
 
+        if (!Id.isValidId(employeeId)) {
+            throw new IllegalValueException(Id.MESSAGE_CONSTRAINTS);
+        }
         final Id modelEmployeeId = new Id(employeeId);
 
         if (!Amount.isValidAmount(String.valueOf(amount))) {

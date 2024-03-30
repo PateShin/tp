@@ -2,6 +2,7 @@ package seedu.address.testutil;
 
 import seedu.address.model.PayBack;
 import seedu.address.model.person.Person;
+import seedu.address.model.transaction.Transaction;
 
 /**
  * A utility class to help with building PayBack objects.
@@ -25,6 +26,14 @@ public class PayBackBuilder {
      */
     public PayBackBuilder withPerson(Person person) {
         payBack.addPerson(person);
+        return this;
+    }
+
+    /**
+     * Adds a new {@code Transaction} to the {@code PayBack} that we are building.
+     */
+    public PayBackBuilder withTransaction(Transaction transaction) {
+        payBack.addTransaction(transaction);
         return this;
     }
 

@@ -99,7 +99,7 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getId().equals(getId());
+                && otherPerson.getName().equals(getName());
     }
 
     /**

@@ -21,7 +21,7 @@ public class Amount {
     public Amount(String amount) {
         requireNonNull(amount);
         checkArgument(isValidAmount(amount), MESSAGE_CONSTRAINTS);
-        value = Math.round(Double.parseDouble(amount) * 100 / 100.0);
+        value = Math.round(Double.parseDouble(amount) * 100) / 100.0;
     }
 
     /**

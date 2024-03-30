@@ -13,5 +13,6 @@
     "email": "hans@example.com",
     "year joined": "2024",
     "address": "4th street"
-  } ]
+  } ],
+  "transactions": []
 }

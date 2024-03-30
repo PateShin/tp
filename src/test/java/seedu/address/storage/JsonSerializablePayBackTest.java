@@ -19,6 +19,7 @@ public class JsonSerializablePayBackTest {
     private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsPayBack.json");
     private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonPayBack.json");
     private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonPayBack.json");
+    private static final Path INVALID_TRANSACTION_FILE = TEST_DATA_FOLDER.resolve("invalidTransactionPayBack.json");
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
@@ -42,6 +43,13 @@ public class JsonSerializablePayBackTest {
                 JsonSerializablePayBack.class).get();
         assertThrows(IllegalValueException.class, JsonSerializablePayBack.MESSAGE_DUPLICATE_PERSON,
                 dataFromFile::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidTransactionFile_throwsIllegalValueException() throws Exception {
+        JsonSerializablePayBack dataFromFile = JsonUtil.readJsonFile(INVALID_TRANSACTION_FILE,
+                JsonSerializablePayBack.class).get();
+        assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
 }

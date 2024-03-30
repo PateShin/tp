@@ -1,5 +1,7 @@
 package seedu.address.model.transaction;
 
+import static java.util.Objects.requireNonNull;
+
 /**
  * Represents a Transaction's description in the transaction list.
  * Guarantees: immutable;
@@ -14,6 +16,7 @@ public class Description {
      * @param description A valid description.
      */
     public Description(String description) {
+        requireNonNull(description);
         value = description;
     }
 

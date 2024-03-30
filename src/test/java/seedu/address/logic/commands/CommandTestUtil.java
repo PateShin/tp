@@ -3,7 +3,10 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -73,6 +76,20 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
+
+    public static final String VALID_DATETIME = "01/01/2024 10:00";
+    public static final int VALID_EMPLOYEEID = 240001;
+    public static final String VALID_AMOUNT = "10.00";
+    public static final String VALID_DESCRIPTION = "Salary";
+
+    public static final String DATETIME_DESC = " " + PREFIX_DATETIME + VALID_DATETIME;
+    public static final String EMPLOYEEID_DESC = " " + PREFIX_ID + VALID_EMPLOYEEID;
+    public static final String AMOUNT_DESC = " " + PREFIX_DESCRIPTION + VALID_AMOUNT;
+    public static final String DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION;
+
+    public static final String INVALID_DATETIME_DESC = " " + PREFIX_DATETIME + "01-01-2024 10:00";
+    public static final String INVALID_EMPLOYEEID_DESC = " " + PREFIX_ID + "240001a";
+    public static final String INVALID_AMOUNT_DESC = " " + PREFIX_DESCRIPTION + "10.00a";
 
     /**
      * Executes the given {@code command}, confirms that <br>

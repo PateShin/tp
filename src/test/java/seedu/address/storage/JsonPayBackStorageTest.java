@@ -61,6 +61,11 @@ public class JsonPayBackStorageTest {
     }
 
     @Test
+    public void readPayBack_invalidTransactionPayBack_throwDataLoadingException() {
+        assertThrows(DataLoadingException.class, () -> readPayBack("invalidTransactionPayBack.json"));
+    }
+
+    @Test
     public void readAndSavePayBack_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempPayBack.json");
         PayBack original = getTypicalPayBack();

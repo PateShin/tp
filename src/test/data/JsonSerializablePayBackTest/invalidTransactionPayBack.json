@@ -8,5 +8,11 @@
     "address": "4th street",
     "tags" : [ ]
   } ],
-  "transactions": []
+  "transactions" : [ {
+    "id" : 1711815646,
+    "dateTime" : "30-03--2024 16:20",
+    "employeeId" : 240001,
+    "amount" : 3000.0,
+    "description" : "Invalid DateTime"
+  } ]
 }
