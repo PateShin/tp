@@ -26,6 +26,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Transaction> filteredTransactions;
+    private Person lastMentionedPerson;
 
     /**
      * Initializes a ModelManager with the given PayBack and userPrefs.
@@ -176,6 +177,15 @@ public class ModelManager implements Model {
     public void updateFilteredTransactionList(Predicate<Transaction> predicate) {
         requireNonNull(predicate);
         filteredTransactions.setPredicate(predicate);
+    }
+
+    @Override
+    public void setLastMentionedPerson(Person person) {
+        this.lastMentionedPerson = person;
+    }
+    @Override
+    public Person getLastMentionedPerson() {
+        return lastMentionedPerson;
     }
 
     @Override

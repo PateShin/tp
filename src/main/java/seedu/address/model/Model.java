@@ -120,4 +120,15 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredTransactionList(Predicate<Transaction> predicate);
+
+    /**
+     * Sets the last mentioned person {@Code DeleteConfirmationCommand} is executed.
+     */
+    void setLastMentionedPerson(Person person);
+
+    /**
+     * Returns the last mentioned person.
+     */
+    Person getLastMentionedPerson();
+
 }

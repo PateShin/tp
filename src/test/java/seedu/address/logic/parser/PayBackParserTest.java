@@ -16,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteConfirmationCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
@@ -50,11 +51,11 @@ public class PayBackParserTest {
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
+    public void parseCommand_deleteConfirmation() throws Exception {
+        DeleteConfirmationCommand command = (DeleteConfirmationCommand) parser.parseCommand(
                 model,
                 DeleteCommand.COMMAND_WORD + " 240001");
-        assertEquals(new DeleteCommand(new Id(240001)), command);
+        assertEquals(new DeleteConfirmationCommand(new Id(240001)), command);
     }
 
     @Test

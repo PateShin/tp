@@ -190,6 +190,16 @@ public class AddCommandTest {
         public void updateFilteredTransactionList(Predicate<Transaction> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void setLastMentionedPerson(Person person) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Person getLastMentionedPerson() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
