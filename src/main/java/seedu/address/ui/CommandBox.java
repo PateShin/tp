@@ -16,6 +16,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import org.controlsfx.control.textfield.TextFields;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+import java.util.Objects;
+
 
 
 /**
@@ -27,6 +30,7 @@ public class CommandBox extends UiPart<Region> {
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
+    private ResultDisplay resultDisplay;
 
     private static final String[] COMMANDS = {
             AddCommand.COMMAND_WORD,
@@ -45,13 +49,28 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
-    public CommandBox(CommandExecutor commandExecutor) {
+    public CommandBox(CommandExecutor commandExecutor, ResultDisplay resultDisplay) {
         super(FXML);
         this.commandExecutor = commandExecutor;
-        // calls #setStyleToDefault() whenever there is a change to the text of the command box.
+        this.resultDisplay = resultDisplay; // Store the ResultDisplay reference
 
-
-        TextFields.bindAutoCompletion(commandTextField, COMMANDS);
+        AutoCompletionBinding<String> autoCompletionBinding = TextFields.bindAutoCompletion(commandTextField, COMMANDS);
+        autoCompletionBinding.setOnAutoCompleted(event -> {
+            String selectedCommand = event.getCompletion();
+            if (Objects.equals(selectedCommand, AddCommand.COMMAND_WORD)) {
+                this.resultDisplay.setFeedbackToUser("Follows:\n" + ":name NAME :phone PHONE :email EMAIL " +
+                        ":address ADDRESS :year YEAR_JOINED :tag TAG");
+            } else if (Objects.equals(selectedCommand, EditCommand.COMMAND_WORD)) {
+                this.resultDisplay.setFeedbackToUser("Follows:\n" + "ID :phone PHONE and/or :email EMAIL " +
+                        "and/or :tag TAG");
+            } else if (Objects.equals(selectedCommand, DeleteCommand.COMMAND_WORD)) {
+                this.resultDisplay.setFeedbackToUser("Follows:\n" + "ID");
+            } else if (Objects.equals(selectedCommand, FindCommand.COMMAND_WORD)) {
+                this.resultDisplay.setFeedbackToUser("Follows:\n" + ":id, :name, :phone, :email, :year, :tag");
+            } else if (Objects.equals(selectedCommand, TagCommand.COMMAND_WORD)) {
+                this.resultDisplay.setFeedbackToUser("Follows:\n" + ":ID :tag TAG");
+            }
+        });
     }
 
     /**
