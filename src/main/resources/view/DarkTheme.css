@@ -351,6 +351,9 @@
     -fx-font-size: 11;
 }
 
+/*AutoCompleteTextBox CSS
+  It is partial features from
+  Extensions.css*/
 .auto-complete-popup .list-cell {
     -fx-font-size: 1.05em;
     -fx-label-padding: 5px 0 5px 5px;
