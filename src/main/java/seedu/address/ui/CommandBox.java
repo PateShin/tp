@@ -21,7 +21,7 @@ import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.TransactionCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-
+import seedu.address.model.tag.Tag;
 
 
 /**
@@ -60,19 +60,19 @@ public class CommandBox extends UiPart<Region> {
         autoCompletionBinding.setOnAutoCompleted(event -> {
             String selectedCommand = event.getCompletion();
             if (Objects.equals(selectedCommand, AddCommand.COMMAND_WORD)) {
-                this.resultDisplay.setFeedbackToUser("Follows:\n" + ":name NAME :phone PHONE :email EMAIL "
-                        + ":address ADDRESS :year YEAR_JOINED :tag TAG");
+                this.resultDisplay.setFeedbackToUser(AddCommand.FOLLOW_MESSAGE);
             } else if (Objects.equals(selectedCommand, EditCommand.COMMAND_WORD)) {
-                this.resultDisplay.setFeedbackToUser("Follows:\n" + "ID :phone PHONE and/or :email EMAIL "
-                        + "and/or :tag TAG");
+                this.resultDisplay.setFeedbackToUser(EditCommand.FOLLOW_MESSAGE);
             } else if (Objects.equals(selectedCommand, DeleteCommand.COMMAND_WORD)) {
-                this.resultDisplay.setFeedbackToUser("Follows:\n" + "ID");
+                this.resultDisplay.setFeedbackToUser(DeleteCommand.FOLLOW_MESSAGE);
             } else if (Objects.equals(selectedCommand, FindCommand.COMMAND_WORD)) {
-                this.resultDisplay.setFeedbackToUser("Follows:\n" + ":id, :name, :phone, :email, :year, :tag");
+                this.resultDisplay.setFeedbackToUser(FindCommand.FOLLOW_MESSAGE);
             } else if (Objects.equals(selectedCommand, TagCommand.COMMAND_WORD)) {
-                this.resultDisplay.setFeedbackToUser("Follows:\n" + ":ID :tag TAG");
+                this.resultDisplay.setFeedbackToUser(TagCommand.FOLLOW_MESSAGE);
             }
         });
+        // calls #setStyleToDefault() whenever there is a change to the text of the command box.
+        commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
     }
 
     /**

@@ -27,6 +27,8 @@ public class TagCommand extends Command {
 
     public static final String COMMAND_WORD = "/tag";
 
+    public static final String FOLLOW_MESSAGE = "Follows:\n" + ":ID :tag TAG";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tags an employee in the address book.\n"
             + "Format:\n"
             + "• " + COMMAND_WORD + " ID " + PREFIX_TAG + " TAG...\n "
