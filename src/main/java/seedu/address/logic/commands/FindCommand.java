@@ -17,7 +17,7 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "/find";
 
-    public static final String FOLLOW_MESSAGE = "Follows:\n" + ":id, :name, :phone, :email, :year, :tag";
+    public static final String FOLLOW_MESSAGE = "Follows:\n:id, :name, :phone, :email, :year, :tag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons who match the given search criteria "
             + "and displays them as a list with index numbers.\n"

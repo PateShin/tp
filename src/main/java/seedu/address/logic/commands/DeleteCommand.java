@@ -15,7 +15,7 @@ public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "/delete";
 
-    public static final String FOLLOW_MESSAGE =  "Follows:\n" + "ID";
+    public static final String FOLLOW_MESSAGE = "Follows:\nID";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the id number provided.\n"

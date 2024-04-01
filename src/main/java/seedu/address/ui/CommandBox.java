@@ -21,8 +21,6 @@ import seedu.address.logic.commands.TagCommand;
 import seedu.address.logic.commands.TransactionCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
-
 
 /**
  * The UI component that is responsible for receiving user command inputs.

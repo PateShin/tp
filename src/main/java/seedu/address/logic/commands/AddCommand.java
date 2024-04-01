@@ -21,7 +21,7 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "/add";
 
-    public static final String FOLLOW_MESSAGE =  "Follows:\n" + ":name NAME :phone PHONE :email EMAIL "
+    public static final String FOLLOW_MESSAGE = "Follows:\n:name NAME :phone PHONE :email EMAIL "
             + ":address ADDRESS :year YEAR_JOINED :tag TAG";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an employee to the address book.\n"
