@@ -350,18 +350,3 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
-
-/*AutoCompleteTextBox CSS
-  It is partial features from
-  Extensions.css*/
-.auto-complete-popup .list-cell {
-    -fx-font-size: 1.05em;
-    -fx-label-padding: 5px 0 5px 5px;
-    -fx-border-insets: 100px;
-    -fx-background-color: white;
-    -fx-font-weight: bold;
-}
-
-.suggestion-highlight {
-    -fx-background-color: yellow; /* Or any desired highlight color */
-}
