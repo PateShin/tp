@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -15,11 +14,10 @@ public class CommandDataTest {
         assertEquals(DeleteCommand.FOLLOW_MESSAGE, CommandData.getFollowMessage(DeleteCommand.COMMAND_WORD));
         assertEquals(FindCommand.FOLLOW_MESSAGE, CommandData.getFollowMessage(FindCommand.COMMAND_WORD));
         assertEquals(TagCommand.FOLLOW_MESSAGE, CommandData.getFollowMessage(TagCommand.COMMAND_WORD));
-
-        assertNull(CommandData.getFollowMessage(ExitCommand.COMMAND_WORD));
-        assertNull(CommandData.getFollowMessage(HelpCommand.COMMAND_WORD));
-        assertNull(CommandData.getFollowMessage(TransactionCommand.COMMAND_WORD));
-        assertNull(CommandData.getFollowMessage(ListCommand.COMMAND_WORD));
+        assertEquals(ExitCommand.FOLLOW_MESSAGE, CommandData.getFollowMessage(ExitCommand.COMMAND_WORD));
+        assertEquals(HelpCommand.FOLLOW_MESSAGE, CommandData.getFollowMessage(HelpCommand.COMMAND_WORD));
+        assertEquals(TransactionCommand.FOLLOW_MESSAGE, CommandData.getFollowMessage(TransactionCommand.COMMAND_WORD));
+        assertEquals(ListCommand.FOLLOW_MESSAGE, CommandData.getFollowMessage(ListCommand.COMMAND_WORD));
     }
 
     @Test

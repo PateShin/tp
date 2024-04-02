@@ -19,6 +19,8 @@ public class TransactionCommand extends Command {
 
     public static final String COMMAND_WORD = "/transaction";
 
+    public static final String FOLLOW_MESSAGE = "";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a transaction to PayBack.\n"
             + "Format:\n"
             + "• " + COMMAND_WORD + " ID; AMOUNT; DESCRIPTION; [DATETIME]\n"

@@ -17,13 +17,13 @@ public class CommandData {
     static {
         commandFollowMessages.put(AddCommand.COMMAND_WORD, AddCommand.FOLLOW_MESSAGE);
         commandFollowMessages.put(EditCommand.COMMAND_WORD, EditCommand.FOLLOW_MESSAGE);
-        commandFollowMessages.put(ExitCommand.COMMAND_WORD, null);
+        commandFollowMessages.put(ExitCommand.COMMAND_WORD, ExitCommand.FOLLOW_MESSAGE);
         commandFollowMessages.put(DeleteCommand.COMMAND_WORD, DeleteCommand.FOLLOW_MESSAGE);
         commandFollowMessages.put(FindCommand.COMMAND_WORD, FindCommand.FOLLOW_MESSAGE);
-        commandFollowMessages.put(HelpCommand.COMMAND_WORD, null);
+        commandFollowMessages.put(HelpCommand.COMMAND_WORD, HelpCommand.FOLLOW_MESSAGE);
         commandFollowMessages.put(TagCommand.COMMAND_WORD, TagCommand.FOLLOW_MESSAGE);
-        commandFollowMessages.put(TransactionCommand.COMMAND_WORD, null);
-        commandFollowMessages.put(ListCommand.COMMAND_WORD, null);
+        commandFollowMessages.put(TransactionCommand.COMMAND_WORD, TransactionCommand.FOLLOW_MESSAGE);
+        commandFollowMessages.put(ListCommand.COMMAND_WORD, ListCommand.FOLLOW_MESSAGE);
     }
 
     /**
