@@ -1,14 +1,16 @@
 package seedu.address.ui;
 
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+import org.controlsfx.control.textfield.TextFields;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
+import seedu.address.logic.commands.CommandData;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.ui.autocomplete.AutoCompletionSetup;
-
 /**
  * The UI component that is responsible for receiving user command inputs.
  */
@@ -31,7 +33,15 @@ public class CommandBox extends UiPart<Region> {
         this.resultDisplay = resultDisplay;
 
         // Use CommandData to get command words for auto-completion
-        AutoCompletionSetup.setupAutoCompletion(commandTextField, resultDisplay);
+        AutoCompletionBinding<String> autoCompletionBinding = TextFields.bindAutoCompletion(commandTextField,
+                CommandData.getCommandWords());
+        autoCompletionBinding.setOnAutoCompleted(event -> {
+                    String selectedCommand = event.getCompletion();
+            String followMessage = CommandData.getFollowMessage(selectedCommand);
+            if (!followMessage.isEmpty()) {
+                this.resultDisplay.setFeedbackToUser(followMessage);
+            }
+        });
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
     }
 
