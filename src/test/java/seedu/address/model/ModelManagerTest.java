@@ -16,7 +16,10 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.transaction.Transaction;
 import seedu.address.testutil.PayBackBuilder;
+import seedu.address.testutil.TransactionBuilder;
+import seedu.address.testutil.TypicalTransactions;
 
 public class ModelManagerTest {
 
@@ -86,6 +89,47 @@ public class ModelManagerTest {
     public void hasPerson_personInPayBack_returnsTrue() {
         modelManager.addPerson(ALICE);
         assertTrue(modelManager.hasPerson(ALICE));
+    }
+
+    @Test
+    public void hasTransaction_nullTransaction_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasTransaction(null));
+    }
+
+    @Test
+    public void hasTransaction_transactionNotInPayBack_returnsFalse() {
+        assertFalse(modelManager.hasTransaction(TypicalTransactions.TRANSACTION_1));
+    }
+
+    @Test
+    public void hasTransaction_transactionInPayBack_returnsTrue() {
+        modelManager.addTransaction(TypicalTransactions.TRANSACTION_1);
+        assertTrue(modelManager.hasTransaction(TypicalTransactions.TRANSACTION_1));
+    }
+
+    @Test
+    public void getFilteredTransactionList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTransactionList().remove(0));
+    }
+
+    @Test
+    public void updateFilteredTransactionList_nullPredicate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.updateFilteredTransactionList(null));
+    }
+
+    @Test
+    public void addTransaction_transactionNotAlreadyInPayBack_transactionAddedAndFilteredListUpdated() {
+        // Add a transaction
+        Transaction transactionToAdd = new TransactionBuilder().build();
+        modelManager.addTransaction(transactionToAdd);
+
+        // Verify that the transaction is added to the PayBack
+        PayBack expectedPayBack = new PayBack();
+        expectedPayBack.addTransaction(transactionToAdd);
+        assertEquals(expectedPayBack, modelManager.getPayBack());
+
+        // Verify that the filtered transaction list is updated to show all transactions
+        assertEquals(expectedPayBack.getTransactionList(), modelManager.getFilteredTransactionList());
     }
 
     @Test

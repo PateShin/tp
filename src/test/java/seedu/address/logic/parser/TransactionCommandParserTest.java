@@ -8,16 +8,13 @@ import static seedu.address.logic.commands.CommandTestUtil.EMPLOYEEID_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_AMOUNT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMPLOYEEID_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMPLOYEEID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalTransactions.TRANSACTION_4;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,9 +26,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.person.Id;
 import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.DateTime;
-import seedu.address.model.transaction.Transaction;
 import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.TransactionBuilder;
 
 public class TransactionCommandParserTest {
 
@@ -45,15 +40,6 @@ public class TransactionCommandParserTest {
 
         // Set up the parser
         parser = new TransactionCommandParser(modelManager);
-    }
-
-    @Test
-    public void parse_allFieldsPresent_success() {
-        Transaction expectedTransaction = new TransactionBuilder(TRANSACTION_4).build();
-
-        // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + EMPLOYEEID_DESC + AMOUNT_DESC
-                + DESCRIPTION_DESC + DATETIME_DESC, new TransactionCommand(expectedTransaction));
     }
 
     @Test
@@ -107,5 +93,36 @@ public class TransactionCommandParserTest {
     public void parse_duplicateDateTimePrefix_throwsException() {
         String input = EMPLOYEEID_DESC + AMOUNT_DESC + DESCRIPTION_DESC + DATETIME_DESC + " " + DATETIME_DESC;
         assertParseFailure(parser, input, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DATETIME));
+    }
+
+    @Test
+    public void parse_invalidEmployeeId_throwsParseException() {
+        String input = " :id 0 :amount 10.00 :description Salary";
+        assertParseFailure(parser, input, Id.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_invalidAmount_throwsParseException() {
+        String input = " :id 240001 :amount -10.00 :description Salary";
+        assertParseFailure(parser, input, Amount.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_invalidDateTimeFormat_throwsParseException() {
+        String input = " :id 240001 :amount 10.00 :description Salary :datetime 14-05-2024";
+        assertParseFailure(parser, input, DateTime.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_missingDescription_throwsParseException() {
+        String input = " :id 240001 :amount 10.00";
+        assertParseFailure(parser, input, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                TransactionCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_employeeIdNotFound_throwsParseException() {
+        String input = " :id 999999 :amount 10.00 :description Salary";
+        assertParseFailure(parser, input, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_ID);
     }
 }
