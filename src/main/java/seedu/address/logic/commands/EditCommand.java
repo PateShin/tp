@@ -38,7 +38,8 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "/edit";
 
-    public static final String FOLLOW_MESSAGE = "Follows:\nID :phone PHONE and/or :email EMAIL and/or :tag TAG";
+    public static final String FOLLOW_MESSAGE = "Follows:\nID :phone PHONE and/or :email EMAIL "
+            + "and/or :tag INDEX NEW_TAG";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the id number provided.\n"

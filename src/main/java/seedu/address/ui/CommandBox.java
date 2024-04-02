@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Objects;
-
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
@@ -9,16 +7,8 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
-import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.CommandData;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.TagCommand;
-import seedu.address.logic.commands.TransactionCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -29,17 +19,6 @@ public class CommandBox extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
-    private static final String[] COMMANDS = {
-        AddCommand.COMMAND_WORD,
-        EditCommand.COMMAND_WORD,
-        DeleteCommand.COMMAND_WORD,
-        FindCommand.COMMAND_WORD,
-        ListCommand.COMMAND_WORD,
-        ExitCommand.COMMAND_WORD,
-        HelpCommand.COMMAND_WORD,
-        TagCommand.COMMAND_WORD,
-        TransactionCommand.COMMAND_WORD
-    };
     private final CommandExecutor commandExecutor;
     private ResultDisplay resultDisplay;
 
@@ -52,24 +31,18 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor, ResultDisplay resultDisplay) {
         super(FXML);
         this.commandExecutor = commandExecutor;
-        this.resultDisplay = resultDisplay; // Store the ResultDisplay reference
+        this.resultDisplay = resultDisplay;
 
-        AutoCompletionBinding<String> autoCompletionBinding = TextFields.bindAutoCompletion(commandTextField, COMMANDS);
+        // Use CommandData to get command words for auto-completion
+        AutoCompletionBinding<String> autoCompletionBinding = TextFields.bindAutoCompletion(commandTextField, CommandData.getCommandWords());
         autoCompletionBinding.setOnAutoCompleted(event -> {
             String selectedCommand = event.getCompletion();
-            if (Objects.equals(selectedCommand, AddCommand.COMMAND_WORD)) {
-                this.resultDisplay.setFeedbackToUser(AddCommand.FOLLOW_MESSAGE);
-            } else if (Objects.equals(selectedCommand, EditCommand.COMMAND_WORD)) {
-                this.resultDisplay.setFeedbackToUser(EditCommand.FOLLOW_MESSAGE);
-            } else if (Objects.equals(selectedCommand, DeleteCommand.COMMAND_WORD)) {
-                this.resultDisplay.setFeedbackToUser(DeleteCommand.FOLLOW_MESSAGE);
-            } else if (Objects.equals(selectedCommand, FindCommand.COMMAND_WORD)) {
-                this.resultDisplay.setFeedbackToUser(FindCommand.FOLLOW_MESSAGE);
-            } else if (Objects.equals(selectedCommand, TagCommand.COMMAND_WORD)) {
-                this.resultDisplay.setFeedbackToUser(TagCommand.FOLLOW_MESSAGE);
+            // Use CommandData to retrieve follow message
+            String followMessage = CommandData.getFollowMessage(selectedCommand);
+            if (!followMessage.isEmpty()) {
+                this.resultDisplay.setFeedbackToUser(followMessage);
             }
         });
-        // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
     }
 
