@@ -8,16 +8,13 @@ import static seedu.address.logic.commands.CommandTestUtil.EMPLOYEEID_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_AMOUNT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMPLOYEEID_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMPLOYEEID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_AMOUNT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATETIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalTransactions.TRANSACTION_4;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,9 +26,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.person.Id;
 import seedu.address.model.transaction.Amount;
 import seedu.address.model.transaction.DateTime;
-import seedu.address.model.transaction.Transaction;
 import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.TransactionBuilder;
 
 public class TransactionCommandParserTest {
 
