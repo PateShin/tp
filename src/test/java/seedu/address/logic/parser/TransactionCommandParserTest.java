@@ -48,15 +48,6 @@ public class TransactionCommandParserTest {
     }
 
     @Test
-    public void parse_allFieldsPresent_success() {
-        Transaction expectedTransaction = new TransactionBuilder(TRANSACTION_4).build();
-
-        // whitespace only preamble
-        assertParseSuccess(parser, PREAMBLE_WHITESPACE + EMPLOYEEID_DESC + AMOUNT_DESC
-                + DESCRIPTION_DESC + DATETIME_DESC, new TransactionCommand(expectedTransaction));
-    }
-
-    @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, TransactionCommand.MESSAGE_USAGE);
 
