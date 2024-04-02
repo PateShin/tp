@@ -448,9 +448,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The ID is invalid.
+
     * 2a1. PayBack shows an error message.
 
       Use case resumes at Step 2.
+
+* 2b. The field that need to be updated is a tag.
+
+    * 2b1. User enters tag index and new tag name.
+
+      Use case resumes at Step 3.
 
 **Use case: Add a transaction**
 
