@@ -89,6 +89,21 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasTransaction_nullTransaction_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasTransaction(null));
+    }
+
+    @Test
+    public void getFilteredTransactionList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTransactionList().remove(0));
+    }
+
+    @Test
+    public void updateFilteredTransactionList_nullPredicate_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.updateFilteredTransactionList(null));
+    }
+
+    @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
     }
