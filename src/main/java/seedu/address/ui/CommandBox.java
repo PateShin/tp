@@ -34,7 +34,8 @@ public class CommandBox extends UiPart<Region> {
         this.resultDisplay = resultDisplay;
 
         // Use CommandData to get command words for auto-completion
-        AutoCompletionBinding<String> autoCompletionBinding = TextFields.bindAutoCompletion(commandTextField, CommandData.getCommandWords());
+        AutoCompletionBinding<String> autoCompletionBinding = TextFields.bindAutoCompletion(commandTextField,
+                CommandData.getCommandWords());
         autoCompletionBinding.setOnAutoCompleted(event -> {
             String selectedCommand = event.getCompletion();
             // Use CommandData to retrieve follow message
