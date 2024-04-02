@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import java.time.format.DateTimeFormatter;
+
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
@@ -23,6 +25,8 @@ public class TransactionCard extends UiPart<Region> {
     public final Transaction transaction;
 
     @FXML
+    private Label dateTime;
+    @FXML
     private Label description;
     @FXML
     private Label transactionId;
@@ -37,9 +41,27 @@ public class TransactionCard extends UiPart<Region> {
     public TransactionCard(Transaction transaction, int displayedIndex) {
         super(FXML);
         this.transaction = transaction;
-        transactionId.setText(Long.toString(transaction.getId().value));
-        description.setText(transaction.getDescription().value);
-        amount.setText(Double.toString(transaction.getAmount().value));
-        employeeId.setText(Integer.toString(transaction.getEmployeeId().value));
+
+        String transactionLabel = "Transaction ID: ";
+        String transactionIdText = Long.toString(transaction.getId().value);
+        transactionId.setText(transactionLabel + transactionIdText);
+
+        String amountLabel = "Amount: $";
+        String amountText = Double.toString(transaction.getAmount().value);
+        amount.setText(amountLabel + amountText);
+
+        String employeeIdLabel = "Employee ID: ";
+        String employeeIdText = Integer.toString(transaction.getEmployeeId().value);
+        employeeId.setText(employeeIdLabel + employeeIdText);
+
+        String descriptionLabel = "Description: ";
+        String descriptionText = transaction.getDescription().value;
+        description.setText(descriptionLabel + descriptionText);
+
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        String dateLabel = "DateTime: ";
+        String dateText = transaction.getDateTime().value.format(formatter);
+        dateTime.setText(dateLabel + dateText);
     }
 }
