@@ -36,7 +36,7 @@ public class CommandBox extends UiPart<Region> {
         AutoCompletionBinding<String> autoCompletionBinding = TextFields.bindAutoCompletion(commandTextField,
                 CommandData.getCommandWords());
         autoCompletionBinding.setOnAutoCompleted(event -> {
-                    String selectedCommand = event.getCompletion();
+            String selectedCommand = event.getCompletion();
             String followMessage = CommandData.getFollowMessage(selectedCommand);
             if (!followMessage.isEmpty()) {
                 this.resultDisplay.setFeedbackToUser(followMessage);
