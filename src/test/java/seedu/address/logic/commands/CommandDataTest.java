@@ -1,8 +1,10 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 public class CommandDataTest {
 
@@ -13,6 +15,7 @@ public class CommandDataTest {
                     "Follow message should not be empty for command: " + command);
         }
     }
+
     @Test
     void testCommandFollowMessagesInitialization() {
         assertEquals(AddCommand.FOLLOW_MESSAGE, CommandData.getFollowMessage(AddCommand.COMMAND_WORD));
