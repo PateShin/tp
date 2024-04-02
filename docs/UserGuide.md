@@ -1,28 +1,85 @@
 ---
 layout: page
-title: User Guide
+title: PayBack User Guide
 ---
 
-PayBack is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PayBack can get your contact management tasks done faster than traditional GUI apps.
+# Welcome Notes
 
-* Table of Contents
-  {:toc}
+Dear company managers,
+
+Welcome to the user guide for **PayBack**! We're thrilled to have you on board and to introduce you to the comprehensive tool designed to streamline your employee information management process.
+
+Throughout this user guide, you will find
+- step-by-step instructions,
+- helpful tips,
+- best practices
+
+to make the most out of our app. From onboarding new employees to tracking their work progress, and beyond, we have got you covered.
+
+We recommend starting with:
+
+- **Quick Start Guide**: This section provides a concise overview of the essential steps to launch PayBack.
+
+- **Key Features**: This section offers a detailed explanation of each feature, including command formats and examples.
+
+Thank you for choosing PayBack to optimise your company's management processes. We're committed to providing you with exceptional support along the way!
+
+
+# Table of Contents
+1. [Product Information](#product-info)
+2. [Getting Started](#getting-started)
+3. [Main Interface](#main-interface)
+   1. [User Command Panel](#user-command-panel)
+   2. [Command Result/Guidance](#command)
+   3. [Employee List](#employee-list)
+4. [Key Features](#key-features)
+   1. [Add Employee](#add)
+   2. [Delete Employee](#delete)
+   3. [Edit Employee Information](#edit)
+   4. [List All Employees](#list)
+   5. [Find An Employee](#find)
+   6. [Tag An Employee](#tag)
+   7. [Help](#help)
+   8. [Add A Transaction](#transaction)
+   9. [Save Data](#save-data)
+   10. [Edit the Data File](#edit-data-file)
+5. [Troubleshooting](#troubleshooting)
+   1. [Java Version Compatibility](#java-version)
+   2. [GUI Error](#gui-error)
+   3. [Transferring data to another computer](#transfer-data)
+6. [Command Summary](#command-summary)
+7. [Support and Feedback](#support)
+8. [Closing](#closing)
 
 --------------------------------------------------------------------------------------------------------------------
+## Product Information <a name="product-info"></a>
 
-## Quick start
+Payback is a software designed to take the hassle out of contact management so you can focus on what’s important in your organisation -  financial transactions. Offering both Graphical User Interface (GUI) and Command Line Interface (CLI), you can be sure that it will be easy for most to learn and use.
+
+Our GUI has a visually intuitive environment, making it ideal for users who prefer point-and-click interactions and graphical representations of data. On the other hand, our CLI offers you the ability to perform tasks efficiently through text-based commands, allowing for rapid execution of commands.
+
+Key features include:
+1. Adding contacts
+2. Deleting contacts
+3. Editing contact information
+4. Listing contacts
+5. Searching for contacts
+6. Tagging contacts
+
+
+## Getting Started <a name="getting-started"></a>
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `payback.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+2. Download the latest `payback.jar` from [here](https://github.com/AY2324S2-CS2103T-T12-4/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your application.
+3. Copy the file to the folder you want to use as the _home folder_ for your application.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar payback.jar` command to run the application.<br>
+4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar payback.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `/list` : Lists all contacts.
@@ -31,132 +88,137 @@ PayBack is a **desktop app for managing contacts, optimized for use via a Comman
 
    * `/delete 240001` : Deletes the contact with id 240001.
 
-1. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [Key Features](#key-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+## Main Interface <a name="main-interface"></a>
+### User Command Panel: <a name="user-command-panel"></a>
 
-## Features
+![UserCommandPanel](images/UserCommandPanel.png)
 
-<div markdown="block" class="alert alert-info">
+You can use this panel to interact with Payback by typing in your commands!
 
-**:information_source: Notes about the command format:**<br>
+### Command Result/Guidance: <a name="command"></a>
 
-* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `/add NAME`, `NAME` is a parameter which can be used as `/add John Doe`.
+![CommandResult](images/CommandResult.png)
 
-* Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+Upon pressing Enter, you will be presented with the outcomes of your commands. In the event of any errors in the command format, you will receive guidance to help rectify the issue.
 
-* Items with `…`​ after them can be used multiple times at least onxe.<br>
-  e.g. `[t/TAG]…​` can be used as `t/friend`, `t/friend t/family` etc.
+### Employee List <a name="employee-list"></a>
 
-* Parameters can be in any order, if specified.<br>
-  e.g. if the command specifies `:name :phone`, `:phone :name` is also acceptable.
+![EmployeeList](images/EmployeeList.png)
 
-* Extraneous parameters for commands that do not take in parameters (such as `/help`, `/list`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+All employee information is conveniently displayed here, allowing you to easily access and review all relevant details in a straightforward manner.
 
-* If you are using a PDF version of this document, be careful when copying and pasting commands that span multiple lines as space characters surrounding line-breaks may be omitted when copied over to the application.
-</div>
+## Key Features <a name="key-features"></a>
+PayBack Application offers a range of features to a company manager to manage employees. Before we delve into the key features, let’s take a look at the command formats and the parameters.
 
-### Viewing help : `help`
+| Parameters | Details | Requirements     |
+|------------|---------|------------------|
+| ID         | Employee ID | Must be 6 digits |
+| NAME       | Full name of the employee  | Must be String   |
+| PHONE      | Employee's phone number    | At least 3 digits                 |
+| EMAIL      | Employee's email address   | Must include “@”                 |
+| ADDRESS    | Employee's residential address       |                  |
+| YEAR JOINED | Year the employee joined the company | Must be 4 digits                 |
+| TAG        | Add tags to categorise employees        |                  |
+
+### Command formats:
+- Words in UPPER_CASE are the parameters to be supplied by the user.
+- Items in square brackets are optional.
+- Items with …​ after them can be used multiple times.
+- Parameters can be in any order, if specified.
+
+Here is a closer look at each key feature.
+
+### Add Employee <a name="add"></a>
+This feature allows the user to add new employees to the PayBack system and automatically generate an employee ID based on the year they joined and the last ID of that year.
+
+There are two ways to use /add command:
+- Use the `/add` command followed by the employee's details, separated by semicolons.
+    - Format: `/add NAME; PHONE; EMAIL; ADDRESS; YEAR_JOINED; [TAG]…`
+- Use the `/add` command followed by the employee’s details, preceded by PREFIX (_:name, :phone, :email, :address, :year, :tag_)
+  - Format: `/add :name NAME :phone PHONE :email EMAIL :address ADDRESS :year YEAR_JOINED [:tag TAG]…`
+
+Examples:
+
+`/add :name John Doe :phone 91234567 :email johndoe@email.com :address 12 Kent Ridge Dr :year 2024 :tag Finance`
+
+`/add John Doe; 91234567; johndoe@email.com; 12 Kent Ridge Dr; 2024; Finance`
+
+### Delete Employee <a name="delete"></a>
+Deletes the specified employee from the PayBack system.
+
+Format: `/delete ID`
+
+Examples:
+
+`/delete 240001`: deletes the employee with 240001 ID.
+
+### Edit Employee Information <a name="edit"></a>
+This feature edits an existing employee in the address book.
+
+Format: 
+`/edit ID [:name NAME] [:phone PHONE] [:email EMAIL] [:address ADDRESS] [:tag TAG_INDEX NEW_TAG]`
+
+**Note**:
+- At least one of the optional fields must be provided.
+- Existing values will be updated to the input values.
+- Only one tag can be edited at a time, valid tag index and new tag name must be provided.
+- Able to remove all the employee’s tags by typing `:tag -1`.
+
+Example:
+
+`/edit 240001 :phone 91234567 :email: johndoe@example.com`:
+Edits the phone number and email address of employee with ID 240001 to be 91234567 and johndoe@example.com respectively.
+
+`/edit 240001 :tag -1`: Removes all tags of employee with ID 240001.
+
+`/edit 240001 :tag 1 boss`: Changes the first tag of employee with ID 240001 to "boss".
+
+### List All Employees <a name="list"></a>
+This feature displays a list of entire employees currently stored in the PayBack system.
+
+Use the `/list` command to refresh the displayed list and ensure the user is viewing the full information.
+
+### Find An Employee <a name="find"></a>
+This feature allows a user to search for specific employees.
+
+Use the `/find` command followed by the appropriate prefix and keyword:
+- `:name`, Search by employee name (supports multiple keywords).
+- `:phone`, Search by phone number.
+- `:email`, Search by email address.
+- `:id`, Search by employee ID.
+- `:year`, Search by year joined.
+- `:tag`, Search by tag.
+
+Example:
+
+`/find :name Patrick Star`:
+Searches employees with the name ‘Patrick Star’
+
+### Tag An Employee <a name="tag"></a>
+This feature allows a user to add “tags” to existing employees for easier identification.
+
+Use the `/tag` command followed by the “employee's ID” and the desired tags, separated by the `:tag` prefix.
+
+The application allows a user to add multiple tags to a single employee.  (e.g., “Intern”, “Developer”)
+
+Example:
+
+`/tag 240001 :tag Intern :tag Developer`:
+Tags employee 240001 with ‘Intern’ and ‘Developer’
+
+### Help <a name="help"></a>
+
+Format: `help`
 
 Shows a message explaning how to access the help page.
 
 ![help message](images/helpMessage.png)
 
-Format: `help`
 
-
-### Adding a new employee: `/add`
-
-Adds a new employee to PayBack.
-
-Format:
-* `/add NAME; PHONE; EMAIL; ADDRESS; YEAR_JOINED; [TAG]…`
-* `/add :name NAME :phone PHONE :email EMAIL :address ADDRESS :year YEAR_JOINED [:tag TAG]…`
-
-Examples:
-* `/add John Doe; 98765432; johndoe@example.com; street A; 2024; finance manager`
-* `/add :name John Doe :phone 98765432 :email johndoe@example.com :address street A :year 2024`
-
-### Listing all persons : `/list`
-
-Show workers as a list. This can be used as “refresh” (e.g. after find command)
-
-**Format:** `/list`
-
-### Editing a person : `/edit`
-
-Edits an existing employee in the address book.
-
-Format: `/edit ID [:name NAME] [:phone PHONE] [:email EMAIL] [:address ADDRESS] [:tag TAG_INDEX NEW_TAG]`
-
-* Edits the person of the specified `ID`. The id refers to the 6-digits identity number. The id **must be 6 digits**: 240001, 240002...
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, tag with corresponding index will be replaced.
-* You can remove all the person’s tags by typing `:tag -1`.
-
-Examples:
-*  `/edit 240001 :phone 91234567 :email: johndoe@example.com` Edits the phone number and email address of the person with id 240001 to be `91234567` and `johndoe@example.com` respectively.
-*  `/edit 240002 :name Betsy Crower :tag` Edits the name of the person with id 240002 to be `Betsy Crower` and clears all existing tags.
-
-### Searching Workers by keyword: `/find`
-
-Finds workers that contains any of the given keywords. It can be `ID`, `NAME`, `EMAIL` or `PHONE NUMBER`.
-
-**Format:**
-* `Find by name: /find :name [name]`
-* `Find by email: /find :email [email]`
-* `Find by phone number: /find :phone [phone number]`
-* `Find by worker’s ID: /find :id [ID]`
-* `Find by year joined: /find :year [year]`
-* `Find by tag: /find :tag [tag]`
-
-**Acceptable Format:**
-* _Any letter cases are acceptable. e.g `Patrick` will match `patrick`_
-* _ID: must be 6 digits of numbers_
-* _Name: can be any case (Strings)_
-* _Phone: must be numbers (integers)_
-* _Email: any characters or numbers_
-* _Year: must be numbers (integers)_
-* _Tag: any characters or numbers_
-* _Only full keywords will be matched for **Name** and **ID**. e.g `Patrick` will not match `patr`_
-* _Multiple names can be searched for name. e.g `/find :name Alice Patrick Alex`_
-
-Examples:
-* `/find :name John` returns `john` and `John Doe`
-* `/find :id 240001` returns `240001`
-* `/find :phone 1234` returns `12345678` and `89071234`
-* `/find :email iris` returns `iris@gmail.com` and `iris101@u.nus.edu`
-* `/find :year 2024` returns `2024`
-* `/find :tag intern` returns `intern`
-
-### Deleting a person : `/delete`
-
-Deletes the specified person from the address book.
-
-Format: `/delete ID`
-
-* Deletes the person with the specified `ID`.
-
-Examples:
-* `/delete 240001` deletes the person with `240001` ID.
-
-### Tagging a person: `/tag`
-
-Tags the specified person from the address book.
-
-Format: `/tag ID :tag TAG...`
-
-* Tags the person with the specified `ID`.
-* Allowed to have more than 1 tags per person.
-
-Examples:
-* `/tag 240001 :tag finance :tag manager` tags the person with `240001` ID with `finance` and `manager`.
-
-### Adding a transaction: `/transaction`
+### Add A Transaction <a name="transaction"></a>
 
 Adds a transaction to the specified person.
 
@@ -168,15 +230,11 @@ Examples:
 * `/transaction 240001; 2000; Salary; 30/09/2021 12:00`
 * `/transaction :id 240001 :amount 2000 :description Salary :datetime 30/09/2021 12:00`
 
-### Listing all persons : `/list`
-
-Show workers as a list. This can be used as “refresh” (e.g. after find command)
-
-### Saving the data
+### Save Data <a name="save-data"></a>
 
 PayBack data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
-### Editing the data file
+### Edit the Data File <a name="edit-data-file"></a>
 
 PayBack data are saved automatically as a JSON file `[JAR file location]/data/payback.json`. Advanced users are welcome to update data directly by editing that data file.
 
@@ -186,41 +244,45 @@ Therefore, it is advisable to create a backup of the file before making any edit
 Additionally, specific changes may lead to unexpected behavior in PayBack, such as if a value entered falls outside the acceptable range. Hence, proceed with editing the data file only if you are certain that you can make accurate updates.
 </div>
 
-### Archiving data files `[coming in v2.0]`
-
-
-_Details coming soon ..._
-
-
 --------------------------------------------------------------------------------------------------------------------
 
 
-## Q&A
+## Troubleshooting <a name="troubleshooting"></a>
 
+### 1. Java Version Compatibility <a name="java-version"></a>
+Ensure you have Java 11 or above installed on your computer. PayBack requires Java 11 or later to function properly. You can download and install the latest version of Java from the official Java website (https://www.oracle.com/java).
 
-**Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous PayBack home folder.
+### 2. GUI Error <a name="gui-error"></a>
+If you utilise multiple screens and relocate the application to a secondary screen, then subsequently revert to using only the primary screen, the graphical user interface (GUI) may open out of view. To resolve this issue, you can delete the preferences.json file generated by the application before launching it again.
 
-
---------------------------------------------------------------------------------------------------------------------
-
-
-## Known issues
-
-
-1. **When using multiple screens**, if you move the application to a secondary screen, and later switch to using only the primary screen, the GUI will open off-screen. The remedy is to delete the `preferences.json` file created by the application before running the application again.
-
+### 3. Transferring data to another computer <a name="transfer-data"></a>
+When installing PayBack on another computer, you can replace the empty data file it generates (e.g., payback.json) with the file containing the data from your previous PayBack home folder. This will ensure that your existing data is seamlessly transferred to the new installation.
 
 --------------------------------------------------------------------------------------------------------------------
-
-
-## Command summary
+## Command Summary <a name="command-summary"></a>
 
 Action | Format, Examples
 --------|------------------
-**Add** | `/add :name NAME :phone PHONE :email EMAIL :address ADDRESS :year YEAR` <br> e.g., `/add John Doe, 98765432, johndoe@example.com, street A, 2024`
+**Add** | `/add NAME; PHONE; EMAIL; ADDRESS; YEAR_JOINED; [TAG]…` <br> e.g., `/add :name John Doe :phone 91234567 :email johndoe@email.com :address 12 Kent Ridge Dr :year 2024 :tag Finance`
 **Delete** | `/delete ID`<br> e.g., `/delete 240001`
-**Edit** | `/edit ID [:name NAME] [:phone PHONE] [:email EMAIL] [:address ADDRESS] [:tag TAG]`<br> e.g.,`/edit 240001 :phone 91234567 :email: johndoe@example.com`
-**Find** | `/find :name [name]`<br>`/find :email [email]`<br>`/find :phone [phone number]`<br>`/find :id [ID]`<br>`/find :year [year]`<br>`/find :tag [tag]`<br><br> e.g., `find :name John`
+**Edit** | `/edit ID [:name NAME] [:phone PHONE] [:email EMAIL] [:address ADDRESS] [:tag TAG_INDEX NEW_TAG]`<br> e.g.,`/edit 240001 :phone 91234567 :email: johndoe@example.com`
 **List** | `/list`
+**Find** | `/find :name [name]`<br>`/find :email [email]`<br>`/find :phone [phone number]`<br>`/find :id [ID]`<br>`/find :year [year]`<br>`/find :tag [tag]`<br><br> e.g., `find :name John`
+**Tag** | `/tag` <br> e.g., `/tag 240001 :tag Intern :tag Developer`
 **Help** | `/help`
+**Transaction** | `/transaction :id ID :amount AMOUNT :description DESCRIPTION [:datetime DATETIME]` <br> e.g., `/transaction :id 240001 :amount 2000 :description Salary :datetime 30/09/2021 12:00`
+
+## Support and Feedback <a name="support"></a>
+Dear Company Managers,
+
+If you encounter any difficulties, have questions, or require assistance while using PayBack, please do not hesitate to reach out to our dedicated support team. You can contact us through the following channels:
+
+- Email: someone@nus.edu.sg
+- Phone: +65 23142412
+
+We genuinely appreciate your partnership and look forward to serving you better with your continued support and feedback!
+
+## Closing <a name="closing"></a>
+As you conclude your journey of PayBack through this user guide, we want to express our gratitude for choosing us to streamline your company’s management processes. We hope the information provided will be valuable in helping you harness the full potential of PayBack.
+
+Thank you once again for choosing PayBack. We look forward to serving you and your team, and we wish you continued success in all your endeavours!
