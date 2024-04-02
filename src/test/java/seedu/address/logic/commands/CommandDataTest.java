@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
 
 public class CommandDataTest {
 
@@ -34,15 +34,15 @@ public class CommandDataTest {
         // Test to ensure getCommandWords returns all command words correctly
         String[] commandWords = CommandData.getCommandWords();
         String[] expectedCommandWords = {
-                AddCommand.COMMAND_WORD,
-                EditCommand.COMMAND_WORD,
-                DeleteCommand.COMMAND_WORD,
-                FindCommand.COMMAND_WORD,
-                HelpCommand.COMMAND_WORD,
-                TagCommand.COMMAND_WORD,
-                TransactionCommand.COMMAND_WORD,
-                ListCommand.COMMAND_WORD,
-                ExitCommand.COMMAND_WORD
+            AddCommand.COMMAND_WORD,
+            EditCommand.COMMAND_WORD,
+            DeleteCommand.COMMAND_WORD,
+            FindCommand.COMMAND_WORD,
+            HelpCommand.COMMAND_WORD,
+            TagCommand.COMMAND_WORD,
+            TransactionCommand.COMMAND_WORD,
+            ListCommand.COMMAND_WORD,
+            ExitCommand.COMMAND_WORD
         };
 
         for (String expectedCommandWord : expectedCommandWords) {
