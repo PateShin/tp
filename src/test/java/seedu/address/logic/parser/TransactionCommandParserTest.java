@@ -94,4 +94,34 @@ public class TransactionCommandParserTest {
         String input = EMPLOYEEID_DESC + AMOUNT_DESC + DESCRIPTION_DESC + DATETIME_DESC + " " + DATETIME_DESC;
         assertParseFailure(parser, input, Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DATETIME));
     }
+
+    @Test
+    public void parse_invalidEmployeeId_throwsParseException() {
+        String input = " :id 0 :amount 10.00 :description Salary";
+        assertParseFailure(parser, input, Id.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_invalidAmount_throwsParseException() {
+        String input = " :id 240001 :amount -10.00 :description Salary";
+        assertParseFailure(parser, input, Amount.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_invalidDateTimeFormat_throwsParseException() {
+        String input = " :id 240001 :amount 10.00 :description Salary :datetime 14-05-2024";
+        assertParseFailure(parser, input, DateTime.MESSAGE_CONSTRAINTS);
+    }
+
+    @Test
+    public void parse_missingDescription_throwsParseException() {
+        String input = " :id 240001 :amount 10.00";
+        assertParseFailure(parser, input, String.format(MESSAGE_INVALID_COMMAND_FORMAT, TransactionCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_employeeIdNotFound_throwsParseException() {
+        String input = " :id 999999 :amount 10.00 :description Salary";
+        assertParseFailure(parser, input, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_ID);
+    }
 }
