@@ -59,9 +59,8 @@ public class TransactionCard extends UiPart<Region> {
         description.setText(descriptionLabel + descriptionText);
 
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
         String dateLabel = "DateTime: ";
-        String dateText = transaction.getDateTime().value.format(formatter);
+        String dateText = transaction.getDateTime().toString();
         dateTime.setText(dateLabel + dateText);
     }
 }
