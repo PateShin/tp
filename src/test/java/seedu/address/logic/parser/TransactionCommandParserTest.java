@@ -116,7 +116,8 @@ public class TransactionCommandParserTest {
     @Test
     public void parse_missingDescription_throwsParseException() {
         String input = " :id 240001 :amount 10.00";
-        assertParseFailure(parser, input, String.format(MESSAGE_INVALID_COMMAND_FORMAT, TransactionCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, input, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                TransactionCommand.MESSAGE_USAGE));
     }
 
     @Test
