@@ -101,6 +101,12 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Transaction> getEmptyTransactionList() {
+        model.updateFilteredTransactionList(unused -> false);
+        return model.getFilteredTransactionList();
+    }
+
+    @Override
     public Path getPayBackFilePath() {
         return model.getPayBackFilePath();
     }

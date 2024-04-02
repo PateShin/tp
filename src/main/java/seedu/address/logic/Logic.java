@@ -38,6 +38,11 @@ public interface Logic {
     ObservableList<Transaction> getFilteredTransactionList();
 
     /**
+     * Returns an empty unmodifiable view of the  list of transactions
+     */
+    ObservableList<Transaction> getEmptyTransactionList();
+
+    /**
      * Returns the user prefs' address book file path.
      */
     Path getPayBackFilePath();
