@@ -36,7 +36,7 @@
 
         <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets top="20" right="10" bottom="10" left="10" />
           </padding>
         </StackPane>
 
@@ -51,14 +51,14 @@
           <children>
             <VBox fx:id="personList" styleClass="pane-with-border" minWidth="170" prefWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
               <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
+                <Insets top="10" right="1" bottom="10" left="9" />
               </padding>
               <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
             </VBox>
 
-            <VBox fx:id="personList" styleClass="pane-with-border" minWidth="170" prefWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
+            <VBox fx:id="transactionList" styleClass="pane-with-border" minWidth="170" prefWidth="340" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS">
               <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
+                <Insets top="10" right="11" bottom="10" />
               </padding>
               <StackPane fx:id="transactionDetailsPanelPlaceholder" VBox.vgrow="ALWAYS"/>
             </VBox>
