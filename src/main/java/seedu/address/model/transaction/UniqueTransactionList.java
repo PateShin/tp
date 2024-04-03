@@ -9,6 +9,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.transaction.exceptions.DuplicateTransactionException;
+import seedu.address.model.transaction.exceptions.TransactionNotFoundException;
 
 /**
  * A list of transactions that enforces uniqueness between its elements and does not allow nulls.
@@ -46,6 +47,17 @@ public class UniqueTransactionList implements Iterable<Transaction> {
             throw new DuplicateTransactionException();
         }
         internalList.add(toAdd);
+    }
+
+    /**
+     * Removes the transaction from the list.
+     * The transaction must exist in the list.
+     */
+    public void remove(Transaction toRemove) {
+        requireNonNull(toRemove);
+        if (!internalList.remove(toRemove)) {
+            throw new TransactionNotFoundException();
+        }
     }
 
     public void setTransactions(UniqueTransactionList replacement) {

@@ -112,6 +112,12 @@ public interface Model {
      */
     void addTransaction(Transaction transaction);
 
+    /**
+     * Deletes the given transaction.
+     * {@Code transaction} must exist in the address book.
+     */
+    void deleteTransaction(Transaction transaction);
+
     /** Returns an unmodifiable view of the filtered transaction list */
     ObservableList<Transaction> getFilteredTransactionList();
 

@@ -159,7 +159,11 @@ public class ModelManager implements Model {
     @Override
     public void addTransaction(Transaction transaction) {
         payBack.addTransaction(transaction);
-        updateFilteredTransactionList(PREDICATE_SHOW_ALL_TRANSACTIONS);
+    }
+
+    @Override
+    public void deleteTransaction(Transaction transaction) {
+        payBack.removeTransaction(transaction);
     }
 
     //=========== Filtered Transaction List Accessors ========================================================

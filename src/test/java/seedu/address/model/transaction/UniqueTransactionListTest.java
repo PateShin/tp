@@ -14,6 +14,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.transaction.exceptions.DuplicateTransactionException;
+import seedu.address.model.transaction.exceptions.TransactionNotFoundException;
 import seedu.address.testutil.TransactionBuilder;
 import seedu.address.testutil.TypicalTransactions;
 
@@ -64,6 +65,24 @@ public class UniqueTransactionListTest {
     @Test
     public void toStringMethod() {
         assertEquals(uniqueTransactionList.asUnmodifiableObservableList().toString(), uniqueTransactionList.toString());
+    }
+
+    @Test
+    public void remove_nullTransaction_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTransactionList.remove(null));
+    }
+
+    @Test
+    public void remove_personDoesNotExist_throwsPersonNotFoundException() {
+        assertThrows(TransactionNotFoundException.class, () -> uniqueTransactionList.remove(TRANSACTION_1));
+    }
+
+    @Test
+    public void remove_existingPerson_removesPerson() {
+        uniqueTransactionList.add(TRANSACTION_1);
+        uniqueTransactionList.remove(TRANSACTION_1);
+        UniqueTransactionList expectedUniqueTransactionList = new UniqueTransactionList();
+        assertEquals(expectedUniqueTransactionList, uniqueTransactionList);
     }
 
     @Test
