@@ -41,7 +41,6 @@ public class DeleteCommand extends Command {
         List<Transaction> transactionsToDelete = model.getFilteredTransactionList();
 
         for (int i = 0; i < transactionsToDelete.size(); i++) {
-            System.out.println(i);
             model.deleteTransaction(transactionsToDelete.get(i));
         }
 
