@@ -41,8 +41,9 @@ Thank you for choosing PayBack to optimise your company's management processes. 
    6. [Tag An Employee](#tag)
    7. [Help](#help)
    8. [Add A Transaction](#transaction)
-   9. [Save Data](#save-data)
-   10. [Edit the Data File](#edit-data-file)
+   9. [AutoComplete TextBox](#autoComplete)
+   10. [Save Data](#save-data)
+   11. [Edit the Data File](#edit-data-file)
 5. [Troubleshooting](#troubleshooting)
    1. [Java Version Compatibility](#java-version)
    2. [GUI Error](#gui-error)
@@ -156,7 +157,7 @@ Examples:
 `/delete 240001`: deletes the employee with 240001 ID.
 
 ### Edit Employee Information <a name="edit"></a>
-This feature edits an existing employee in the address book.
+This feature edits an existing employee in PayBack.
 
 Format: 
 `/edit ID [:name NAME] [:phone PHONE] [:email EMAIL] [:address ADDRESS] [:tag TAG_INDEX NEW_TAG]`
@@ -229,6 +230,24 @@ Format:
 Examples:
 * `/transaction 240001; 2000; Salary; 30/09/2021 12:00`
 * `/transaction :id 240001 :amount 2000 :description Salary :datetime 30/09/2021 12:00`
+
+### AutoComplete TextBox <a name="autoComplete"></a>
+
+Auto-complete feature allows to enter command quickly and accurately by suggesting possible completions as typing.
+
+![AutoComplete](images/AutoComplete.png)
+
+#### How it works:
+As a command is typed into the command box, PayBack analyzes the input and suggests possible completions based on existing commands, taking the following inputs for the command.
+
+- Command words: PayBack will suggest matching command words as user type. For example, typing `/a` will suggest `/add`.
+- The suggestions appear in a pop-up menu below the command box. Use the arrow keys to navigate the suggestions and press Enter or press tab to select the desired completion.
+
+**Tips for Usage:**
+1. Start typing the command: PayBack will begin suggesting completions after the first few characters are typed. 
+2. Use the arrow keys: Navigate through the suggestions using the up and down arrow keys. 
+3. Press Enter to select: Once the desired completion is seen, press Enter to select it. 
+4. Ignore suggestions: If the suggestions are not helpful, continue typing the command.
 
 ### Save Data <a name="save-data"></a>
 
