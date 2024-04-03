@@ -44,7 +44,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/pateshin.png" width="200px">
 
 [[github](https://github.com/PateShin)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/dongyoon.md)]
 
 * Role: Developer
 * Responsibilities: Code Quality + UI/UX
