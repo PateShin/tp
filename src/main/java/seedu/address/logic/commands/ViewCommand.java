@@ -1,12 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_ID;
 
 import java.util.List;
 import java.util.function.Predicate;
 
+import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -14,7 +14,9 @@ import seedu.address.model.person.Id;
 import seedu.address.model.person.Person;
 import seedu.address.model.transaction.Transaction;
 
-
+/**
+ * Command that displays all transactions for the specified employee.
+ */
 public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "/view";
@@ -29,9 +31,13 @@ public class ViewCommand extends Command {
     private final Id id;
 
     private final Predicate<Transaction> predicate;
-    public ViewCommand(Id id, Predicate<Transaction> predicate) {
+
+    /**
+     * Constructs a ViewCommand with specified Id.
+     */
+    public ViewCommand(Id id) {
         this.id = id;
-        this.predicate = predicate;
+        predicate = transaction -> transaction.getEmployeeId().equals(id);
     }
 
     @Override
@@ -52,5 +58,26 @@ public class ViewCommand extends Command {
         model.updateFilteredTransactionList(predicate);
 
         return new CommandResult(String.format(MESSAGE_VIEW_PERSON_SUCCESS, Messages.format(personToView)));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof ViewCommand)) {
+            return false;
+        }
+
+        ViewCommand otherViewCommand = (ViewCommand) other;
+        return id.equals(otherViewCommand.id);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .add("targetIndex", id)
+                .toString();
     }
 }
