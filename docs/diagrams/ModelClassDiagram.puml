@@ -21,6 +21,13 @@ Class Phone
 Class Tag
 Class Id
 
+Class UniqueTransactionList
+Class Transaction
+Class TransactionId
+Class DateTime
+Class Amount
+Class Description
+
 Class I #FFFFFF
 }
 
@@ -44,6 +51,14 @@ Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
 Person *--> Id
+
+Payback *--> "1" UniqueTransactionList
+UniqueTransactionList --> "~* all" Transaction
+Transaction *--> TransactionId
+Transaction *--> DateTime
+Transaction *--> Amount
+Transaction *--> Description
+Transaction --> Id
 
 Person -[hidden]up--> I
 UniquePersonList -[hidden]right-> I
