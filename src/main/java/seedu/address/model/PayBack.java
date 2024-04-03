@@ -135,6 +135,13 @@ public class PayBack implements ReadOnlyPayBack {
         transactions.add(transaction);
     }
 
+    /**
+     * Removes the transaction from the address book.
+     */
+    public void removeTransaction(Transaction transaction) {
+        transactions.remove(transaction);
+    }
+
     //// util methods
 
     @Override

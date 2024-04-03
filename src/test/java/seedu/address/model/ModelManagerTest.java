@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.transaction.Transaction;
+import seedu.address.model.transaction.exceptions.TransactionNotFoundException;
 import seedu.address.testutil.PayBackBuilder;
 import seedu.address.testutil.TransactionBuilder;
 import seedu.address.testutil.TypicalTransactions;
@@ -130,6 +131,24 @@ public class ModelManagerTest {
 
         // Verify that the filtered transaction list is updated to show all transactions
         assertEquals(expectedPayBack.getTransactionList(), modelManager.getFilteredTransactionList());
+    }
+
+    @Test
+    public void deleteTransaction_transactionInPayback_transactionDeleted() {
+        Transaction transactionToRemove = new TransactionBuilder().build();
+        modelManager.addTransaction(transactionToRemove);
+        modelManager.deleteTransaction(transactionToRemove);
+
+        PayBack expectedPayBack = new PayBack();
+
+        assertEquals(expectedPayBack, modelManager.getPayBack());
+    }
+
+    @Test
+    public void deleteTransaction_transactionNotInPayback_throwsTransactionNotFoundException() {
+        Transaction transactionToRemove = new TransactionBuilder().build();
+
+        assertThrows(TransactionNotFoundException.class, () -> modelManager.deleteTransaction(transactionToRemove));
     }
 
     @Test

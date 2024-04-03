@@ -182,6 +182,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void deleteTransaction(Transaction transaction) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Transaction> getFilteredTransactionList() {
             throw new AssertionError("This method should not be called.");
         }
