@@ -53,7 +53,6 @@ Thank you for choosing PayBack to optimise your company's management processes. 
 8. [Closing](#closing)
 </div>
 --------------------------------------------------------------------------------------------------------------------
-
 ## Product Information <a name="product-info"></a>
 
 Payback is a software designed to take the hassle out of contact management so you can focus on what’s important in your organisation -  financial transactions. Offering both Graphical User Interface (GUI) and Command Line Interface (CLI), you can be sure that it will be easy for most to learn and use.
@@ -67,7 +66,6 @@ Key features include:
 4. Listing contacts
 5. Searching for contacts
 6. Tagging contacts
-
 
 ## Getting Started <a name="getting-started"></a>
 
@@ -106,11 +104,17 @@ You can use this panel to interact with Payback by typing in your commands!
 
 Upon pressing Enter, you will be presented with the outcomes of your commands. In the event of any errors in the command format, you will receive guidance to help rectify the issue.
 
+
+<div style="page-break-after: always;">
+
 ### Employee List <a name="employee-list"></a>
 
 ![EmployeeList](images/EmployeeList.png)
 
 All employee information is conveniently displayed here, allowing you to easily access and review all relevant details in a straightforward manner.
+</div>
+
+<div style="page-break-after: always;">
 
 ## Key Features <a name="key-features"></a>
 PayBack Application offers a range of features to a company manager to manage employees. Before we delve into the key features, let’s take a look at the command formats and the parameters.
@@ -132,6 +136,8 @@ PayBack Application offers a range of features to a company manager to manage em
 - Parameters can be in any order, if specified.
 
 Here is a closer look at each key feature.
+
+</div>
 
 ### Add Employee <a name="add"></a>
 This feature allows the user to add new employees to the PayBack system and automatically generate an employee ID based on the year they joined and the last ID of that year.
@@ -279,6 +285,9 @@ If you utilise multiple screens and relocate the application to a secondary scre
 When installing PayBack on another computer, you can replace the empty data file it generates (e.g., payback.json) with the file containing the data from your previous PayBack home folder. This will ensure that your existing data is seamlessly transferred to the new installation.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;">
+
 ## Command Summary <a name="command-summary"></a>
 
 Action | Format, Examples
@@ -291,6 +300,8 @@ Action | Format, Examples
 **Tag** | `/tag` <br> e.g., `/tag 240001 :tag Intern :tag Developer`
 **Help** | `/help`
 **Transaction** | `/transaction :id ID :amount AMOUNT :description DESCRIPTION [:datetime DATETIME]` <br> e.g., `/transaction :id 240001 :amount 2000 :description Salary :datetime 30/09/2021 12:00`
+
+</div>
 
 ## Support and Feedback <a name="support"></a>
 Dear Company Managers,
