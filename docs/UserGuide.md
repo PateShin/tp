@@ -2,8 +2,7 @@
 layout: page
 title: PayBack User Guide
 ---
-
-# Welcome Notes
+<h1 style="font-size:25px;">Welcome Notes</h1>
 
 Dear company managers,
 
@@ -24,6 +23,7 @@ We recommend starting with:
 
 Thank you for choosing PayBack to optimise your company's management processes. We're committed to providing you with exceptional support along the way!
 
+<div style="page-break-after: always;"></div>
 
 # Table of Contents
 1. [Product Information](#product-info)
@@ -53,6 +53,8 @@ Thank you for choosing PayBack to optimise your company's management processes. 
 8. [Closing](#closing)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Product Information <a name="product-info"></a>
 
 Payback is a software designed to take the hassle out of contact management so you can focus on what’s important in your organisation -  financial transactions. Offering both Graphical User Interface (GUI) and Command Line Interface (CLI), you can be sure that it will be easy for most to learn and use.
