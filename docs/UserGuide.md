@@ -148,9 +148,12 @@ Examples:
 `/add John Doe; 91234567; johndoe@email.com; 12 Kent Ridge Dr; 2024; Finance`
 
 ### Delete Employee <a name="delete"></a>
-Deletes the specified employee from the PayBack system.
+This feature deletes the specified employee from the PayBack system.
 
 Format: `/delete ID`
+
+**Note**:
+- All transactions with `employeeId` = `ID` will be deleted as well.
 
 Examples:
 
@@ -210,11 +213,20 @@ Example:
 `/tag 240001 :tag Intern :tag Developer`:
 Tags employee 240001 with ‘Intern’ and ‘Developer’
 
+### View Transaction Records of An Employee
+This feature displays the transaction records of an existing employee.
+
+Format: `/view ID`
+
+![view_transaction](images/ViewTransaction.png)
+
+Transaction records will be displayed on the right side of the employee list panel, as shown above.
+
 ### Help <a name="help"></a>
 
 Format: `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
