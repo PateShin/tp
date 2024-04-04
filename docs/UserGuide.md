@@ -2,8 +2,7 @@
 layout: page
 title: PayBack User Guide
 ---
-
-# Welcome Notes
+<h1 style="font-size:25px;">Welcome Notes</h1>
 
 Dear company managers,
 
@@ -24,6 +23,7 @@ We recommend starting with:
 
 Thank you for choosing PayBack to optimise your company's management processes. We're committed to providing you with exceptional support along the way!
 
+<div style="page-break-after: always;"></div>
 
 # Table of Contents
 1. [Product Information](#product-info)
