@@ -23,8 +23,6 @@ We recommend starting with:
 
 Thank you for choosing PayBack to optimise your company's management processes. We're committed to providing you with exceptional support along the way!
 
-<div style="page-break-after: always;">
-
 # Table of Contents
 1. [Product Information](#product-info)
 2. [Getting Started](#getting-started)
@@ -52,7 +50,6 @@ Thank you for choosing PayBack to optimise your company's management processes. 
 7. [Support and Feedback](#support)
 8. [Closing](#closing)
 
-</div>
 --------------------------------------------------------------------------------------------------------------------
 ## Product Information <a name="product-info"></a>
 
