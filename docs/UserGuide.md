@@ -285,6 +285,9 @@ If you utilise multiple screens and relocate the application to a secondary scre
 When installing PayBack on another computer, you can replace the empty data file it generates (e.g., payback.json) with the file containing the data from your previous PayBack home folder. This will ensure that your existing data is seamlessly transferred to the new installation.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;">
+
 ## Command Summary <a name="command-summary"></a>
 
 Action | Format, Examples
@@ -297,6 +300,8 @@ Action | Format, Examples
 **Tag** | `/tag` <br> e.g., `/tag 240001 :tag Intern :tag Developer`
 **Help** | `/help`
 **Transaction** | `/transaction :id ID :amount AMOUNT :description DESCRIPTION [:datetime DATETIME]` <br> e.g., `/transaction :id 240001 :amount 2000 :description Salary :datetime 30/09/2021 12:00`
+
+</div>
 
 ## Support and Feedback <a name="support"></a>
 Dear Company Managers,
