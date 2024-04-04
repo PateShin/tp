@@ -23,7 +23,7 @@ We recommend starting with:
 
 Thank you for choosing PayBack to optimise your company's management processes. We're committed to providing you with exceptional support along the way!
 
-<div style="page-break-after: always;"></div>
+<div style="page-break-after: always;">
 
 # Table of Contents
 1. [Product Information](#product-info)
@@ -51,9 +51,8 @@ Thank you for choosing PayBack to optimise your company's management processes. 
 6. [Command Summary](#command-summary)
 7. [Support and Feedback](#support)
 8. [Closing](#closing)
-
+</div>
 --------------------------------------------------------------------------------------------------------------------
-<div style="page-break-after: always;"></div>
 
 ## Product Information <a name="product-info"></a>
 
