@@ -53,6 +53,8 @@ Thank you for choosing PayBack to optimise your company's management processes. 
 8. [Closing](#closing)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always;"></div>
+
 ## Product Information <a name="product-info"></a>
 
 Payback is a software designed to take the hassle out of contact management so you can focus on what’s important in your organisation -  financial transactions. Offering both Graphical User Interface (GUI) and Command Line Interface (CLI), you can be sure that it will be easy for most to learn and use.
