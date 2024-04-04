@@ -103,14 +103,12 @@ You can use this panel to interact with Payback by typing in your commands!
 Upon pressing Enter, you will be presented with the outcomes of your commands. In the event of any errors in the command format, you will receive guidance to help rectify the issue.
 
 
-<div style="page-break-after: always;">
-
 ### Employee List <a name="employee-list"></a>
 
 ![EmployeeList](images/EmployeeList.png)
 
 All employee information is conveniently displayed here, allowing you to easily access and review all relevant details in a straightforward manner.
-</div>
+
 
 ## Key Features <a name="key-features"></a>
 PayBack Application offers a range of features to a company manager to manage employees. Before we delve into the key features, let’s take a look at the command formats and the parameters.
