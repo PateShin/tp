@@ -2,6 +2,9 @@
 layout: page
 title: PayBack User Guide
 ---
+![PayBackIcon](images/PaybackIcon.png)
+
+<a href="https://www.flaticon.com/free-icons/budget" title="budget icons">Budget icons created by Freepik - Flaticon</a>
 <h1 style="font-size:25px;">Welcome Notes</h1>
 
 Dear company managers,
@@ -38,10 +41,11 @@ Thank you for choosing PayBack to optimise your company's management processes. 
    5. [Find An Employee](#find)
    6. [Tag An Employee](#tag)
    7. [Help](#help)
-   8. [Add A Transaction](#transaction)
-   9. [AutoComplete TextBox](#autoComplete)
-   10. [Save Data](#save-data)
-   11. [Edit the Data File](#edit-data-file)
+   8. [View Transaction Records of An Employee](#view)
+   9. [Add A Transaction](#transaction)
+   10. [AutoComplete TextBox](#autoComplete)
+   11. [Save Data](#save-data)
+   12. [Edit the Data File](#edit-data-file)
 5. [Troubleshooting](#troubleshooting)
    1. [Java Version Compatibility](#java-version)
    2. [GUI Error](#gui-error)
@@ -213,7 +217,7 @@ Example:
 `/tag 240001 :tag Intern :tag Developer`:
 Tags employee 240001 with ‘Intern’ and ‘Developer’
 
-### View Transaction Records of An Employee
+### View Transaction Records of An Employee <a name="view"></a>
 This feature displays the transaction records of an existing employee.
 
 Format: `/view ID`
@@ -301,6 +305,7 @@ Action | Format, Examples
 **Find** | `/find :name [name]`<br>`/find :email [email]`<br>`/find :phone [phone number]`<br>`/find :id [ID]`<br>`/find :year [year]`<br>`/find :tag [tag]`<br><br> e.g., `find :name John`
 **Tag** | `/tag` <br> e.g., `/tag 240001 :tag Intern :tag Developer`
 **Help** | `/help`
+**View** | `/view ID` <br> e.g., `/view 240001`
 **Transaction** | `/transaction :id ID :amount AMOUNT :description DESCRIPTION [:datetime DATETIME]` <br> e.g., `/transaction :id 240001 :amount 2000 :description Salary :datetime 30/09/2021 12:00`
 
 ## Support and Feedback <a name="support"></a>
