@@ -28,10 +28,12 @@ public class DateTimeTest {
         assertFalse(DateTime.isValidDateTime("")); // empty string
         assertFalse(DateTime.isValidDateTime(" ")); // spaces only
         assertFalse(DateTime.isValidDateTime("abc"));
-        assertFalse(DateTime.isValidDateTime("2020-02-30 12:00")); // invalid date format// invalid time
+        assertFalse(DateTime.isValidDateTime("2020-02-30 12:00")); // invalid date format
+        assertFalse(DateTime.isValidDateTime("31/02/2024 13:55")); // invalid date
+        assertFalse(DateTime.isValidDateTime("28/02/-1000 13:55"));
 
         // valid datetimes
-        assertTrue(DateTime.isValidDateTime("29/02/2022 23:59"));
+        assertTrue(DateTime.isValidDateTime("28/02/2022 23:59"));
         assertTrue(DateTime.isValidDateTime("01/01/2022 00:00"));
     }
 
