@@ -29,11 +29,16 @@ public class AmountTest {
         assertFalse(Amount.isValidAmount(" ")); // spaces only
         assertFalse(Amount.isValidAmount("abc")); // non-numeric
         assertFalse(Amount.isValidAmount("123.45.6")); // more than 1 decimal point
+        assertFalse(Amount.isValidAmount("12345.678")); // more than 2 decimal places
+        assertFalse(Amount.isValidAmount("-123")); // negative number
+        assertFalse(Amount.isValidAmount("0")); // zero
+        assertFalse(Amount.isValidAmount("10000000000000")); // greater than MAX_AMOUNT
 
         // valid amounts
         assertTrue(Amount.isValidAmount("123")); // integer
-        assertTrue(Amount.isValidAmount("123.4"));
-        assertTrue(Amount.isValidAmount("123.456"));
+        assertTrue(Amount.isValidAmount("123.4")); // 1 decimal place
+        assertTrue(Amount.isValidAmount("123.45")); // 2 decimal places
+        assertTrue(Amount.isValidAmount("9999999999999.99")); // MAX_AMOUNT
     }
 
     @Test

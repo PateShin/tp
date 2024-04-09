@@ -41,19 +41,19 @@ public class TransactionCard extends UiPart<Region> {
         this.transaction = transaction;
 
         String transactionLabel = "Transaction ID: ";
-        String transactionIdText = Long.toString(transaction.getId().value);
+        String transactionIdText = transaction.getId().toString();
         transactionId.setText(transactionLabel + transactionIdText);
 
-        String amountLabel = "Amount: $";
-        String amountText = Double.toString(transaction.getAmount().value);
+        String amountLabel = "Amount: ";
+        String amountText = transaction.getAmount().toString();
         amount.setText(amountLabel + amountText);
 
         String employeeIdLabel = "Employee ID: ";
-        String employeeIdText = Integer.toString(transaction.getEmployeeId().value);
+        String employeeIdText = transaction.getEmployeeId().toString();
         employeeId.setText(employeeIdLabel + employeeIdText);
 
         String descriptionLabel = "Description: ";
-        String descriptionText = transaction.getDescription().value;
+        String descriptionText = transaction.getDescription().toString();
         description.setText(descriptionLabel + descriptionText);
 
 
