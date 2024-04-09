@@ -6,6 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents a Transaction's date and time in the transaction list.
@@ -13,8 +14,9 @@ import java.time.format.DateTimeParseException;
  */
 public class DateTime {
 
-    public static final String MESSAGE_CONSTRAINTS = "Date should be in the format of dd/MM/yyyy HH:mm";
-    public static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+    public static final String MESSAGE_CONSTRAINTS = "The date should be in the format of dd/MM/yyyy HH:mm"
+            + " and must be a valid date.\nThe year should be greater than or equal to 2010.";
+    public static final DateTimeFormatter DATETIME_FORMAT = DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm");
 
     public final LocalDateTime value;
 
@@ -44,8 +46,8 @@ public class DateTime {
      */
     public static boolean isValidDateTime(String test) {
         try {
-            LocalDateTime.parse(test, DATETIME_FORMAT);
-            return true;
+            LocalDateTime value = LocalDateTime.parse(test, DATETIME_FORMAT.withResolverStyle(ResolverStyle.STRICT));
+            return value.getYear() >= 2010;
         } catch (DateTimeParseException e) {
             return false;
         }
