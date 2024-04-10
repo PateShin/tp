@@ -61,10 +61,12 @@ public class LogicManager implements Logic {
             command = payBackParser.parseCommand(model, commandText);
             break;
         case CONFIRMDELETE:
-            command = confirmationStageParser.parseCommand(commandText);
+            command = confirmationStageParser.parseCommand(model, commandText);
             break;
         default:
         }
+
+        assert command != null;
 
         commandResult = command.execute(model);
 
