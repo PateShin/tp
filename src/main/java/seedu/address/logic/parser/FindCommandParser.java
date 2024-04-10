@@ -8,10 +8,13 @@ import java.util.List;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.EmailContainsKeywordsPredicate;
+import seedu.address.model.person.Id;
 import seedu.address.model.person.IdEqualsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.PhoneContainsKeywordsPredicate;
 import seedu.address.model.person.TagEqualsPredicate;
+import seedu.address.model.person.YearJoined;
 import seedu.address.model.person.YearJoinedEqualsPredicate;
 
 /**
@@ -37,36 +40,39 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindCommand(new NameContainsKeywordsPredicate(keywords));
         } else if (argMultimap.getValue(CliSyntax.PREFIX_PHONE).isPresent()
                 && !argMultimap.getValue(CliSyntax.PREFIX_PHONE).get().isEmpty()) {
-            return new FindCommand(new PhoneContainsKeywordsPredicate(
-                    argMultimap.getAllValues(CliSyntax.PREFIX_PHONE)));
+            Phone phone = ParserUtil.parsePhone(argMultimap.getValue(CliSyntax.PREFIX_PHONE).get());
+            List<String> phoneValue = List.of(phone.value);
+            return new FindCommand(new PhoneContainsKeywordsPredicate(phoneValue));
         } else if (argMultimap.getValue(CliSyntax.PREFIX_EMAIL).isPresent()
                 && !argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get().isEmpty()) {
             return new FindCommand(new EmailContainsKeywordsPredicate(
                     argMultimap.getAllValues(CliSyntax.PREFIX_EMAIL)));
         } else if (argMultimap.getValue(CliSyntax.PREFIX_ID).isPresent()
                 && !argMultimap.getValue(CliSyntax.PREFIX_ID).get().isEmpty()) {
-            return new FindCommand(new IdEqualsPredicate(
-                    argMultimap.getValue(CliSyntax.PREFIX_ID).get()));
+            Id id = ParserUtil.parseId(argMultimap.getValue(CliSyntax.PREFIX_ID).get());
+            String idValue = id.toString();
+            return new FindCommand(new IdEqualsPredicate(idValue));
         } else if (argMultimap.getValue(CliSyntax.PREFIX_YEAR_JOINED).isPresent()
                 && !argMultimap.getValue(CliSyntax.PREFIX_YEAR_JOINED).get().isEmpty()) {
-            return new FindCommand(new YearJoinedEqualsPredicate(
-                    argMultimap.getValue(CliSyntax.PREFIX_YEAR_JOINED).get()));
+            YearJoined year = ParserUtil.parseYearJoined(argMultimap.getValue(CliSyntax.PREFIX_YEAR_JOINED).get());
+            String yearValue = year.toString();
+            return new FindCommand(new YearJoinedEqualsPredicate(yearValue));
         } else if (argMultimap.getValue(CliSyntax.PREFIX_TAG).isPresent()
                 && !argMultimap.getValue(CliSyntax.PREFIX_TAG).get().isEmpty()) {
             return new FindCommand(new TagEqualsPredicate(
                     argMultimap.getValue(CliSyntax.PREFIX_TAG).get()));
         } else if (argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent()) {
-            throw new ParseException("Name to find cannot be empty");
+            throw new ParseException("Name to find cannot be empty.");
         } else if (argMultimap.getValue(CliSyntax.PREFIX_PHONE).isPresent()) {
-            throw new ParseException("Phone number to find cannot be empty");
+            throw new ParseException("Phone number to find cannot be empty.");
         } else if (argMultimap.getValue(CliSyntax.PREFIX_EMAIL).isPresent()) {
-            throw new ParseException("Email to find cannot be empty");
+            throw new ParseException("Email to find cannot be empty.");
         } else if (argMultimap.getValue(CliSyntax.PREFIX_ID).isPresent()) {
-            throw new ParseException("ID to find cannot be empty");
+            throw new ParseException("ID to find cannot be empty.");
         } else if (argMultimap.getValue(CliSyntax.PREFIX_YEAR_JOINED).isPresent()) {
-            throw new ParseException("Year joined to find cannot be empty");
+            throw new ParseException("Year joined to find cannot be empty.");
         } else if (argMultimap.getValue(CliSyntax.PREFIX_TAG).isPresent()) {
-            throw new ParseException("Tag to find cannot be empty");
+            throw new ParseException("Tag to find cannot be empty.");
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }

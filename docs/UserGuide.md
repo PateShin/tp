@@ -90,7 +90,7 @@ Key features include:
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`/help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `/list` : Lists all contacts.
@@ -221,9 +221,13 @@ Use the `/find` command followed by the appropriate prefix and keyword:
    - The name must be fully typed to find; partial names will not yield a search result.
    - Multiple names can be searched.
 - `:phone`, Search by phone number.
+  - At least a 3-digit number is required.
 - `:email`, Search by email address.
+  - Finds keywords contained in the email, not the exact keywords.
 - `:id`, Search by employee ID.
+  - 6-digit numbers are required and must be between 100001 and 999999.
 - `:year`, Search by year joined.
+  - 4 digits of the number are required, and it must be between 2010 and 2099.
 - `:tag`, Search by tag.
 
 Example:
