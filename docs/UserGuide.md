@@ -33,6 +33,8 @@ Thank you for choosing PayBack to optimise your company's management processes. 
    1. [User Command Panel](#user-command-panel)
    2. [Command Result/Guidance](#command)
    3. [Employee List](#employee-list)
+   4. [Transaction Panel](#transaction-panel)
+   5. [Window Size](#window-size)
 4. [Key Features](#key-features)
    1. [Add Employee](#add)
    2. [Delete Employee](#delete)
@@ -46,6 +48,8 @@ Thank you for choosing PayBack to optimise your company's management processes. 
    10. [AutoComplete TextBox](#autoComplete)
    11. [Save Data](#save-data)
    12. [Edit the Data File](#edit-data-file)
+   13. [Clear All Employees](#clear)
+   14. [Exit the Program](#exit)
 5. [Troubleshooting](#troubleshooting)
    1. [Java Version Compatibility](#java-version)
    2. [GUI Error](#gui-error)
@@ -62,12 +66,17 @@ Payback is a software designed to take the hassle out of contact management so y
 Our GUI has a visually intuitive environment, making it ideal for users who prefer point-and-click interactions and graphical representations of data. On the other hand, our CLI offers you the ability to perform tasks efficiently through text-based commands, allowing for rapid execution of commands.
 
 Key features include:
-1. Adding contacts
-2. Deleting contacts
-3. Editing contact information
-4. Listing contacts
-5. Searching for contacts
-6. Tagging contacts
+1. Adding employees
+2. Deleting employees
+3. Editing employee information
+4. Listing employees
+5. Searching for employees
+6. Tagging employees
+7. Viewing transaction records of employees
+8. Adding transactions to employees
+9. Autocompleting text box
+10. Clearing all employee information
+11. Exiting the program
 
 ## Getting Started <a name="getting-started"></a>
 
@@ -81,7 +90,7 @@ Key features include:
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`/help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
    * `/list` : Lists all contacts.
@@ -113,6 +122,20 @@ Upon pressing Enter, you will be presented with the outcomes of your commands. I
 
 All employee information is conveniently displayed here, allowing you to easily access and review all relevant details in a straightforward manner.
 
+### Transaction Panel <a name="transaction-panel"></a>
+
+![TransactionPanel](images/TransactionPanel.png)
+
+The transaction records corresponding to the employee with ID you provided are shown here.
+
+### Window Size <a name="window-size"></a>
+For optimal display quality, the application window size is configured with specific limitations to enhance user experience. The minimum and maximum dimensions of the window are predefined as follows:
+
+* Minimum Width: PayBack window cannot be resized to a width smaller than 450 pixels.
+* Maximum Width: The maximum width is capped at 700 pixels.
+  <br>
+* Minimum Height: The window's height is set not to fall below 600 pixels.
+* Maximum Height: The height of the window is limited to a maximum of 700 pixels.
 
 ## Key Features <a name="key-features"></a>
 PayBack Application offers a range of features to a company manager to manage employees. Before we delve into the key features, let’s take a look at the command formats and the parameters.
@@ -177,6 +200,7 @@ Format:
 - At least one of the optional fields must be provided.
 - Existing values will be updated to the input values.
 - Only one tag can be edited at a time, valid tag index and new tag name must be provided.
+- Duplicated tags are not allowed.
 - Able to remove all the employee’s tags by typing `:tag -1`.
 
 Example:
@@ -198,16 +222,24 @@ This feature allows a user to search for specific employees.
 
 Use the `/find` command followed by the appropriate prefix and keyword:
 - `:name`, Search by employee name (supports multiple keywords).
+   - The name must be fully typed to find; partial names will not yield a search result.
+   - Multiple names can be searched.
 - `:phone`, Search by phone number.
+  - At least a 3-digit number is required.
 - `:email`, Search by email address.
+  - Finds keywords contained in the email, not the exact keywords.
 - `:id`, Search by employee ID.
+  - 6-digit numbers are required and must be between 100001 and 999999.
 - `:year`, Search by year joined.
+  - 4 digits of the number are required, and it must be between 2010 and 2099.
 - `:tag`, Search by tag.
 
 Example:
 
-`/find :name Patrick Star`:
-Searches employees with the name ‘Patrick Star’
+`/find :name Patrick Star`:<br>
+Searches employees with the name ‘**Patrick Star**’
+<br>**OR**<br>
+Searches for employees named ’**Patrick**’ and ’**Star**’.
 
 ### Tag An Employee <a name="tag"></a>
 This feature allows a user to add “tags” to existing employees for easier identification.
@@ -221,9 +253,6 @@ Example:
 `/tag 240001 :tag Intern :tag Developer`:
 Tags employee 240001 with ‘Intern’ and ‘Developer’
 
-### View Transaction Records of An Employee <a name="view"></a>
-This feature displays the transaction records of an existing employee.
-
 ### Add A Transaction <a name="transaction"></a>
 
 Adds a transaction to the specified person.
@@ -235,6 +264,10 @@ Format:
 Examples:
 * `/transaction 240001; 2000; Salary; 30/09/2021 12:00`
 * `/transaction :id 240001 :amount 2000 :description Salary :datetime 30/09/2021 12:00`
+
+### View Transaction Records of An Employee <a name="view"></a>
+
+This feature displays the transaction records of an existing employee.
 
 Format: `/view ID`
 
@@ -251,14 +284,18 @@ Auto-complete feature allows to enter command quickly and accurately by suggesti
 #### How it works:
 As a command is typed into the command box, PayBack analyzes the input and suggests possible completions based on existing commands, taking the following inputs for the command.
 
+- The autocomplete feature will suggest items that start with the text that is entered.
 - Command words: PayBack will suggest matching command words as user type. For example, typing `/a` will suggest `/add`.
-- The suggestions appear in a pop-up menu below the command box. Use the arrow keys to navigate the suggestions and press Enter or press tab to select the desired completion.
+- The suggestions appear in a pop-up menu below the command box. Use the arrow keys to navigate the suggestions and press Enter or Tab to select the desired completion.
 
 **Tips for Usage:**
 1. Start typing the command: PayBack will begin suggesting completions after the first few characters are typed.
 2. Use the arrow keys: Navigate through the suggestions using the up and down arrow keys.
 3. Press Enter to select: Once the desired completion is seen, press Enter to select it.
 4. Ignore suggestions: If the suggestions are not helpful, continue typing the command.
+
+> **NOTE:**<br>
+Wait for a few seconds before entering a command in the text field.
 
 ### Help <a name="help"></a>
 
@@ -281,6 +318,21 @@ If modifications to the data file result in an invalid format, PayBack will disc
 Therefore, it is advisable to create a backup of the file before making any edits. 
 Additionally, specific changes may lead to unexpected behavior in PayBack, such as if a value entered falls outside the acceptable range. Hence, proceed with editing the data file only if you are certain that you can make accurate updates.
 </div>
+
+### Clear All Employees <a name="clear"></a>
+
+Format: `/clear`
+
+Clear command to remove all employee data in PayBack.
+
+> **NOTE:**<br>
+Use the "Clear" command with **_CAUTION_**, as it will permanently delete all data in the system without confirmation.
+
+### Exit the Program <a name="exit"></a>
+
+Format: `/exit`
+
+Exit command provides a way for users to safely close PayBack.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -310,6 +362,8 @@ Action | Format, Examples
 **Help** | `/help`
 **View** | `/view ID` <br> e.g., `/view 240001`
 **Transaction** | `/transaction :id ID :amount AMOUNT :description DESCRIPTION [:datetime DATETIME]` <br> e.g., `/transaction :id 240001 :amount 2000 :description Salary :datetime 30/09/2021 12:00`
+**Clear** | `/clear` 
+**Exit** | `/exit`
 
 ## Support and Feedback <a name="support"></a>
 Dear Company Managers,

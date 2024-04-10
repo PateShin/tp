@@ -1,7 +1,6 @@
 package seedu.address.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -31,7 +30,7 @@ public class PersonBuilder {
     private Email email;
     private YearJoined yearJoined;
     private Address address;
-    private Set<Tag> tags;
+    private ArrayList<Tag> tags;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -43,7 +42,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         yearJoined = new YearJoined(DEFAULT_YEAR_JOINED);
         address = new Address(DEFAULT_ADDRESS);
-        tags = new HashSet<>();
+        tags = new ArrayList<>();
     }
 
     /**
@@ -56,7 +55,7 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         yearJoined = personToCopy.getYearJoined();
-        tags = new HashSet<>(personToCopy.getTags());
+        tags = new ArrayList<>(personToCopy.getTags());
     }
 
     /**

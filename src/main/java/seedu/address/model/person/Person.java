@@ -2,10 +2,8 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.model.Model;
@@ -26,13 +24,13 @@ public class Person {
     private final Name name;
     private final YearJoined yearJoined;
     private final Address address;
-    private final Set<Tag> tags = new HashSet<>();
+    private final ArrayList<Tag> tags = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Model model, Name name, Phone phone, Email email, Address address,
-                  YearJoined yearJoined, Set<Tag> tags) {
+                  YearJoined yearJoined, ArrayList<Tag> tags) {
         requireAllNonNull(model, name, phone, email, address, yearJoined, tags);
         this.id = new Id(model, yearJoined);
         this.name = name;
@@ -46,7 +44,8 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Id id, Name name, Phone phone, Email email, Address address, YearJoined yearJoined, Set<Tag> tags) {
+    public Person(Id id, Name name, Phone phone, Email email,
+                  Address address, YearJoined yearJoined, ArrayList<Tag> tags) {
         requireAllNonNull(id, name, phone, email, address, yearJoined, tags);
         this.id = id;
         this.name = name;
@@ -85,8 +84,8 @@ public class Person {
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public ArrayList<Tag> getTags() {
+        return tags;
     }
 
     /**

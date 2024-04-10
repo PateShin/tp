@@ -5,8 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +20,7 @@ public class TagCommandParserTest {
     public void parse_singleTag_success() {
         String userInput = "240001 " + PREFIX_TAG + " Finance";
 
-        Set<Tag> tags = new HashSet<>();
+        ArrayList<Tag> tags = new ArrayList<>();
         tags.add(new Tag("Finance"));
 
         TagCommand expectedCommand = new TagCommand(new Id(240001), tags);
@@ -36,10 +35,10 @@ public class TagCommandParserTest {
                 + PREFIX_TAG + " Management "
                 + PREFIX_TAG + " Family";
 
-        Set<Tag> tags = new HashSet<>();
+        ArrayList<Tag> tags = new ArrayList<>();
         tags.add(new Tag("Finance"));
-        tags.add(new Tag("Management"));
         tags.add(new Tag("Family"));
+        tags.add(new Tag("Management"));
 
         TagCommand expectedCommand = new TagCommand(new Id(240001), tags);
 

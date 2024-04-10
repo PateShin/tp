@@ -1,8 +1,6 @@
 package seedu.address.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.ArrayList;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
@@ -86,7 +84,10 @@ public class EditPersonDescriptorBuilder {
      * that we are building.
      */
     public EditPersonDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
+        ArrayList<Tag> tagSet = new ArrayList<>();
+        for (int i = 0; i < tags.length; i++) {
+            tagSet.add(i, new Tag(tags[i]));
+        }
         descriptor.setTags(tagSet);
         return this;
     }

@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
@@ -35,19 +35,19 @@ public class TagCommand extends Command {
             + "Examples:\n"
             + "• " + COMMAND_WORD + " 240001 " + PREFIX_TAG + " Finance " + PREFIX_TAG + " Manager\n";
 
-    public static final String MESSAGE_SUCCESS = "Employee tagged\n";
+    public static final String MESSAGE_SUCCESS = "Employee tagged.\n";
 
-    public static final String MESSAGE_DUPLICATE_TAGS = "All tags are already present in the employee!";
+    public static final String MESSAGE_DUPLICATE_TAGS = "Tags are already present in the employee!";
 
     private final Id id;
 
-    private Set<Tag> tags;
+    private ArrayList<Tag> tags;
 
     /**
      * @param id Id of {@Code Person} to tag.
      * @param tags Set of (@Code Tag} to tag {@Code Person} with.
      */
-    public TagCommand(Id id, Set<Tag> tags) {
+    public TagCommand(Id id, ArrayList<Tag> tags) {
         requireNonNull(id);
         this.id = id;
         this.tags = tags;
@@ -80,17 +80,24 @@ public class TagCommand extends Command {
      * Adds a set of tags to an existing {@Code Person}.
      * Returns a new (@Code Person} with the added set of tags.
      */
-    private Person addTagsToPerson(Person personToTag, Set<Tag> tagsToAdd) throws CommandException {
+    private Person addTagsToPerson(Person personToTag, ArrayList<Tag> tagsToAdd) throws CommandException {
         Id id = personToTag.getId();
         Name name = personToTag.getName();
         Email email = personToTag.getEmail();
         Phone phone = personToTag.getPhone();
         YearJoined yearJoined = personToTag.getYearJoined();
         Address address = personToTag.getAddress();
-        Set<Tag> tags = personToTag.getTags();
+        ArrayList<Tag> tags = personToTag.getTags();
 
         int originalLength = tags.size();
 
+        for (int i = 0; i < tags.size(); i++) {
+            for (int j = 0; j < tagsToAdd.size(); j++) {
+                if (tagsToAdd.get(j).equals(tags.get(i))) {
+                    throw new CommandException(MESSAGE_DUPLICATE_TAGS);
+                }
+            }
+        }
         tagsToAdd.addAll(tags);
 
         int newLength = tagsToAdd.size();

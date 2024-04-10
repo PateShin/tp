@@ -54,8 +54,8 @@ public class FindCommandParserTest {
     @Test
     public void parse_validIdArgs_returnsFindCommand() {
         FindCommand expectedFindCommand =
-                new FindCommand(new IdEqualsPredicate("123"));
-        assertParseSuccess(parser, "/find :id 123", expectedFindCommand);
+                new FindCommand(new IdEqualsPredicate("240001"));
+        assertParseSuccess(parser, "/find :id 240001", expectedFindCommand);
     }
 
     @Test
@@ -90,4 +90,42 @@ public class FindCommandParserTest {
         assertParseFailure(parser, "/find :unknown Patrick",
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_emptyName_throwsParseException() {
+        String expectedMessage = "Name to find cannot be empty.";
+        assertParseFailure(parser, "/find :name", expectedMessage);
+    }
+
+    @Test
+    public void parse_emptyPhone_throwsParseException() {
+        String expectedMessage = "Phone number to find cannot be empty.";
+        assertParseFailure(parser, "/find :phone", expectedMessage);
+    }
+
+    @Test
+    public void parse_emptyEmail_throwsParseException() {
+        String expectedMessage = "Email to find cannot be empty.";
+        assertParseFailure(parser, "/find :email", expectedMessage);
+    }
+
+    @Test
+    public void parse_emptyId_throwsParseException() {
+        String expectedMessage = "ID to find cannot be empty.";
+        assertParseFailure(parser, "/find :id", expectedMessage);
+    }
+
+    @Test
+    public void parse_emptyYearJoined_throwsParseException() {
+        String expectedMessage = "Year joined to find cannot be empty.";
+        assertParseFailure(parser, "/find :year", expectedMessage);
+    }
+
+    @Test
+    public void parse_emptyTag_throwsParseException() {
+        String expectedMessage = "Tag to find cannot be empty.";
+        // Assuming tag prefix is "t/"
+        assertParseFailure(parser, "/find :tag", expectedMessage);
+    }
+
 }

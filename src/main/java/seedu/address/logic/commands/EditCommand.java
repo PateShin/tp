@@ -2,6 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_ID;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
+import static seedu.address.logic.Messages.TAG_DUPLICATE_TAG;
+import static seedu.address.logic.Messages.TAG_NO_TAG_PRESENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -9,12 +12,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Collections;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 
 import javafx.util.Pair;
 import seedu.address.commons.util.CollectionUtil;
@@ -52,7 +53,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TAG + "TAG] + [TAG_INDEX] + [NEW_TAG]\n"
             + "Example: " + COMMAND_WORD + " 240001 "
             + PREFIX_PHONE + " 91234567 "
-            + PREFIX_EMAIL + " johndoe@example.com"
+            + PREFIX_EMAIL + " johndoe@example.com "
             + PREFIX_TAG + " 1 friend";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
@@ -115,7 +116,7 @@ public class EditCommand extends Command {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         YearJoined yearJoined = personToEdit.getYearJoined();
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        ArrayList<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         return new Person(id, updatedName, updatedPhone, updatedEmail, updatedAddress, yearJoined, updatedTags);
     }
@@ -155,7 +156,7 @@ public class EditCommand extends Command {
         private Email email;
         private YearJoined yearJoined;
         private Address address;
-        private Set<Tag> tags = new HashSet<>();
+        private ArrayList<Tag> tags = new ArrayList<>();
         private Pair<Integer, String> updateTagInfo;
 
         public EditPersonDescriptor() {}
@@ -172,7 +173,7 @@ public class EditCommand extends Command {
             setYearJoined(toCopy.yearJoined);
             setAddress(toCopy.address);
             if (toCopy.tags == null) {
-                setTags(new HashSet<>());
+                setTags(new ArrayList<Tag>());
             } else {
                 setTags(toCopy.tags);
             }
@@ -235,8 +236,8 @@ public class EditCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setTags(ArrayList<Tag> tags) {
+            this.tags = (tags != null) ? new ArrayList<>(tags) : null;
         }
 
         /**
@@ -250,23 +251,26 @@ public class EditCommand extends Command {
         /**
          * Sets {@code tagInfo} to this object's {@code tags}.
          */
-        public void setUpdatedTags() {
+        public void setUpdatedTags() throws CommandException {
             if (updateTagInfo == null) {
                 return;
             }
             if (updateTagInfo.getKey() > this.tags.size()) {
-                return;
+                throw new CommandException(MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+            if (updateTagInfo.getKey() == 0 && this.tags.size() == 0) {
+                throw new CommandException(TAG_NO_TAG_PRESENT);
             }
             if (updateTagInfo.getKey() == -1) {
-                this.tags = new HashSet<>();
+                this.tags = new ArrayList<>();
             } else {
-                Object[] newTags = tags.toArray();
-                newTags[updateTagInfo.getKey() - 1] = new Tag(updateTagInfo.getValue());
-                Tag[] tag = new Tag[tags.size()];
+                Tag newTag = new Tag(updateTagInfo.getValue());
                 for (int i = 0; i < tags.size(); i++) {
-                    tag[i] = (Tag) newTags[i];
+                    if (tags.get(i).equals(newTag)) {
+                        throw new CommandException(TAG_DUPLICATE_TAG);
+                    }
                 }
-                tags = Set.of(tag);
+                tags.set(updateTagInfo.getKey() - 1, newTag);
             }
         }
 
@@ -275,8 +279,8 @@ public class EditCommand extends Command {
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code tags} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<ArrayList<Tag>> getTags() {
+            return (tags != null) ? Optional.of(tags) : Optional.empty();
         }
 
         @Override

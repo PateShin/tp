@@ -24,6 +24,8 @@ public class CommandData {
         commandFollowMessages.put(TagCommand.COMMAND_WORD, TagCommand.FOLLOW_MESSAGE);
         commandFollowMessages.put(TransactionCommand.COMMAND_WORD, TransactionCommand.FOLLOW_MESSAGE);
         commandFollowMessages.put(ListCommand.COMMAND_WORD, ListCommand.FOLLOW_MESSAGE);
+        commandFollowMessages.put(ViewCommand.COMMAND_WORD, ViewCommand.FOLLOW_MESSAGE);
+        commandFollowMessages.put(ClearCommand.COMMAND_WORD, ClearCommand.FOLLOW_MESSAGE);
     }
 
     /**
@@ -47,4 +49,3 @@ public class CommandData {
         return commandFollowMessages.keySet().toArray(new String[0]);
     }
 }
-
