@@ -8,7 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR_JOINED;
 
-import java.util.Set;
+import java.util.ArrayList;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddCommand;
@@ -63,7 +63,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         YearJoined yearJoined = ParserUtil.parseYearJoined(argMultimap.getValue(PREFIX_YEAR_JOINED).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        ArrayList<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Person person = new Person(model, name, phone, email, address, yearJoined, tagList);
 
