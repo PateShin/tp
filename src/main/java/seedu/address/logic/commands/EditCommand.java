@@ -90,7 +90,10 @@ public class EditCommand extends Command {
         editPersonDescriptor.setTags(personToEdit.getTags());
         editPersonDescriptor.setUpdatedTags();
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+
+        boolean isDuplicate = model.getDuplicatePersons(editedPerson).stream()
+                .anyMatch(person -> !person.getId().equals(editedPerson.getId()));
+        if (isDuplicate) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 

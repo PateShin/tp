@@ -83,6 +83,14 @@ public class PayBack implements ReadOnlyPayBack {
     }
 
     /**
+     * Returns a list of persons with the same identity as {@code person} in the address book.
+     */
+    public List<Person> getDuplicatePersons(Person person) {
+        requireNonNull(person);
+        return persons.getDuplicatePersons(person);
+    }
+
+    /**
      * Returns true if a person with the same ID as {@code id} exists in the address book.
      */
     public boolean hasPersonId(Id id) {
