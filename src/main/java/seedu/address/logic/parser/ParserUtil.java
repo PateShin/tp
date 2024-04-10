@@ -152,6 +152,9 @@ public class ParserUtil {
      */
     public static Pair<Integer, String> parseUpdatedTags(Optional<String> tag) throws ParseException {
         requireNonNull(tag);
+        if (!tag.get().matches("-?\\d.*")) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+        }
         String[] tagInfo = tag.get().split("\\s+", 2);
         if (Integer.valueOf(tagInfo[0]) < -1) {
             throw new ParseException(TAG_INVALID_INDEX);
