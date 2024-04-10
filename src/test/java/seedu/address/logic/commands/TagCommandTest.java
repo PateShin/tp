@@ -4,8 +4,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.getTypicalPayBack;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -25,7 +24,7 @@ public class TagCommandTest {
     private Model model = new ModelManager(getTypicalPayBack(), new UserPrefs());
     @Test
     public void execute_singleTagAdd_success() {
-        Set<Tag> tagStub = new HashSet<>();
+        ArrayList<Tag> tagStub = new ArrayList<>();
         tagStub.add(new Tag("Finance"));
 
         Person expectedPerson = new PersonBuilder().withTags("Finance").build();
@@ -42,7 +41,7 @@ public class TagCommandTest {
 
     @Test
     public void execute_multipleTagAdd_success() {
-        Set<Tag> tagStub = new HashSet<>();
+        ArrayList<Tag> tagStub = new ArrayList<>();
         tagStub.add(new Tag("Finance"));
         tagStub.add(new Tag("Management"));
         tagStub.add(new Tag("Friend"));
@@ -61,7 +60,7 @@ public class TagCommandTest {
 
     @Test
     public void execute_duplicateTags_throwsCommandException() {
-        Set<Tag> tagStub = new HashSet<>();
+        ArrayList<Tag> tagStub = new ArrayList<>();
         tagStub.add(new Tag("Finance"));
         tagStub.add(new Tag("Management"));
 
@@ -82,7 +81,7 @@ public class TagCommandTest {
         int size = expectedModel.getFilteredPersonList().size();
         Id invalidId = new Id(size + 240001);
 
-        TagCommand tagCommand = new TagCommand(invalidId, new HashSet<Tag>());
+        TagCommand tagCommand = new TagCommand(invalidId, new ArrayList<>());
 
         String expectedMessage = Messages.MESSAGE_INVALID_PERSON_DISPLAYED_ID;
 
@@ -91,12 +90,12 @@ public class TagCommandTest {
 
     @Test
     public void equals() {
-        Set<Tag> tags = new HashSet<>();
+        ArrayList<Tag> tags = new ArrayList<>();
         tags.add(new Tag("Finance"));
         tags.add(new Tag("Management"));
         TagCommand tagCommand = new TagCommand(new Id(240001), tags);
 
-        Set<Tag> tagsCopy = new HashSet<>();
+        ArrayList<Tag> tagsCopy = new ArrayList<>();
         tagsCopy.add(new Tag("Finance"));
         tagsCopy.add(new Tag("Management"));
         TagCommand tagCommandCopy = new TagCommand(new Id(240001), tagsCopy);
@@ -124,7 +123,7 @@ public class TagCommandTest {
 
     @Test
     public void toStringMethod() {
-        Set<Tag> tags = new HashSet<>();
+        ArrayList<Tag> tags = new ArrayList<>();
         tags.add(new Tag("Finance"));
         TagCommand tagCommand = new TagCommand(new Id(240001), tags);
 

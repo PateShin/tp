@@ -4,6 +4,7 @@ import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.ParserUtil.parseTag;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -37,7 +38,7 @@ public class TagCommandParser implements Parser<TagCommand> {
         }
 
         Set<String> tagNames = new HashSet<>(argMultimap.getAllValues(PREFIX_TAG));
-        Set<Tag> tags = new HashSet<>();
+        ArrayList<Tag> tags = new ArrayList<>();
         Iterator<String> tagIterator = tagNames.iterator();
 
         while (tagIterator.hasNext()) {
