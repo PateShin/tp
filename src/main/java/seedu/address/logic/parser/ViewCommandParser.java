@@ -18,6 +18,8 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(Id.MESSAGE_CONSTRAINTS);
         }
     }
 }

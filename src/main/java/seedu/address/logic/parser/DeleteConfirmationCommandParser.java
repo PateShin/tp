@@ -13,13 +13,15 @@ import seedu.address.model.person.Id;
 public class DeleteConfirmationCommandParser implements Parser<DeleteConfirmationCommand> {
 
     @Override
-    public DeleteConfirmationCommand parse(String args) throws ParseException {
+    public DeleteConfirmationCommand parse(String args) throws ParseException, IllegalArgumentException {
         try {
             Id id = ParserUtil.parseId(args);
             return new DeleteConfirmationCommand(id);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(Id.MESSAGE_CONSTRAINTS);
         }
     }
 
