@@ -33,6 +33,7 @@ Thank you for choosing PayBack to optimise your company's management processes. 
    1. [User Command Panel](#user-command-panel)
    2. [Command Result/Guidance](#command)
    3. [Employee List](#employee-list)
+   4. [Window Size](#window-size)
 4. [Key Features](#key-features)
    1. [Add Employee](#add)
    2. [Delete Employee](#delete)
@@ -41,11 +42,13 @@ Thank you for choosing PayBack to optimise your company's management processes. 
    5. [Find An Employee](#find)
    6. [Tag An Employee](#tag)
    7. [Help](#help)
-   8. [View Transaction Records of An Employee](#view)
-   9. [Add A Transaction](#transaction)
-   10. [AutoComplete TextBox](#autoComplete)
-   11. [Save Data](#save-data)
-   12. [Edit the Data File](#edit-data-file)
+   8. [Clear](#clear)
+   9. [Exit](#Exit)
+   10. [View Transaction Records of An Employee](#view)
+   11. [Add A Transaction](#transaction)
+   12. [AutoComplete TextBox](#autoComplete)
+   13. [Save Data](#save-data)
+   14. [Edit the Data File](#edit-data-file)
 5. [Troubleshooting](#troubleshooting)
    1. [Java Version Compatibility](#java-version)
    2. [GUI Error](#gui-error)
@@ -113,6 +116,14 @@ Upon pressing Enter, you will be presented with the outcomes of your commands. I
 
 All employee information is conveniently displayed here, allowing you to easily access and review all relevant details in a straightforward manner.
 
+### Window Size <a name="window-size"></a>
+For optimal display quality, the application window size is configured with specific limitations to enhance user experience. The minimum and maximum dimensions of the window are predefined as follows:
+
+* Minimum Width: PayBack window cannot be resized to a width smaller than 450 pixels.
+* Maximum Width: The maximum width is capped at 700 pixels.
+  <br>
+* Minimum Height: The window's height is set not to fall below 600 pixels.
+* Maximum Height: The height of the window is limited to a maximum of 700 pixels.
 
 ## Key Features <a name="key-features"></a>
 PayBack Application offers a range of features to a company manager to manage employees. Before we delve into the key features, let’s take a look at the command formats and the parameters.
@@ -194,6 +205,8 @@ This feature allows a user to search for specific employees.
 
 Use the `/find` command followed by the appropriate prefix and keyword:
 - `:name`, Search by employee name (supports multiple keywords).
+   - The name must be fully typed to find; partial names will not yield a search result.
+   - Multiple names can be searched.
 - `:phone`, Search by phone number.
 - `:email`, Search by email address.
 - `:id`, Search by employee ID.
@@ -202,8 +215,10 @@ Use the `/find` command followed by the appropriate prefix and keyword:
 
 Example:
 
-`/find :name Patrick Star`:
-Searches employees with the name ‘Patrick Star’
+`/find :name Patrick Star`:<br>
+Searches employees with the name ‘**Patrick Star**’
+<br>**OR**<br>
+Searches for employees named ’**Patrick**’ and ’**Star**’.
 
 ### Tag An Employee <a name="tag"></a>
 This feature allows a user to add “tags” to existing employees for easier identification.
@@ -228,12 +243,27 @@ Transaction records will be displayed on the right side of the employee list pan
 
 ### Help <a name="help"></a>
 
-Format: `help`
+Format: `/help`
 
 Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
+### Clear <a name="clear"></a>
+
+Format: `/clear`
+
+**Clear command** to remove all employee data in PayBack.
+
+> **NOTE:**  
+Use the "Clear" command with **_CAUTION_**, as it will permanently delete all data in the system without confirmation.
+
+
+### Exit <a name="exit"></a>
+
+Format: `/exit`
+
+The **Exit command** provides a straightforward way for users to safely close the application.
 
 ### Add A Transaction <a name="transaction"></a>
 
@@ -264,6 +294,9 @@ As a command is typed into the command box, PayBack analyzes the input and sugge
 2. Use the arrow keys: Navigate through the suggestions using the up and down arrow keys. 
 3. Press Enter to select: Once the desired completion is seen, press Enter to select it. 
 4. Ignore suggestions: If the suggestions are not helpful, continue typing the command.
+
+> **NOTE:**<br>
+Wait for a few seconds before entering a command in the text field.
 
 ### Save Data <a name="save-data"></a>
 
@@ -296,17 +329,19 @@ When installing PayBack on another computer, you can replace the empty data file
 --------------------------------------------------------------------------------------------------------------------
 ## Command Summary <a name="command-summary"></a>
 
-Action | Format, Examples
---------|------------------
-**Add** | `/add NAME; PHONE; EMAIL; ADDRESS; YEAR_JOINED; [TAG]…` <br> e.g., `/add :name John Doe :phone 91234567 :email johndoe@email.com :address 12 Kent Ridge Dr :year 2024 :tag Finance`
-**Delete** | `/delete ID`<br> e.g., `/delete 240001`
-**Edit** | `/edit ID [:name NAME] [:phone PHONE] [:email EMAIL] [:address ADDRESS] [:tag TAG_INDEX NEW_TAG]`<br> e.g.,`/edit 240001 :phone 91234567 :email: johndoe@example.com`
-**List** | `/list`
-**Find** | `/find :name [name]`<br>`/find :email [email]`<br>`/find :phone [phone number]`<br>`/find :id [ID]`<br>`/find :year [year]`<br>`/find :tag [tag]`<br><br> e.g., `find :name John`
-**Tag** | `/tag` <br> e.g., `/tag 240001 :tag Intern :tag Developer`
-**Help** | `/help`
-**View** | `/view ID` <br> e.g., `/view 240001`
-**Transaction** | `/transaction :id ID :amount AMOUNT :description DESCRIPTION [:datetime DATETIME]` <br> e.g., `/transaction :id 240001 :amount 2000 :description Salary :datetime 30/09/2021 12:00`
+ Action    | Format, Examples
+-----------|------
+ **Add**   | `/add NAME; PHONE; EMAIL; ADDRESS; YEAR_JOINED; [TAG]…` <br> e.g., `/add :name John Doe :phone 91234567 :email johndoe@email.com :address 12 Kent Ridge Dr :year 2024 :tag Finance`
+ **Delete** | `/delete ID`<br> e.g., `/delete 240001`
+ **Edit**  | `/edit ID [:name NAME] [:phone PHONE] [:email EMAIL] [:address ADDRESS] [:tag TAG_INDEX NEW_TAG]`<br> e.g.,`/edit 240001 :phone 91234567 :email: johndoe@example.com`
+ **List**  | `/list`
+ **Clear** | `/clear`   
+ **Exit** | `/exit`   
+ **Find**  | `/find :name [name]`<br>`/find :email [email]`<br>`/find :phone [phone number]`<br>`/find :id [ID]`<br>`/find :year [year]`<br>`/find :tag [tag]`<br><br> e.g., `find :name John`
+ **Tag**   | `/tag` <br> e.g., `/tag 240001 :tag Intern :tag Developer`
+ **Help**  | `/help`
+ **View**  | `/view ID` <br> e.g., `/view 240001`
+ **Transaction** | `/transaction :id ID :amount AMOUNT :description DESCRIPTION [:datetime DATETIME]` <br> e.g., `/transaction :id 240001 :amount 2000 :description Salary :datetime 30/09/2021 12:00`
 
 ## Support and Feedback <a name="support"></a>
 Dear Company Managers,
