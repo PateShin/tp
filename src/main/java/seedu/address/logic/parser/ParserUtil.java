@@ -51,7 +51,7 @@ public class ParserUtil {
      */
     public static Id parseId(String id) throws ParseException {
         String trimmedIndex = id.trim();
-        if (!StringUtil.isSixDigitNumber(trimmedIndex)) {
+        if (!StringUtil.isSixDigitNumber(trimmedIndex) || trimmedIndex.equals("100000")) {
             throw new ParseException(Id.MESSAGE_CONSTRAINTS);
         }
         return new Id(Integer.parseInt(trimmedIndex));
