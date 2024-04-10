@@ -255,7 +255,7 @@ Format: `/clear`
 
 **Clear command** to remove all employee data in PayBack.
 
-> **NOTE:**  
+> **NOTE:**<br>
 Use the "Clear" command with **_CAUTION_**, as it will permanently delete all data in the system without confirmation.
 
 
