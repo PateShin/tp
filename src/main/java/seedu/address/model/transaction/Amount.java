@@ -47,6 +47,8 @@ public class Amount {
 
     @Override
     public String toString() {
+        NUMBER_FORMAT.setMaximumFractionDigits(2);
+        NUMBER_FORMAT.setMinimumFractionDigits(2);
         return NUMBER_FORMAT.format(value);
     }
 
