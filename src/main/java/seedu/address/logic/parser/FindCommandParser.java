@@ -1,13 +1,22 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.*;
+import seedu.address.model.person.EmailContainsKeywordsPredicate;
+import seedu.address.model.person.Id;
+import seedu.address.model.person.IdEqualsPredicate;
+import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.PhoneContainsKeywordsPredicate;
+import seedu.address.model.person.TagEqualsPredicate;
+import seedu.address.model.person.YearJoined;
+import seedu.address.model.person.YearJoinedEqualsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -32,8 +41,9 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindCommand(new NameContainsKeywordsPredicate(keywords));
         } else if (argMultimap.getValue(CliSyntax.PREFIX_PHONE).isPresent()
                 && !argMultimap.getValue(CliSyntax.PREFIX_PHONE).get().isEmpty()) {
-            return new FindCommand(new PhoneContainsKeywordsPredicate(
-                    argMultimap.getAllValues(CliSyntax.PREFIX_PHONE)));
+            Phone phone = ParserUtil.parsePhone(argMultimap.getValue(CliSyntax.PREFIX_PHONE).get());
+            List<String> phoneValue = List.of(phone.value);
+            return new FindCommand(new PhoneContainsKeywordsPredicate(phoneValue));
         } else if (argMultimap.getValue(CliSyntax.PREFIX_EMAIL).isPresent()
                 && !argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get().isEmpty()) {
             return new FindCommand(new EmailContainsKeywordsPredicate(
@@ -45,8 +55,9 @@ public class FindCommandParser implements Parser<FindCommand> {
             return new FindCommand(new IdEqualsPredicate(idValue));
         } else if (argMultimap.getValue(CliSyntax.PREFIX_YEAR_JOINED).isPresent()
                 && !argMultimap.getValue(CliSyntax.PREFIX_YEAR_JOINED).get().isEmpty()) {
-            return new FindCommand(new YearJoinedEqualsPredicate(
-                    argMultimap.getValue(CliSyntax.PREFIX_YEAR_JOINED).get()));
+            YearJoined year = ParserUtil.parseYearJoined(argMultimap.getValue(CliSyntax.PREFIX_YEAR_JOINED).get());
+            String yearValue = year.toString();
+            return new FindCommand(new YearJoinedEqualsPredicate(yearValue));
         } else if (argMultimap.getValue(CliSyntax.PREFIX_TAG).isPresent()
                 && !argMultimap.getValue(CliSyntax.PREFIX_TAG).get().isEmpty()) {
             return new FindCommand(new TagEqualsPredicate(
