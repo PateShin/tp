@@ -42,13 +42,13 @@ Thank you for choosing PayBack to optimise your company's management processes. 
    4. [List All Employees](#list)
    5. [Find An Employee](#find)
    6. [Tag An Employee](#tag)
-   7. [Help](#help)
+   7. [Add A Transaction](#transaction)
    8. [View Transaction Records of An Employee](#view)
-   9. [Add A Transaction](#transaction)
-   10. [AutoComplete TextBox](#autoComplete)
-   11. [Save Data](#save-data)
-   12. [Edit the Data File](#edit-data-file)
-   13. [Clear All Employees](#clear)
+   9. [AutoComplete TextBox](#autoComplete)
+   10. [Clear All Employees](#clear)
+   11. [Help](#help)
+   12. [Save Data](#save-data)
+   13. [Edit the Data File](#edit-data-file)
    14. [Exit the Program](#exit)
 5. [Troubleshooting](#troubleshooting)
    1. [Java Version Compatibility](#java-version)
@@ -297,9 +297,18 @@ As a command is typed into the command box, PayBack analyzes the input and sugge
 > **NOTE:**<br>
 Wait for a few seconds before entering a command in the text field.
 
+### Clear All Employees <a name="clear"></a>
+
+Format: `/clear`
+
+Clear command to remove all employee data in PayBack.
+
+> **NOTE:**<br>
+Use the "Clear" command with **_CAUTION_**, as it will permanently delete all data in the system without confirmation.
+
 ### Help <a name="help"></a>
 
-Format: `help`
+Format: `/help`
 
 Shows a message explaining how to access the help page.
 
@@ -318,15 +327,6 @@ If modifications to the data file result in an invalid format, PayBack will disc
 Therefore, it is advisable to create a backup of the file before making any edits. 
 Additionally, specific changes may lead to unexpected behavior in PayBack, such as if a value entered falls outside the acceptable range. Hence, proceed with editing the data file only if you are certain that you can make accurate updates.
 </div>
-
-### Clear All Employees <a name="clear"></a>
-
-Format: `/clear`
-
-Clear command to remove all employee data in PayBack.
-
-> **NOTE:**<br>
-Use the "Clear" command with **_CAUTION_**, as it will permanently delete all data in the system without confirmation.
 
 ### Exit the Program <a name="exit"></a>
 
