@@ -21,6 +21,8 @@ public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "/view";
 
+    public static final String FOLLOW_MESSAGE = "Follows:\nID";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Views the transaction of the person identified by the id number provided.\n"
             + "Parameters: ID (must be a positive 6-digit number)\n"
