@@ -34,6 +34,7 @@ Thank you for choosing PayBack to optimise your company's management processes. 
    2. [Command Result/Guidance](#command)
    3. [Employee List](#employee-list)
    4. [Transaction Panel](#transaction-panel)
+   5. [Window Size](#window-size)
 4. [Key Features](#key-features)
    1. [Add Employee](#add)
    2. [Delete Employee](#delete)
@@ -127,6 +128,15 @@ All employee information is conveniently displayed here, allowing you to easily 
 
 The transaction records corresponding to the employee with ID you provided are shown here.
 
+### Window Size <a name="window-size"></a>
+For optimal display quality, the application window size is configured with specific limitations to enhance user experience. The minimum and maximum dimensions of the window are predefined as follows:
+
+* Minimum Width: PayBack window cannot be resized to a width smaller than 450 pixels.
+* Maximum Width: The maximum width is capped at 700 pixels.
+  <br>
+* Minimum Height: The window's height is set not to fall below 600 pixels.
+* Maximum Height: The height of the window is limited to a maximum of 700 pixels.
+
 ## Key Features <a name="key-features"></a>
 PayBack Application offers a range of features to a company manager to manage employees. Before we delve into the key features, let’s take a look at the command formats and the parameters.
 
@@ -208,6 +218,8 @@ This feature allows a user to search for specific employees.
 
 Use the `/find` command followed by the appropriate prefix and keyword:
 - `:name`, Search by employee name (supports multiple keywords).
+   - The name must be fully typed to find; partial names will not yield a search result.
+   - Multiple names can be searched.
 - `:phone`, Search by phone number.
 - `:email`, Search by email address.
 - `:id`, Search by employee ID.
@@ -216,8 +228,10 @@ Use the `/find` command followed by the appropriate prefix and keyword:
 
 Example:
 
-`/find :name Patrick Star`:
-Searches employees with the name ‘Patrick Star’
+`/find :name Patrick Star`:<br>
+Searches employees with the name ‘**Patrick Star**’
+<br>**OR**<br>
+Searches for employees named ’**Patrick**’ and ’**Star**’.
 
 ### Tag An Employee <a name="tag"></a>
 This feature allows a user to add “tags” to existing employees for easier identification.
@@ -248,6 +262,7 @@ Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
+### Exit <a name="exit"></a>
 
 ### Add A Transaction <a name="transaction"></a>
 
@@ -279,6 +294,9 @@ As a command is typed into the command box, PayBack analyzes the input and sugge
 3. Press Enter to select: Once the desired completion is seen, press Enter to select it. 
 4. Ignore suggestions: If the suggestions are not helpful, continue typing the command.
 
+> **NOTE:**<br>
+Wait for a few seconds before entering a command in the text field.
+
 ### Save Data <a name="save-data"></a>
 
 PayBack data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -297,13 +315,16 @@ Additionally, specific changes may lead to unexpected behavior in PayBack, such 
 
 Format: `/clear`
 
-Clears all employee information from PayBack.
+Clear command to remove all employee data in PayBack.
+
+> **NOTE:**<br>
+Use the "Clear" command with **_CAUTION_**, as it will permanently delete all data in the system without confirmation.
 
 ### Exit the Program <a name="exit"></a>
 
 Format: `/exit`
 
-Exits the program.
+Exit command provides a way for users to safely close PayBack.
 
 --------------------------------------------------------------------------------------------------------------------
 

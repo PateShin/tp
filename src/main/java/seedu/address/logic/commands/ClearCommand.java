@@ -11,6 +11,9 @@ import seedu.address.model.PayBack;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "/clear";
+
+    public static final String FOLLOW_MESSAGE = "Clear all existing data in PayBack.";
+
     public static final String MESSAGE_SUCCESS = "Payback has been cleared!";
 
 
