@@ -11,6 +11,12 @@ import seedu.address.logic.commands.CommandData;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * The UI component that is responsible for receiving user command inputs.
  */
@@ -32,9 +38,18 @@ public class CommandBox extends UiPart<Region> {
         this.commandExecutor = commandExecutor;
         this.resultDisplay = resultDisplay;
 
+        List<String> commandWordsList = Arrays.asList(CommandData.getCommandWords());
         // Use CommandData to get command words for auto-completion
         AutoCompletionBinding<String> autoCompletionBinding = TextFields.bindAutoCompletion(commandTextField,
-                CommandData.getCommandWords());
+                suggestionRequest -> {
+                    String userText = suggestionRequest.getUserText();
+                    // Only provide suggestions if user has typed something
+                    if (!userText.isEmpty()) {
+                        return matchingCommands(commandWordsList, userText);
+                    } else {
+                        return List.of(); // Return an empty list if no input
+                    }
+                });
         autoCompletionBinding.setOnAutoCompleted(event -> {
             String selectedCommand = event.getCompletion();
             String followMessage = CommandData.getFollowMessage(selectedCommand);
@@ -43,6 +58,12 @@ public class CommandBox extends UiPart<Region> {
             }
         });
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+    }
+
+    private Collection<String> matchingCommands(Collection<String> allCommands, String prefix) {
+        return allCommands.stream()
+                .filter(cmd -> cmd.startsWith(prefix))
+                .collect(Collectors.toList());
     }
 
     /**
