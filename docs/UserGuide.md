@@ -86,7 +86,7 @@ Key features include:
 
    * `/list` : Lists all contacts.
 
-   * `/add John Doe, 98765432, johndoe@example.com, street a, 2024` : Adds a contact named `John Doe` to the PayBack.
+   * `/add John Doe; 98765432; johndoe@example.com; street a; 2024` : Adds a contact named `John Doe` to the PayBack.
 
    * `/delete 240001` : Deletes the contact with id 240001.
 
@@ -117,21 +117,25 @@ All employee information is conveniently displayed here, allowing you to easily 
 ## Key Features <a name="key-features"></a>
 PayBack Application offers a range of features to a company manager to manage employees. Before we delve into the key features, let’s take a look at the command formats and the parameters.
 
-| Parameters | Details | Requirements     |
-|------------|---------|------------------|
-| ID         | Employee ID | Must be 6 digits |
-| NAME       | Full name of the employee  | Must be String   |
-| PHONE      | Employee's phone number    | At least 3 digits                 |
-| EMAIL      | Employee's email address   | Must include “@”                 |
-| ADDRESS    | Employee's residential address       |                  |
-| YEAR JOINED | Year the employee joined the company | Must be 4 digits                 |
-| TAG        | Add tags to categorise employees        |                  |
+| Parameters  | Details                              | Requirements                                                                                                          |
+|-------------|--------------------------------------|-----------------------------------------------------------------------------------------------------------------------|
+| ID          | Employee ID                          | Must be 6-digit number between 100001 and 999999 inclusive                                                            |
+| NAME        | Full name of the employee            | Must only contain alphanumeric characters and spaces, and it should not be blank                                      |
+| PHONE       | Employee's phone number              | Must only contain numbers and at least 3 digits long                                                                  |
+| EMAIL       | Employee's email address             | Must include “@”                                                                                                      |
+| ADDRESS     | Employee's residential address       | Must not be blank                                                                                                     |
+| YEAR JOINED | Year the employee joined the company | Must be 4 digits                                                                                                      |
+| TAG         | Add tags to categorise employees     | Must be alphanumeric                                                                                                  |
+| AMOUNT      | Transaction's amount                 | Must be a positive number with at most 2 decimal places and should not exceed 9,999,999,999,999.99                    |
+| DESCRIPTION | Transaction's description            | Must not be blank                                                                                                     |
+| DATETIME    | Transaction's date and time          | Must be in the format of dd/MM/yyyy HH:mm and must be a valid date. The year should be greater than or equal to 2010. |
 
 ### Command formats:
 - Words in UPPER_CASE are the parameters to be supplied by the user.
 - Items in square brackets are optional.
 - Items with …​ after them can be used multiple times.
-- Parameters can be in any order, if specified.
+- Parameters can be in any order, if PREFIX specified.
+- Paraneters must be separated by a semicolon and space, if no PREFIX specified.
 
 Here is a closer look at each key feature.
 
@@ -139,7 +143,7 @@ Here is a closer look at each key feature.
 ### Add Employee <a name="add"></a>
 This feature allows the user to add new employees to the PayBack system and automatically generate an employee ID based on the year they joined and the last ID of that year.
 
-There are two ways to use /add command:
+There are two ways to use `/add` command:
 - Use the `/add` command followed by the employee's details, separated by semicolons.
     - Format: `/add NAME; PHONE; EMAIL; ADDRESS; YEAR_JOINED; [TAG]…`
 - Use the `/add` command followed by the employee’s details, preceded by PREFIX (_:name, :phone, :email, :address, :year, :tag_)
@@ -177,7 +181,7 @@ Format:
 
 Example:
 
-`/edit 240001 :phone 91234567 :email: johndoe@example.com`:
+`/edit 240001 :phone 91234567 :email johndoe@example.com`:
 Edits the phone number and email address of employee with ID 240001 to be 91234567 and johndoe@example.com respectively.
 
 `/edit 240001 :tag -1`: Removes all tags of employee with ID 240001.
@@ -220,21 +224,6 @@ Tags employee 240001 with ‘Intern’ and ‘Developer’
 ### View Transaction Records of An Employee <a name="view"></a>
 This feature displays the transaction records of an existing employee.
 
-Format: `/view ID`
-
-![view_transaction](images/ViewTransaction.png)
-
-Transaction records will be displayed on the right side of the employee list panel, as shown above.
-
-### Help <a name="help"></a>
-
-Format: `help`
-
-Shows a message explaining how to access the help page.
-
-![help message](images/helpMessage.png)
-
-
 ### Add A Transaction <a name="transaction"></a>
 
 Adds a transaction to the specified person.
@@ -246,6 +235,12 @@ Format:
 Examples:
 * `/transaction 240001; 2000; Salary; 30/09/2021 12:00`
 * `/transaction :id 240001 :amount 2000 :description Salary :datetime 30/09/2021 12:00`
+
+Format: `/view ID`
+
+![view_transaction](images/ViewTransaction.png)
+
+Transaction records will be displayed on the right side of the employee list panel, as shown above.
 
 ### AutoComplete TextBox <a name="autoComplete"></a>
 
@@ -260,10 +255,18 @@ As a command is typed into the command box, PayBack analyzes the input and sugge
 - The suggestions appear in a pop-up menu below the command box. Use the arrow keys to navigate the suggestions and press Enter or press tab to select the desired completion.
 
 **Tips for Usage:**
-1. Start typing the command: PayBack will begin suggesting completions after the first few characters are typed. 
-2. Use the arrow keys: Navigate through the suggestions using the up and down arrow keys. 
-3. Press Enter to select: Once the desired completion is seen, press Enter to select it. 
+1. Start typing the command: PayBack will begin suggesting completions after the first few characters are typed.
+2. Use the arrow keys: Navigate through the suggestions using the up and down arrow keys.
+3. Press Enter to select: Once the desired completion is seen, press Enter to select it.
 4. Ignore suggestions: If the suggestions are not helpful, continue typing the command.
+
+### Help <a name="help"></a>
+
+Format: `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
 
 ### Save Data <a name="save-data"></a>
 
