@@ -35,7 +35,7 @@ public class Id {
      *
      * @param id A valid ID.
      */
-    public Id(int id) {
+    public Id(int id) throws IllegalArgumentException {
         checkArgument(isValidId(id), MESSAGE_CONSTRAINTS);
         value = id;
     }

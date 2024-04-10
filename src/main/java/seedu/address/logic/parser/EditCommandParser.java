@@ -36,6 +36,8 @@ public class EditCommandParser implements Parser<EditCommand> {
             id = ParserUtil.parseId(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(Id.MESSAGE_CONSTRAINTS);
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);

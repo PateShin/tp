@@ -59,7 +59,12 @@ public class TransactionCommandParser implements Parser<TransactionCommand> {
         } else {
             dateTime = new DateTime(LocalDateTime.now());
         }
-        Id employeeId = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
+        Id employeeId = null;
+        try {
+            employeeId = ParserUtil.parseId(argMultimap.getValue(PREFIX_ID).get());
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(Id.MESSAGE_CONSTRAINTS);
+        }
         if (!model.hasPersonId(employeeId)) {
             throw new ParseException(MESSAGE_INVALID_PERSON_DISPLAYED_ID);
         }
