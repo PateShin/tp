@@ -289,8 +289,9 @@ Auto-complete feature allows to enter command quickly and accurately by suggesti
 #### How it works:
 As a command is typed into the command box, PayBack analyzes the input and suggests possible completions based on existing commands, taking the following inputs for the command.
 
+- The autocomplete feature will suggest items that start with the text that is entered.
 - Command words: PayBack will suggest matching command words as user type. For example, typing `/a` will suggest `/add`.
-- The suggestions appear in a pop-up menu below the command box. Use the arrow keys to navigate the suggestions and press Enter or press tab to select the desired completion.
+- The suggestions appear in a pop-up menu below the command box. Use the arrow keys to navigate the suggestions and press Enter or Tab to select the desired completion.
 
 **Tips for Usage:**
 1. Start typing the command: PayBack will begin suggesting completions after the first few characters are typed. 
