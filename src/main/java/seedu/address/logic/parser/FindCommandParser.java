@@ -30,29 +30,29 @@ public class FindCommandParser implements Parser<FindCommand> {
                 CliSyntax.PREFIX_EMAIL, CliSyntax.PREFIX_ID,
                 CliSyntax.PREFIX_YEAR_JOINED, CliSyntax.PREFIX_TAG);
 
-        if (argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent() &&
-                !argMultimap.getValue(CliSyntax.PREFIX_NAME).get().isEmpty()) {
+        if (argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent()
+                && !argMultimap.getValue(CliSyntax.PREFIX_NAME).get().isEmpty()) {
             List<String> keywords = Arrays.asList(
                     argMultimap.getValue(CliSyntax.PREFIX_NAME).get().split("\\s+"));
             return new FindCommand(new NameContainsKeywordsPredicate(keywords));
-        } else if (argMultimap.getValue(CliSyntax.PREFIX_PHONE).isPresent() &&
-                !argMultimap.getValue(CliSyntax.PREFIX_PHONE).get().isEmpty()) {
+        } else if (argMultimap.getValue(CliSyntax.PREFIX_PHONE).isPresent()
+                && !argMultimap.getValue(CliSyntax.PREFIX_PHONE).get().isEmpty()) {
             return new FindCommand(new PhoneContainsKeywordsPredicate(
                     argMultimap.getAllValues(CliSyntax.PREFIX_PHONE)));
-        } else if (argMultimap.getValue(CliSyntax.PREFIX_EMAIL).isPresent() &&
-                !argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get().isEmpty()) {
+        } else if (argMultimap.getValue(CliSyntax.PREFIX_EMAIL).isPresent()
+                && !argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get().isEmpty()) {
             return new FindCommand(new EmailContainsKeywordsPredicate(
                     argMultimap.getAllValues(CliSyntax.PREFIX_EMAIL)));
-        } else if (argMultimap.getValue(CliSyntax.PREFIX_ID).isPresent() &&
-                !argMultimap.getValue(CliSyntax.PREFIX_ID).get().isEmpty()) {
+        } else if (argMultimap.getValue(CliSyntax.PREFIX_ID).isPresent()
+                && !argMultimap.getValue(CliSyntax.PREFIX_ID).get().isEmpty()) {
             return new FindCommand(new IdEqualsPredicate(
                     argMultimap.getValue(CliSyntax.PREFIX_ID).get()));
-        } else if (argMultimap.getValue(CliSyntax.PREFIX_YEAR_JOINED).isPresent() &&
-                !argMultimap.getValue(CliSyntax.PREFIX_YEAR_JOINED).get().isEmpty()) {
+        } else if (argMultimap.getValue(CliSyntax.PREFIX_YEAR_JOINED).isPresent()
+                && !argMultimap.getValue(CliSyntax.PREFIX_YEAR_JOINED).get().isEmpty()) {
             return new FindCommand(new YearJoinedEqualsPredicate(
                     argMultimap.getValue(CliSyntax.PREFIX_YEAR_JOINED).get()));
-        } else if (argMultimap.getValue(CliSyntax.PREFIX_TAG).isPresent() &&
-                !argMultimap.getValue(CliSyntax.PREFIX_TAG).get().isEmpty()) {
+        } else if (argMultimap.getValue(CliSyntax.PREFIX_TAG).isPresent()
+                && !argMultimap.getValue(CliSyntax.PREFIX_TAG).get().isEmpty()) {
             return new FindCommand(new TagEqualsPredicate(
                     argMultimap.getValue(CliSyntax.PREFIX_TAG).get()));
         } else if (argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent()) {
