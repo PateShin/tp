@@ -35,7 +35,7 @@ public class TagCommand extends Command {
             + "Examples:\n"
             + "• " + COMMAND_WORD + " 240001 " + PREFIX_TAG + " Finance " + PREFIX_TAG + " Manager\n";
 
-    public static final String MESSAGE_SUCCESS = "Employee tagged\n";
+    public static final String MESSAGE_SUCCESS = "Employee tagged.\n";
 
     public static final String MESSAGE_DUPLICATE_TAGS = "Tags are already present in the employee!";
 

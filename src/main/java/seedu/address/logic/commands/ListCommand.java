@@ -12,9 +12,9 @@ public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "/list";
 
-    public static final String FOLLOW_MESSAGE = "Shows list of all employee";
+    public static final String FOLLOW_MESSAGE = "Shows list of all employee.";
 
-    public static final String MESSAGE_SUCCESS = "Listed and Refreshed the workers recorded in the system";
+    public static final String MESSAGE_SUCCESS = "Listed and refreshed the records of employees in the system.";
 
 
     @Override
