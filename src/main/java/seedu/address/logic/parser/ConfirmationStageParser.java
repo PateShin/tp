@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.Messages.MESSAGE_UNKNOWN_CONFIRMATION_COMMAND;
 
 import java.util.logging.Logger;
