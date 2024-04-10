@@ -15,13 +15,13 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
-    // Identity fields
+    // Identity fields: any of the fields can be used to identify a person
     private final Id id;
-    private final Name name;
     private final Phone phone;
     private final Email email;
 
     // Data fields
+    private final Name name;
     private final YearJoined yearJoined;
     private final Address address;
     private final ArrayList<Tag> tags = new ArrayList<>();
@@ -89,7 +89,7 @@ public class Person {
     }
 
     /**
-     * Returns true if both persons have the same name.
+     * Returns true if both persons have the same ID or phone number or email.
      * This defines a weaker notion of equality between two persons.
      */
     public boolean isSamePerson(Person otherPerson) {
@@ -98,7 +98,9 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && (otherPerson.getId().equals(getId())
+                || otherPerson.getPhone().equals(getPhone())
+                || otherPerson.getEmail().equals(getEmail()));
     }
 
     /**

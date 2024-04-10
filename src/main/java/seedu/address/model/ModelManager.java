@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -99,6 +100,12 @@ public class ModelManager implements Model {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return payBack.hasPerson(person);
+    }
+
+    @Override
+    public List<Person> getDuplicatePersons(Person person) {
+        requireNonNull(person);
+        return payBack.getDuplicatePersons(person);
     }
 
     @Override
