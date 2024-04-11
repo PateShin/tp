@@ -21,11 +21,11 @@ public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "/view";
 
-    public static final String FOLLOW_MESSAGE = "Follows:\nID";
+    public static final String FOLLOW_MESSAGE = "Format: " + COMMAND_WORD + " ID";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Views the transaction of the person identified by the id number provided.\n"
-            + "Parameters: ID (must be a positive 6-digit number)\n"
+            + "Format: " + COMMAND_WORD + " ID\n"
             + "Example: " + COMMAND_WORD + " 240001";
 
     public static final String MESSAGE_VIEW_PERSON_SUCCESS = "Viewed Person: %1$s";
@@ -35,7 +35,7 @@ public class ViewCommand extends Command {
     private final Predicate<Transaction> predicate;
 
     /**
-     * Constructs a ViewCommand with specified Id.
+     * Constructs a ViewCommand with specified ID.
      */
     public ViewCommand(Id id) {
         this.id = id;

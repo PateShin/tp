@@ -18,11 +18,11 @@ public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "/delete";
 
-    public static final String FOLLOW_MESSAGE = "Follows:\nID";
+    public static final String FOLLOW_MESSAGE = "Format: " + COMMAND_WORD + " ID";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the id number provided.\n"
-            + "Parameters: ID (must be a positive 6-digit number)\n"
+            + ": Deletes the specified employee from the PayBack system.\n"
+            + "Format: " + COMMAND_WORD + " ID\n"
             + "Example: " + COMMAND_WORD + " 240001";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";

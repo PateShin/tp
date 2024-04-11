@@ -19,11 +19,17 @@ public class TransactionCommand extends Command {
 
     public static final String COMMAND_WORD = "/transaction";
 
-    public static final String FOLLOW_MESSAGE = "Follows\nID; AMOUNT; DESCRIPTION; [DATETIME]";
+    public static final String FOLLOW_MESSAGE = "Format:\n"
+            + "• " + COMMAND_WORD + " ID; AMOUNT; DESCRIPTION[; DATETIME]\n"
+            + "• " + COMMAND_WORD + " "
+            + PREFIX_ID + " ID "
+            + PREFIX_AMOUNT + " AMOUNT "
+            + PREFIX_DESCRIPTION + " DESCRIPTION "
+            + "[" + PREFIX_DATETIME + " DATETIME]";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a transaction to PayBack.\n"
             + "Format:\n"
-            + "• " + COMMAND_WORD + " ID; AMOUNT; DESCRIPTION; [DATETIME]\n"
+            + "• " + COMMAND_WORD + " ID; AMOUNT; DESCRIPTION[; DATETIME]\n"
             + "• " + COMMAND_WORD + " "
             + PREFIX_ID + " ID "
             + PREFIX_AMOUNT + " AMOUNT "

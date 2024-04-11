@@ -147,7 +147,7 @@ PayBack Application offers a range of features to a company manager to manage em
 | PHONE       | Employee's phone number              | Must only contain numbers and at least 3 digits long                                                                  |
 | EMAIL       | Employee's email address             | Must include “@”                                                                                                      |
 | ADDRESS     | Employee's residential address       | Must not be blank                                                                                                     |
-| YEAR JOINED | Year the employee joined the company | Must be 4 digits                                                                                                      |
+| YEAR JOINED | Year the employee joined the company | Must be 4-digit number between 2010 and 2099 inclusive                                                                |
 | TAG         | Add tags to categorise employees     | Must be alphanumeric                                                                                                  |
 | AMOUNT      | Transaction's amount                 | Must be a positive number with at most 2 decimal places and should not exceed 9,999,999,999,999.99                    |
 | DESCRIPTION | Transaction's description            | Must not be blank                                                                                                     |
@@ -157,8 +157,9 @@ PayBack Application offers a range of features to a company manager to manage em
 - Words in UPPER_CASE are the parameters to be supplied by the user.
 - Items in square brackets are optional.
 - Items with …​ after them can be used multiple times.
+- Items in round brackets are grouped together.
 - Parameters can be in any order, if PREFIX specified.
-- Paraneters must be separated by a semicolon and space, if no PREFIX specified.
+- Parameters must be separated by a semicolon and space, if no PREFIX specified.
 
 Here is a closer look at each key feature.
 
@@ -167,16 +168,16 @@ Here is a closer look at each key feature.
 This feature allows the user to add new employees to the PayBack system and automatically generate an employee ID based on the year they joined and the last ID of that year.
 
 There are two ways to use `/add` command:
-- Use the `/add` command followed by the employee's details, separated by semicolons.
-    - Format: `/add NAME; PHONE; EMAIL; ADDRESS; YEAR_JOINED; [TAG]…`
+- Use the `/add` command followed by the employee's details, separated by semicolons and spaces.
+    - Format: `/add NAME; PHONE; EMAIL; ADDRESS; YEAR_JOINED[; TAG]…`
 - Use the `/add` command followed by the employee’s details, preceded by PREFIX (_:name, :phone, :email, :address, :year, :tag_)
   - Format: `/add :name NAME :phone PHONE :email EMAIL :address ADDRESS :year YEAR_JOINED [:tag TAG]…`
 
 Examples:
 
-`/add :name John Doe :phone 91234567 :email johndoe@email.com :address 12 Kent Ridge Dr :year 2024 :tag Finance`
+- `/add John Doe; 91234567; johndoe@email.com; 12 Kent Ridge Dr; 2024; Finance`
 
-`/add John Doe; 91234567; johndoe@email.com; 12 Kent Ridge Dr; 2024; Finance`
+- `/add :name John Doe :phone 91234567 :email johndoe@email.com :address 12 Kent Ridge Dr :year 2024 :tag Finance`
 
 ### Delete Employee <a name="delete"></a>
 This feature deletes the specified employee from the PayBack system.
@@ -201,9 +202,9 @@ Format:
 - Existing values will be updated to the input values.
 - Only one tag can be edited at a time, valid tag index and new tag name must be provided.
 - Duplicated tags are not allowed.
-- Able to remove all the employee’s tags by typing `:tag -1`.
+- Remove all the employee’s tags by typing `:tag -1`.
 
-Example:
+Examples:
 
 `/edit 240001 :phone 91234567 :email johndoe@example.com`:
 Edits the phone number and email address of employee with ID 240001 to be 91234567 and johndoe@example.com respectively.
@@ -221,6 +222,8 @@ Use the `/list` command to refresh the displayed list and ensure the user is vie
 This feature allows a user to search for specific employees.
 
 Use the `/find` command followed by the appropriate prefix and keyword:
+- `:id`, Search by employee ID.
+   - 6-digit number is required and must be between 100001 and 999999 inclusive.
 - `:name`, Search by employee name (supports multiple keywords).
    - The name must be fully typed to find; partial names will not yield a search result.
    - Multiple names can be searched.
@@ -228,18 +231,15 @@ Use the `/find` command followed by the appropriate prefix and keyword:
   - At least a 3-digit number is required.
 - `:email`, Search by email address.
   - Finds keywords contained in the email, not the exact keywords.
-- `:id`, Search by employee ID.
-  - 6-digit numbers are required and must be between 100001 and 999999.
 - `:year`, Search by year joined.
-  - 4 digits of the number are required, and it must be between 2010 and 2099.
+  - 4-digit number is required, and it must be between 2010 and 2099 inclusive.
 - `:tag`, Search by tag.
 
 Example:
 
-`/find :name Patrick Star`:<br>
-Searches employees with the name ‘**Patrick Star**’
-<br>**OR**<br>
-Searches for employees named ’**Patrick**’ and ’**Star**’.
+`/find :name Patrick Star` is interpreted as follows:<br>
+- Searches employees with the name ‘**Patrick Star**’.
+- Alternatively, it searches for employees named ’**Patrick**’ and ’**Star**’.
 
 ### Tag An Employee <a name="tag"></a>
 This feature allows a user to add “tags” to existing employees for easier identification.
@@ -258,7 +258,7 @@ Tags employee 240001 with ‘Intern’ and ‘Developer’
 Adds a transaction to the specified person.
 
 Format:
-* `/transaction ID; AMOUNT; DESCRIPTION; [DATETIME]`
+* `/transaction ID; AMOUNT; DESCRIPTION[; DATETIME]`
 * `/transaction :id ID :amount AMOUNT :description DESCRIPTION [:datetime DATETIME]`
 
 Examples:
@@ -304,7 +304,7 @@ Format: `/clear`
 Clear command to remove all employee data in PayBack.
 
 > **NOTE:**<br>
-Use the "Clear" command with **_CAUTION_**, as it will permanently delete all data in the system without confirmation.
+Use the `/clear` command with **_CAUTION_**, as it will permanently delete all data in the system without confirmation.
 
 ### Help <a name="help"></a>
 
@@ -351,19 +351,19 @@ When installing PayBack on another computer, you can replace the empty data file
 --------------------------------------------------------------------------------------------------------------------
 ## Command Summary <a name="command-summary"></a>
 
-Action | Format, Examples
---------|------------------
-**Add** | `/add NAME; PHONE; EMAIL; ADDRESS; YEAR_JOINED; [TAG]…` <br> e.g., `/add :name John Doe :phone 91234567 :email johndoe@email.com :address 12 Kent Ridge Dr :year 2024 :tag Finance`
-**Delete** | `/delete ID`<br> e.g., `/delete 240001`
-**Edit** | `/edit ID [:name NAME] [:phone PHONE] [:email EMAIL] [:address ADDRESS] [:tag TAG_INDEX NEW_TAG]`<br> e.g.,`/edit 240001 :phone 91234567 :email: johndoe@example.com`
-**List** | `/list`
-**Find** | `/find :name [name]`<br>`/find :email [email]`<br>`/find :phone [phone number]`<br>`/find :id [ID]`<br>`/find :year [year]`<br>`/find :tag [tag]`<br><br> e.g., `find :name John`
-**Tag** | `/tag` <br> e.g., `/tag 240001 :tag Intern :tag Developer`
-**Help** | `/help`
-**View** | `/view ID` <br> e.g., `/view 240001`
-**Transaction** | `/transaction :id ID :amount AMOUNT :description DESCRIPTION [:datetime DATETIME]` <br> e.g., `/transaction :id 240001 :amount 2000 :description Salary :datetime 30/09/2021 12:00`
-**Clear** | `/clear` 
-**Exit** | `/exit`
+| Action          | Format, Examples                                                                                                                                                                                                                                                                        |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**         | `/add NAME; PHONE; EMAIL; ADDRESS; YEAR_JOINED[; TAG]…` <br> `/add :name NAME :phone PHONE :email EMAIL :address ADDRESS :year YEAR_JOINED [:tag TAG]…` <br><br> e.g., `/add :name John Doe :phone 91234567 :email johndoe@email.com :address 12 Kent Ridge Dr :year 2024 :tag Finance` |
+| **Delete**      | `/delete ID` <br><br> e.g., `/delete 240001`                                                                                                                                                                                                                                            |
+| **Edit**        | `/edit ID [:name NAME] [:phone PHONE] [:email EMAIL] [:address ADDRESS] [:tag TAG_INDEX NEW_TAG]` <br><br> e.g.,`/edit 240001 :phone 91234567 :email: johndoe@example.com`                                                                                                              |
+| **List**        | `/list`                                                                                                                                                                                                                                                                                 |
+| **Find**        | `/find :id ID` <br> `/find :name NAME` <br> `/find :phone PHONE` <br> `/find :email EMAIL` <br> `/find :year YEAR_JOINED` <br> `/find :tag TAG`<br><br> e.g., `find :name John`                                                                                                         |
+| **Tag**         | `/tag ID (:tag TAG)…` <br><br> e.g., `/tag 240001 :tag Intern :tag Developer`                                                                                                                                                                                                           |
+| **Transaction** | `/transaction ID; AMOUNT; DESCRIPTION[; DATETIME]` <br> `/transaction :id ID :amount AMOUNT :description DESCRIPTION [:datetime DATETIME]` <br><br> e.g., `/transaction :id 240001 :amount 2000 :description Salary :datetime 30/09/2021 12:00`                                         |
+| **View**        | `/view ID` <br><br> e.g., `/view 240001`                                                                                                                                                                                                                                                |
+| **Clear**       | `/clear`                                                                                                                                                                                                                                                                                |
+| **Help**        | `/help`                                                                                                                                                                                                                                                                                 |
+| **Exit**        | `/exit`                                                                                                                                                                                                                                                                                 |
 
 ## Support and Feedback <a name="support"></a>
 Dear Company Managers,
