@@ -15,9 +15,10 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 [[homepage](https://dhirapt-portfolio.vercel.app)]
 [[github](https://github.com/DhiraPT)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/dhirapt.md)]
 
-* Role: Project Advisor
+* Role: Developer & UI/UX Designer
+* Responsibilities: Backend Development + Testing + UI/UX Design
 
 ### Lin Bin
 
