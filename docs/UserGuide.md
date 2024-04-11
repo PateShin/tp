@@ -72,8 +72,8 @@ Key features include:
 4. Listing employees
 5. Searching for employees
 6. Tagging employees
-7. Viewing transaction records of employees
-8. Adding transactions to employees
+7. Adding transactions to employees
+8. Viewing transaction records of employees
 9. Autocompleting text box
 10. Clearing all employee information
 11. Exiting the program
