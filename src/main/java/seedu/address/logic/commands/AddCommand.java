@@ -21,18 +21,25 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "/add";
 
-    public static final String FOLLOW_MESSAGE = "Follows:\n:name NAME :phone PHONE :email EMAIL "
-            + ":address ADDRESS :year YEAR_JOINED :tag TAG";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an employee to the address book.\n"
-            + "Format:\n"
-            + "• " + COMMAND_WORD + " NAME; PHONE; EMAIL; ADDRESS; YEAR_JOINED; [TAG]...\n"
+    public static final String FOLLOW_MESSAGE = "Format:\n"
+            + "• " + COMMAND_WORD + " NAME; PHONE; EMAIL; ADDRESS; YEAR_JOINED[; TAG]...\n"
             + "• " + COMMAND_WORD + " "
             + PREFIX_NAME + " NAME "
             + PREFIX_PHONE + " PHONE "
             + PREFIX_EMAIL + " EMAIL "
-            + PREFIX_ADDRESS + " ADDRESS"
-            + PREFIX_YEAR_JOINED + " YEAR_JOINED\n"
+            + PREFIX_ADDRESS + " ADDRESS "
+            + PREFIX_YEAR_JOINED + " YEAR_JOINED "
+            + "[" + PREFIX_TAG + " TAG]...";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an employee to the PayBack system.\n"
+            + "Format:\n"
+            + "• " + COMMAND_WORD + " NAME; PHONE; EMAIL; ADDRESS; YEAR_JOINED[; TAG]...\n"
+            + "• " + COMMAND_WORD + " "
+            + PREFIX_NAME + " NAME "
+            + PREFIX_PHONE + " PHONE "
+            + PREFIX_EMAIL + " EMAIL "
+            + PREFIX_ADDRESS + " ADDRESS "
+            + PREFIX_YEAR_JOINED + " YEAR_JOINED "
             + "[" + PREFIX_TAG + " TAG]...\n"
             + "Examples:\n"
             + "• " + COMMAND_WORD + " John Doe; 98765432; johnd@example.com; Street A; 2024; Software Developer\n"

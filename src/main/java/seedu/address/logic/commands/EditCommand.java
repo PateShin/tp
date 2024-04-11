@@ -39,22 +39,30 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "/edit";
 
-    public static final String FOLLOW_MESSAGE = "Follows:\nID :phone PHONE and/or :email EMAIL "
-            + "and/or :tag INDEX NEW_TAG";
+    public static final String FOLLOW_MESSAGE = "Format: " + COMMAND_WORD + " ID "
+            + "[" + PREFIX_NAME + " NAME] "
+            + "[" + PREFIX_PHONE + " PHONE] "
+            + "[" + PREFIX_EMAIL + " EMAIL] "
+            + "[" + PREFIX_ADDRESS + " ADDRESS] "
+            + "[" + PREFIX_TAG + " TAG_INDEX NEW_TAG]\n"
+            + "Note: Remove all the employee’s tags by typing " + PREFIX_TAG + " -1.";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the id number provided.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Edits the details of the person with the ID provided.\n"
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: ID (must be a positive 6-digit number) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG] + [TAG_INDEX] + [NEW_TAG]\n"
-            + "Example: " + COMMAND_WORD + " 240001 "
+            + "Format: " + COMMAND_WORD + " ID "
+            + "[" + PREFIX_NAME + " NAME] "
+            + "[" + PREFIX_PHONE + " PHONE] "
+            + "[" + PREFIX_EMAIL + " EMAIL] "
+            + "[" + PREFIX_ADDRESS + " ADDRESS] "
+            + "[" + PREFIX_TAG + " TAG_INDEX NEW_TAG]\n"
+            + "Note: Remove all the employee’s tags by typing " + PREFIX_TAG + " -1.\n"
+            + "Examples:\n"
+            + "• " + COMMAND_WORD + " 240001 "
             + PREFIX_PHONE + " 91234567 "
             + PREFIX_EMAIL + " johndoe@example.com "
-            + PREFIX_TAG + " 1 friend";
+            + PREFIX_TAG + " 1 friend\n"
+            + "• " + COMMAND_WORD + " 240001 " + PREFIX_TAG + " -1";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

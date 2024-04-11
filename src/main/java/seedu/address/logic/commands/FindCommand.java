@@ -1,6 +1,12 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_YEAR_JOINED;
 
 import java.util.function.Predicate;
 
@@ -11,17 +17,29 @@ import seedu.address.model.person.Person;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Keyword matching is case-insensitive.
  */
 public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "/find";
 
-    public static final String FOLLOW_MESSAGE = "Follows:\n:id, :name, :phone, :email, :year, :tag";
+    public static final String FOLLOW_MESSAGE = "Format:\n"
+            + "• " + COMMAND_WORD + " " + PREFIX_ID + " ID\n"
+            + "• " + COMMAND_WORD + " " + PREFIX_NAME + " NAME\n"
+            + "• " + COMMAND_WORD + " " + PREFIX_PHONE + " PHONE\n"
+            + "• " + COMMAND_WORD + " " + PREFIX_EMAIL + " EMAIL\n"
+            + "• " + COMMAND_WORD + " " + PREFIX_YEAR_JOINED + " YEAR_JOINED\n"
+            + "• " + COMMAND_WORD + " " + PREFIX_TAG + " TAG";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons who match the given search criteria "
-            + "and displays them as a list with index numbers.\n"
-            + "Parameters: /find PREFIX [KEYWORD]\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds all persons who match the given search criteria\n"
+            + "Format:\n"
+            + "• " + COMMAND_WORD + " " + PREFIX_ID + " ID\n"
+            + "• " + COMMAND_WORD + " " + PREFIX_NAME + " NAME\n"
+            + "• " + COMMAND_WORD + " " + PREFIX_PHONE + " PHONE\n"
+            + "• " + COMMAND_WORD + " " + PREFIX_EMAIL + " EMAIL\n"
+            + "• " + COMMAND_WORD + " " + PREFIX_YEAR_JOINED + " YEAR_JOINED\n"
+            + "• " + COMMAND_WORD + " " + PREFIX_TAG + " TAG\n"
             + "Example: " + COMMAND_WORD + " :name Patrick";
 
     private final Predicate<Person> predicate;

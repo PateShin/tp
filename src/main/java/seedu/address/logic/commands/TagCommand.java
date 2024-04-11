@@ -27,13 +27,14 @@ public class TagCommand extends Command {
 
     public static final String COMMAND_WORD = "/tag";
 
-    public static final String FOLLOW_MESSAGE = "Follows:\nID :tag TAG";
+    public static final String FOLLOW_MESSAGE = "Format:\n"
+            + "• " + COMMAND_WORD + " ID (" + PREFIX_TAG + " TAG)...";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tags an employee in the address book.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Tags an employee in the PayBack system.\n"
             + "Format:\n"
-            + "• " + COMMAND_WORD + " ID " + PREFIX_TAG + " TAG...\n "
+            + "• " + COMMAND_WORD + " ID (" + PREFIX_TAG + " TAG)...\n"
             + "Examples:\n"
-            + "• " + COMMAND_WORD + " 240001 " + PREFIX_TAG + " Finance " + PREFIX_TAG + " Manager\n";
+            + "• " + COMMAND_WORD + " 240001 " + PREFIX_TAG + " Finance " + PREFIX_TAG + " Manager";
 
     public static final String MESSAGE_SUCCESS = "Employee tagged.\n";
 

@@ -10,7 +10,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 public class YearJoined {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Year joined should only contain numbers and it must be between 2010 to 2099.";
+            "Year joined should only contain numbers and it must be between 2010 and 2099 inclusive.";
 
     public static final String VALIDATION_REGEX = "\\d{4}";
 

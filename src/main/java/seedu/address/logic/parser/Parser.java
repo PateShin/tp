@@ -23,8 +23,12 @@ public interface Parser<T extends Command> {
     static String appendPrefixes(String args, Prefix... prefixes) {
         StringBuilder result = new StringBuilder();
         String[] argsArr = args.trim().split(";\\s+");
-        for (int i = 0; i < Math.min(prefixes.length, argsArr.length); i++) {
-            result.append(" ").append(prefixes[i]).append(" ").append(argsArr[i]);
+        for (int i = 0; i < argsArr.length; i++) {
+            if (i >= prefixes.length) {
+                result.append(" ").append(prefixes[prefixes.length - 1]).append(" ").append(argsArr[i]);
+            } else {
+                result.append(" ").append(prefixes[i]).append(" ").append(argsArr[i]);
+            }
         }
         return result.toString();
     }
