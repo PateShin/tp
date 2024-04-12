@@ -1,0 +1,14 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+repeat
+  :User enters /edit command to edit a tag;
+  :PayBack reads user input;
+repeat while () is ([Incorrect TAG_INDEX or duplicated NEW_TAG])
+->[else];
+:PayBack updates corresponding tag;
+:PayBack displays updated tag list;
+stop
+@enduml
