@@ -44,7 +44,7 @@ Thank you for choosing PayBack to optimise your company's management processes. 
    6. [Tag An Employee](#tag)
    7. [Add A Transaction](#transaction)
    8. [View Transaction Records of An Employee](#view)
-   9. [AutoComplete TextBox](#autoComplete)
+   9. [AutoComplete TextBox](#auto-complete)
    10. [Clear All Employees](#clear)
    11. [Help](#help)
    12. [Save Data](#save-data)
@@ -275,7 +275,7 @@ Format: `/view ID`
 
 Transaction records will be displayed on the right side of the employee list panel, as shown above.
 
-### AutoComplete TextBox <a name="autoComplete"></a>
+### AutoComplete TextBox <a name="auto-complete"></a>
 
 Auto-complete feature allows to enter command quickly and accurately by suggesting possible completions as typing.
 
