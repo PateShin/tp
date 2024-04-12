@@ -329,14 +329,14 @@ The following activity diagram summarizes what happens when a user executes a `/
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​             | I want to …​                                | So that I can…​                                                      |
-| -------- |---------------------|---------------------------------------------|----------------------------------------------------------------------|
+|----------|---------------------|---------------------------------------------|----------------------------------------------------------------------|
 | `* * *`  | New Company Manager | read the instructions of the program        | Learn or remember the lists of commands or methods to use the system |
 | `* * *`  | Company Manager     | add a new employee                          | ensure they are officially recorded                                  |
 | `* * *`  | Company Manager     | remove/delete a employee                    | have an updated list of employees when they leave the company        |
 | `* * *`  | Company Manager     | find a employee by ID, name, phone or email | retrieve details of employee(s) without looking entire workers       |
-| `* *`    | Company Manager     | edit information of a employee              | rectify any incorrect inputs entered into the system                 |
-| `* *`    | Company Manager     | list entire employees                       | see entire employees                                                 |
-| `*`      | Company Manager     | create a tag to employee                    | recognize all types of attention                                     |
+| `* * *`  | Company Manager     | edit information of a employee              | rectify any incorrect inputs entered into the system                 |
+| `* * *`  | Company Manager     | list entire employees                       | see entire employees                                                 |
+| `* * *`  | Company Manager     | create a tag to employee                    | recognize all types of attention                                     |
 
 ### Use cases <a name="use-cases"></a>
 
@@ -503,11 +503,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at Step 2.
 
-* 2b. The field that need to be updated is a tag.
+* 2b. The field that need to be updated is a tag and user enters invalid tag index.
 
-    * 2b1. User enters tag index and new tag name.
+    * 2b1. PayBack shows an error message.
 
-      Use case resumes at Step 3.
+      Use case resumes at Step 2.
+
+* 2c. The field that need to be updated is a tag and new tag name already exists.
+
+    * 2b1. PayBack shows an error message.
+
+      Use case resumes at Step 2.
+
+* 2d. The field that need to be updated is a tag and there is missing tag index/new tag name.
+
+    * 2b1. PayBack shows an error message.
+
+      Use case resumes at Step 2.
 
 **Use case: Add a transaction**
 
