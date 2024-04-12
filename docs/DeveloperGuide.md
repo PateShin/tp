@@ -2,32 +2,54 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+# Table of Contents
+1. [Acknowledgements](#acknowledgements)
+2. [Setting up, getting started](#getting-started)
+3. [Design](#design)
+   1. [Architecture](#architecture)
+   2. [UI Component](#ui-component)
+   3. [Logic Component](#logic-component)
+   4. [Model Component](#model-component)
+   5. [Storage Component](#storage-component)
+   6. [Common Classes](#common-classes)
+4. [Implementations](#implementation)
+   1. [Editing a specific tag](#editing-tag)
+      1. [Design considerations](#design-consideration-edit-tag)
+      2. [Implementation](#implementation-edit-tag)
+5. [Documentation, logging, testing, configuration, dev-ops](#documentation)
+6. [Appendix: Requirements](#requirements)
+   1. [Product scope](#product-scope)
+   2. [User stories](#user-stories)
+   3. [Use cases](#use-cases)
+   4. [Non-Functional Requirements](#non-functional-requirements)
+   5. [Glossary](#glossary)
+7. [Appendix: Instructions for manual testing](#manual-testing)
+   1. [Launch and shutdown](#launch-shutdown)
+   2. [Deleting a person](#deleting)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Acknowledgements**
+## **Acknowledgements** <a name="acknowledgements"></a>
 
 * GitHub Copilot auto-complete was used to improve productivity during development.
 * Extra library `org.controlsfx:controlsfx:11.1.1` was used to implement Autocomplete to improve productivity during development.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Setting up, getting started**
+## **Setting up, getting started** <a name="getting-started"></a>
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Design**
+## **Design** <a name="design"></a>
 
 <div markdown="span" class="alert alert-primary">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document `docs/diagrams` folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
-### Architecture
+### Architecture <a name="architecture"></a>
 
 <img src="images/ArchitectureDiagram.png" width="280" />
 
@@ -67,7 +89,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+### UI component <a name="ui-component"></a>
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2324S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
@@ -84,7 +106,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
 
-### Logic component
+### Logic component <a name="logic-component"></a>
 
 **API** : [`Logic.java`](https://github.com/AY2324S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
 
@@ -115,7 +137,7 @@ How the parsing works:
 * When called upon to parse a user command, the `PaybackParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `PaybackParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+### Model component <a name="model-component"></a>
 **API** : [`Model.java`](https://github.com/AY2324S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -136,7 +158,7 @@ The `Model` component,
 </div>
 
 
-### Storage component
+### Storage component <a name="storage-component"></a>
 
 **API** : [`Storage.java`](https://github.com/AY2324S2-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
 
@@ -147,13 +169,13 @@ The `Storage` component,
 * inherits from both `PayBackStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+### Common classes <a name="common-classes"></a>
 
 Classes used by multiple components are in the `seedu.address.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Implementation**
+## **Implementation** <a name="implementation"></a>
 
 This section describes some noteworthy details on how certain features are implemented.
 
@@ -241,14 +263,43 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### Editing a specific tag <a name="editing-tag"></a>
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Design considerations: <a name="design-consideration-edit-tag"></a>
 
+**Aspect: How `/edit ID :tag TAG_INDEX NEW_TAG` executes:**
+
+* **Alternative 1 (current choice):** Change one specific tag at a time.
+    * Pros: Most of the time people only want to change one particular tag and this implementation gives them more convenience.
+    * Cons: Harder to implement and have to change original data structure of tags.
+
+* **Alternative 2:** Remove all current tags and add new tags
+    * Pros: Easy to implement.
+    * Cons: Not very user-friendly as users have to key in all tags every single time.
+
+#### Implementation <a name="implementation-edit-tag"></a>
+
+Given below is an example usage scenario and how the `/edit ID :tag TAG_INDEX NEW_TAG` mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time.
+
+Step 2. The user executes `/add NAME; PHONE; EMAIL; ADDRESS; YEAR_JOINED[; TAG]…` command to add a new employee.
+
+Step 3. The user executes `/tag ID :tag NEW_TAG` command to add tags to an existing employee.
+
+Step 4. The user executes `/edit ID :tag TAG_INDEX NEW_TAG` command to change the name of an existing tag.
+
+The following sequence diagram shows how an edit operation edits a specific tag for user:
+
+![EditTagSequenceDiagram](images/EditTagSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a `/edit ID :tag TAG_INDEX NEW_TAG` command:
+
+![EditTagActivityDiagram](images/EditTagActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Documentation, logging, testing, configuration, dev-ops**
+## **Documentation, logging, testing, configuration, dev-ops** <a name="documentation"></a>
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -258,9 +309,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Requirements**
+## **Appendix: Requirements** <a name="requirements"></a>
 
-### Product scope
+### Product scope <a name="product-scope"></a>
 
 **Target user profile**:
 
@@ -273,7 +324,7 @@ _{Explain here how the data archiving feature will be implemented}_
 **Value proposition**: manage employee information more efficiently and clearly than a typical mouse/GUI driven app
 
 
-### User stories
+### User stories <a name="user-stories"></a>
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
@@ -287,7 +338,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | Company Manager     | list entire employees                       | see entire employees                                                 |
 | `*`      | Company Manager     | create a tag to employee                    | recognize all types of attention                                     |
 
-### Use cases
+### Use cases <a name="use-cases"></a>
 
 (For all use cases below, the **System** is the `PayBack` and the **Actor** is the `Company Manager`, unless specified otherwise)
 
@@ -382,9 +433,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 4a1. Payback acknowledges the cancellation.
     
     Use case ends.
-  
-
-
 
 **Use case: Find a person**
 
@@ -497,7 +545,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at Step 2.
 
-### Non-Functional Requirements
+### Non-Functional Requirements <a name="non-functional-requirements"></a>
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2.  Should be able to hold up to 1000 employees without a noticeable sluggishness in performance for typical usage.
@@ -505,7 +553,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4.  The system should provide real-time access to employee information with response times not exceeding 2 seconds for any query.
 5.  The app should have an intuitive user interface, allowing users to easily navigate and perform tasks without extensive training.
 
-### Glossary
+### Glossary <a name="glossary"></a>
 
 * **Actor**: A user or any other system that interacts with the system being described
 * **API**: Abbreviation for Application Programming Interface, a set of rules and protocols that allows different software applications to communicate with each other
@@ -522,7 +570,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 --------------------------------------------------------------------------------------------------------------------
 
-## **Appendix: Instructions for manual testing**
+## **Appendix: Instructions for manual testing** <a name="manual-testing"></a>
 
 Given below are instructions to test the app manually.
 
@@ -531,24 +579,17 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### Launch and shutdown <a name="launch-shutdown"></a>
 
 1. Initial launch
-
    1. Download the jar file and copy into an empty folder
+   2. Double-click the jar file Expected: Shows the GUI with a set of sample contacts.
+   3. If unable to open the application by double-clicking, open terminal and navigate into the target file and type `java -jar payback.jar` to launch the application.
+2. Shutdown the program
+   1. Type `/exit` in the command panel and press `Enter`
+   2. The program will be closed automatically
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-       Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
-### Deleting a person
+### Deleting a person <a name="deleting"></a>
 
 1. Deleting a person while all persons are being shown
 
@@ -562,8 +603,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
 
 ### Saving data
 
