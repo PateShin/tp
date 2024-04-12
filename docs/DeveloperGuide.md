@@ -10,6 +10,7 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * GitHub Copilot auto-complete was used to improve productivity during development.
+* Extra library org.controlsfx:controlsfx:11.1.1 was used to implement Autocomplete to improve productivity during development.
 
 --------------------------------------------------------------------------------------------------------------------
 
