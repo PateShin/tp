@@ -179,6 +179,57 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Implemented\] Add new employee
+
+#### Implementation
+
+The proposed implementation of adding a new employee is facilitated by `AddCommand` and `AddCommandParser`. The `AddCommand` class encapsulates the logic for adding a new employee, while the `AddCommandParser` class is responsible for parsing the arguments and returning an `AddCommand` object.
+
+The `AddCommand` class implements the following operations:
+
+* `AddCommand#execute(Model model)` — Adds a new employee to the employee list in the `Model`.
+* `AddCommand#equals(Object other)` — Checks if two `AddCommand` objects are equal.
+* `AddCommand#toString()` — Returns a string representation of the `AddCommand`.
+
+The `AddCommandParser` class implements the following operations:
+
+* `AddCommandParser#parse(String args)` — Parses the arguments and returns an `AddCommand` object.
+* `AddCommandParser#arePrefixesPresent(ArgumentMultimap argMultimap, Prefix... prefixes)` — Checks if the specified prefixes are present in the argument multimap.
+
+Given below is an example usage scenario and how the add new employee mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `Model` will be initialized with the initial employee list.
+
+Step 2. The user executes `/add :name John Doe :phone 91234567 :email johndoe@email.com :address 12 Kent Ridge Dr :year 2024 :tag Finance` command to add a new employee with the specified details. The `AddCommandParser` will parse the arguments and return an `AddCommand` object.
+
+Step 3. The `AddCommand` object will be executed by the `Logic` component, which will add the new employee to the employee list in the `Model`.
+
+The following sequence diagram shows how an add new employee operation goes through the `Logic` component:
+
+![AddSequenceDiagram](images/AddNewEmployeeSequenceDiagram-Logic.png)
+
+Similarly, how an add new employee operation goes through the `Model` component is shown below:
+
+![AddSequenceDiagram](images/AddNewEmployeeSequenceDiagram-Model.png)
+
+The following activity diagram summarizes what happens when a user executes an `/add` command:
+
+![AddNewEmployeeActivityDiagram](images/AddNewEmployeeActivityDiagram.png)
+
+The `AddCommand` class is designed to be easily extensible. For example, if a new field is added to the `Person` class, the `AddCommand` class can be easily modified to accommodate the new field.
+
+#### Design considerations:
+
+**Aspect: How `/add` executes:**
+
+* **Alternative 1 (current choice):** Enter all details at once.
+  * Pros: Easy to implement.
+  * Cons: May be overwhelming for users who are not familiar with the system.
+
+* **Alternative 2:** Enter details one by one.
+  * Pros: Provides a more guided experience.
+  * Cons: May be slower for users who are comfortable with the system.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

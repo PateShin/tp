@@ -1,0 +1,31 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+repeat
+repeat
+repeat
+repeat
+  :User enters /add command to add a new employee;
+  :PayBack reads user input;
+backward :PayBack displays invalid command format error message;
+repeat while () is ([Invalid command format])
+->[else];
+  :PayBack parses user input arguments;
+backward :PayBack displays parse error message;
+repeat while () is ([Invalid NAME or PHONE or EMAIL or ADDRESS or YEAR_JOINED or TAGS])
+->[else];
+  :PayBack checks for duplicate tags;
+backward :PayBack displays duplicate tags error message;
+repeat while () is ([Duplicate TAGS])
+->[else];
+:PayBack creates a new Person object;
+:PayBack checks for duplicate person;
+backward :PayBack displays duplicate person error message;
+repeat while () is ([Duplicated Person])
+->[else];
+  :PayBack adds the new Person object to the employee list;
+  :PayBack displays success message;
+stop
+@enduml

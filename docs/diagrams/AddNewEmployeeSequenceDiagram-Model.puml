@@ -1,0 +1,28 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+participant ":VersionedPayBack" as VersionedPayBack MODEL_COLOR
+participant ":UniquePersonList" as UniquePersonList MODEL_COLOR
+end box
+
+[-> Model : addPerson(toAdd)
+activate Model
+
+Model -> VersionedPayBack : addPerson(toAdd)
+activate VersionedPayBack
+
+VersionedPayBack -> UniquePersonList : add(toAdd)
+activate UniquePersonList
+
+UniquePersonList --> VersionedPayBack
+deactivate UniquePersonList
+
+VersionedPayBack --> Model
+deactivate VersionedPayBack
+
+[<-- Model
+deactivate Model
+@enduml
