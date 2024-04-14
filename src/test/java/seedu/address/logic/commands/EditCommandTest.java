@@ -17,7 +17,6 @@ import static seedu.address.testutil.TypicalPersons.getTypicalPayBack;
 
 import org.junit.jupiter.api.Test;
 
-import javafx.util.Pair;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
