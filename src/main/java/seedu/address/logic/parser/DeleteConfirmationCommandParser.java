@@ -20,8 +20,6 @@ public class DeleteConfirmationCommandParser implements Parser<DeleteConfirmatio
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(Id.MESSAGE_CONSTRAINTS);
         }
     }
 

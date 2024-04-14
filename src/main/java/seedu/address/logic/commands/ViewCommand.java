@@ -25,7 +25,7 @@ public class ViewCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Views the transaction of the person identified by the id number provided.\n"
-            + "Format: " + COMMAND_WORD + " ID\n"
+            + "Format: " + COMMAND_WORD + " ID (between 100001 and 999999)\n"
             + "Example: " + COMMAND_WORD + " 240001";
 
     public static final String MESSAGE_VIEW_PERSON_SUCCESS = "Viewed Person: %1$s";
