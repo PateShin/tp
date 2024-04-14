@@ -47,8 +47,8 @@ public class AddCommand extends Command {
             + PREFIX_NAME + " John Doe "
             + PREFIX_PHONE + " 98765432 "
             + PREFIX_EMAIL + " johnd@example.com "
-            + PREFIX_ADDRESS + " Street A"
-            + PREFIX_YEAR_JOINED + " 2024"
+            + PREFIX_ADDRESS + " Street A "
+            + PREFIX_YEAR_JOINED + " 2024 "
             + PREFIX_TAG + " Software Developer";
 
     public static final String MESSAGE_SUCCESS = "New employee added: %1$s";
