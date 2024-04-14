@@ -58,7 +58,16 @@ public class TagCommandParserTest {
     public void parse_invalidId_throwsParseException() {
         String userInput = "0 " + PREFIX_TAG + " Finance";
 
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE);
+        String expectedMessage = Id.MESSAGE_CONSTRAINTS;
+
+        assertParseFailure(parser, userInput, expectedMessage);
+    }
+
+    @Test
+    public void parse_emptyTag_throwsParseException() {
+        String userInput = "240001 " + PREFIX_TAG + " ";
+
+        String expectedMessage = Tag.MESSAGE_CONSTRAINTS;
 
         assertParseFailure(parser, userInput, expectedMessage);
     }
