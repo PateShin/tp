@@ -30,15 +30,17 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
-        Id id;
 
-        try {
-            id = ParserUtil.parseId(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
-        } catch (IllegalArgumentException e) {
-            throw new ParseException(Id.MESSAGE_CONSTRAINTS);
+        if ((!isPrefixPresent(argMultimap, PREFIX_NAME)
+                && !isPrefixPresent(argMultimap, PREFIX_PHONE)
+                && !isPrefixPresent(argMultimap, PREFIX_EMAIL)
+                && !isPrefixPresent(argMultimap, PREFIX_ADDRESS)
+                && !isPrefixPresent(argMultimap, PREFIX_TAG))
+                || argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
+
+        Id id = ParserUtil.parseId(argMultimap.getPreamble());
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
 
@@ -77,6 +79,13 @@ public class EditCommandParser implements Parser<EditCommand> {
             return Optional.empty();
         }
         return Optional.of(ParserUtil.parseUpdatedTags(tags));
+    }
+
+    /**
+     * Checks if {@Code Prefix} is present in {@Code ArgumentMultiMap}.
+     */
+    private static boolean isPrefixPresent(ArgumentMultimap argumentMultimap, Prefix prefix) {
+        return argumentMultimap.getValue(prefix).isPresent();
     }
 
 }
