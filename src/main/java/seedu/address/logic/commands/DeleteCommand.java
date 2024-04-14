@@ -22,7 +22,7 @@ public class DeleteCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the specified employee from the PayBack system.\n"
-            + "Format: " + COMMAND_WORD + " ID\n"
+            + "Format: " + COMMAND_WORD + " ID (between 100001 and 999999)\n"
             + "Example: " + COMMAND_WORD + " 240001";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
