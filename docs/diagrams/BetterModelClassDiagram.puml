@@ -4,11 +4,15 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
+
 PayBack *-right-> "1" UniquePersonList
 PayBack *-right-> "1" UniqueTagList
+PayBack *-right-> "1" UniqueTransactionList
 UniqueTagList -[hidden]down- UniquePersonList
 UniqueTagList -[hidden]down- UniquePersonList
+UniqueTagList -[hidden]right- UniqueTransactionList
 
+UniqueTransactionList -right-> "*" Transaction
 UniqueTagList -right-> "*" Tag
 UniquePersonList -right-> "*" Person
 
@@ -20,4 +24,11 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> YearJoined
+
+Transaction *--> TransactionId
+Transaction *--> DateTime
+Transaction *--> Amount
+Transaction *--> Description
+Transaction -left-> "1" Person : Employee
+
 @enduml

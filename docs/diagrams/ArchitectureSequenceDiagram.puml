@@ -14,7 +14,35 @@ activate ui UI_COLOR
 ui -[UI_COLOR]> logic : execute("/delete 240001")
 activate logic LOGIC_COLOR
 
-logic -[LOGIC_COLOR]> model : deletePerson(p)
+logic -[LOGIC_COLOR]> model : getPerson(240001)
+activate model MODEL_COLOR
+
+model -[MODEL_COLOR]-> logic : person
+deactivate model
+
+logic --[LOGIC_COLOR]> ui : showConfirmation(person)
+deactivate logic
+activate ui UI_COLOR
+
+user -[USER_COLOR]> ui : "Y"
+deactivate ui
+
+ui -[UI_COLOR]> logic : confirmDelete("Y")
+activate logic LOGIC_COLOR
+
+logic -[LOGIC_COLOR]> model : deletePerson(person)
+activate model MODEL_COLOR
+
+model -[MODEL_COLOR]-> logic
+deactivate model
+
+logic -[LOGIC_COLOR]> model : getTransactions(person.id)
+activate model MODEL_COLOR
+
+model -[MODEL_COLOR]-> logic : transactions
+deactivate model
+
+logic -[LOGIC_COLOR]> model : deleteTransactions(transactions)
 activate model MODEL_COLOR
 
 model -[MODEL_COLOR]-> logic
