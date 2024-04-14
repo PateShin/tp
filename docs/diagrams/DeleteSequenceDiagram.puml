@@ -6,7 +6,9 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":PayBackParser" as PayBackParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
+participant ":ConfirmationStageParser" as ConfirmationStageParser LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant "c:DeleteConfirmationCommand" as DeleteConfirmationCommand LOGIC_COLOR
 participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -30,26 +32,71 @@ deactivate DeleteCommandParser
 PayBackParser -> DeleteCommandParser : parse("240001")
 activate DeleteCommandParser
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+create DeleteConfirmationCommand
+DeleteCommandParser -> DeleteConfirmationCommand
+activate DeleteConfirmationCommand
 
-DeleteCommand --> DeleteCommandParser :
-deactivate DeleteCommand
+DeleteConfirmationCommand --> DeleteCommandParser :
+deactivate DeleteConfirmationCommand
 
-DeleteCommandParser --> PayBackParser : d
+DeleteCommandParser --> PayBackParser : c
 deactivate DeleteCommandParser
-'Hidden arrow to position the destroy marker below the end of the activation bar.
+
 DeleteCommandParser -[hidden]-> PayBackParser
 destroy DeleteCommandParser
 
-PayBackParser --> LogicManager : d
+PayBackParser --> LogicManager : c
 deactivate PayBackParser
+
+LogicManager -> DeleteConfirmationCommand : execute(m)
+activate DeleteConfirmationCommand
+
+DeleteConfirmationCommand -> Model : getPerson(240001)
+activate Model
+
+Model --> DeleteConfirmationCommand : person
+deactivate Model
+
+DeleteConfirmationCommand --> LogicManager : "Confirm Delete (Y/N)?"
+deactivate DeleteConfirmationCommand
+
+[-> LogicManager : "Y"
+LogicManager -> ConfirmationStageParser : parseCommand(m, "Y")
+activate ConfirmationStageParser
+
+create DeleteCommand
+ConfirmationStageParser -> DeleteCommand
+activate DeleteCommand
+
+DeleteCommand --> ConfirmationStageParser :
+deactivate DeleteCommand
+
+ConfirmationStageParser --> LogicManager : d
+deactivate ConfirmationStageParser
+destroy ConfirmationStageParser
 
 LogicManager -> DeleteCommand : execute(m)
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePerson(240001)
+DeleteCommand -> Model : getPerson(240001)
+activate Model
+
+Model --> DeleteCommand : person
+deactivate Model
+
+DeleteCommand -> Model : deletePerson(person)
+activate Model
+
+Model --> DeleteCommand
+deactivate Model
+
+DeleteCommand -> Model : getTransactions(person.id)
+activate Model
+
+Model --> DeleteCommand : transactions
+deactivate Model
+
+DeleteCommand -> Model : deleteTransactions(transactions)
 activate Model
 
 Model --> DeleteCommand
