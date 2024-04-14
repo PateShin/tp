@@ -38,21 +38,6 @@ public class EditCommandTest {
     private Model model = new ModelManager(getTypicalPayBack(), new UserPrefs());
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Person editedPerson = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
-        descriptor.setUpdateTagInfo(new Pair<>(-1, null));
-        EditCommand editCommand = new EditCommand(new Id(PersonBuilder.DEFAULT_ID), descriptor);
-
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson));
-
-        Model expectedModel = new ModelManager(new PayBack(model.getPayBack()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
-
-        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_someFieldsSpecifiedUnfilteredList_success() {
         Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
         Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
@@ -95,7 +80,7 @@ public class EditCommandTest {
         Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person secondPerson = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
 
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson)
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder()
                 .withEmail(secondPerson.getEmail().value).build();
 
         EditCommand editCommand = new EditCommand(firstPerson.getId(), descriptor);

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.EDIT_SAME_FIELD;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_ID;
 import static seedu.address.logic.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.Messages.TAG_DUPLICATE_TAG;
@@ -98,6 +99,12 @@ public class EditCommand extends Command {
         }
         editPersonDescriptor.setTags(personToEdit.getTags());
         editPersonDescriptor.setUpdatedTags();
+        if (editPersonDescriptor.getName().orElse(new Name("swdwdadwx")).equals(personToEdit.getName())
+            || editPersonDescriptor.getPhone().orElse(new Phone("1312421")).equals(personToEdit.getPhone())
+            || editPersonDescriptor.getEmail().orElse(new Email("adw@asdw")).equals(personToEdit.getEmail())
+            || editPersonDescriptor.getAddress().orElse(new Address("wxesc")).equals(personToEdit.getAddress())) {
+            throw new CommandException(EDIT_SAME_FIELD);
+        }
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         boolean isDuplicate = model.getDuplicatePersons(editedPerson).stream()

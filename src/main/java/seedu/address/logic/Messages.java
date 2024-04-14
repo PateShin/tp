@@ -27,6 +27,10 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_DUPLICATE_TAGS =
+            "Cannot add duplicated tags to one employee.";
+    public static final String EDIT_SAME_FIELD =
+            "Some edited field is the same as the original field.";
 
     /**
      * Returns an error message indicating the duplicate prefixes.
