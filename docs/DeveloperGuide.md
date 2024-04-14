@@ -328,15 +328,20 @@ The following activity diagram summarizes what happens when a user executes a `/
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​             | I want to …​                                | So that I can…​                                                      |
-|----------|---------------------|---------------------------------------------|----------------------------------------------------------------------|
-| `* * *`  | New Company Manager | read the instructions of the program        | Learn or remember the lists of commands or methods to use the system |
-| `* * *`  | Company Manager     | add a new employee                          | ensure they are officially recorded                                  |
-| `* * *`  | Company Manager     | remove/delete a employee                    | have an updated list of employees when they leave the company        |
-| `* * *`  | Company Manager     | find a employee by ID, name, phone or email | retrieve details of employee(s) without looking entire workers       |
-| `* * *`  | Company Manager     | edit information of a employee              | rectify any incorrect inputs entered into the system                 |
-| `* * *`  | Company Manager     | list entire employees                       | see entire employees                                                 |
-| `* * *`  | Company Manager     | create a tag to employee                    | recognize all types of attention                                     |
+| Priority | As a …​             | I want to …​                                              | So that I can…​                                                      |
+|----------|---------------------|-----------------------------------------------------------|----------------------------------------------------------------------|
+| `* * *`  | New Company Manager | read the instructions of the program                      | Learn or remember the lists of commands or methods to use the system |
+| `* * *`  | Company Manager     | add a new employee                                        | ensure they are officially recorded                                  |
+| `* * *`  | Company Manager     | remove/delete a employee                                  | have an updated list of employees when they leave the company        |
+| `* * *`  | Company Manager     | find a employee by ID, name, phone or email               | retrieve details of employee(s) without looking entire workers       |
+| `* * *`  | Company Manager     | edit information of a employee                            | rectify any incorrect inputs entered into the system                 |
+| `* * *`  | Company Manager     | list entire employees                                     | see entire employees                                                 |
+| `* *`    | Company Manager     | create a tag to employee                                  | recognize all types of attention                                     |
+| `*`      | Company Manager     | type my commands faster                                   | work more efficiently                                                |
+| `* *`    | Company Manager     | double check my decision before actually deleting someone | ensure no one is accidentally deleted                                |
+| `* * *`  | Company Manager     | add transactions to my employees                          | keep track of all transaction records                                |
+| `* * *`  | Company Manager     | see the salary changes of my employees                    | keep track of salaries                                               |
+| `* *`    | Company Manager     | clear all employee information                            | restart my business                                                  |
 
 ### Use cases <a name="use-cases"></a>
 
@@ -616,10 +621,4 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_
+      
