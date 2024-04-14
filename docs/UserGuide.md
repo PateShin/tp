@@ -167,11 +167,12 @@ Here is a closer look at each key feature.
 ### Add Employee <a name="add"></a>
 This feature allows the user to add new employees to the PayBack system and automatically generate an employee ID based on the year they joined and the last ID of that year.
 
-There are two ways to use `/add` command:
-- Use the `/add` command followed by the employee's details, separated by semicolons and spaces.
-    - Format: `/add NAME; PHONE; EMAIL; ADDRESS; YEAR_JOINED[; TAG]…`
-- Use the `/add` command followed by the employee’s details, preceded by PREFIX (_:name, :phone, :email, :address, :year, :tag_)
-  - Format: `/add :name NAME :phone PHONE :email EMAIL :address ADDRESS :year YEAR_JOINED [:tag TAG]…`
+Format:
+- `/add NAME; PHONE; EMAIL; ADDRESS; YEAR_JOINED[; TAG]…`
+  - Use the `/add` command followed by the employee's details, separated by semicolons and spaces.
+- `/add :name NAME :phone PHONE :email EMAIL :address ADDRESS :year YEAR_JOINED [:tag TAG]…`
+  - Use the `/add` command followed by the employee’s details, preceded by PREFIX (_:name, :phone, :email, :address, :year, :tag_)
+
 
 Examples:
 
@@ -180,19 +181,23 @@ Examples:
 - `/add :name John Doe :phone 91234567 :email johndoe@email.com :address 12 Kent Ridge Dr :year 2024 :tag Finance`
 
 ### Delete Employee <a name="delete"></a>
-This feature deletes the specified employee from the PayBack system.
+This feature deletes the specified employee from the displayed employee list.
 
 Format: `/delete ID`
 
 **Note**:
+- There will be a confirmation message that prompts user to type in `Y` to confirm the deletion and `N` to 
+abort the deletion. 
+  - All other commands will not work until the user confirms/aborts the deletion.
 - All transactions with `employeeId` = `ID` will be deleted as well.
 
 Examples:
 
-`/delete 240001`: deletes the employee with 240001 ID.
+`/delete 240001` followed by `Y`: deletes the employee with 240001 ID.
+`/delete 240001` followed by `N`: no deletion occurs.
 
 ### Edit Employee Information <a name="edit"></a>
-This feature edits an existing employee in PayBack.
+This feature edits the specified employee from the displayed employee list.
 
 Format: 
 `/edit ID [:name NAME] [:phone PHONE] [:email EMAIL] [:address ADDRESS] [:tag TAG_INDEX NEW_TAG]`
@@ -216,12 +221,16 @@ Edits the phone number and email address of employee with ID 240001 to be 912345
 ### List All Employees <a name="list"></a>
 This feature displays a list of entire employees currently stored in the PayBack system.
 
-Use the `/list` command to refresh the displayed list and ensure the user is viewing the full information.
+Format: `/list`
+
+Use the `/list` command to refresh the displayed list and ensure the user is viewing the full employee list.
 
 ### Find An Employee <a name="find"></a>
 This feature allows a user to search for specific employees.
 
-Use the `/find` command followed by the appropriate prefix and keyword:
+Format: `/find :PREFIX KEYWORD`
+
+Use the `/find` command followed by the appropriate `:PREFIX` and `KEYWORD`:
 - `:id`, Search by employee ID.
    - 6-digit number is required and must be between 100001 and 999999 inclusive.
 - `:name`, Search by employee name (supports multiple keywords).
@@ -242,11 +251,11 @@ Example:
 - Alternatively, it searches for employees named ’**Patrick**’ and ’**Star**’.
 
 ### Tag An Employee <a name="tag"></a>
-This feature allows a user to add “tags” to existing employees for easier identification.
+This feature allows a user to add `tags` to the specified employee from the displayed employee list.
 
-Use the `/tag` command followed by the “employee's ID” and the desired tags, separated by the `:tag` prefix.
+Format: `/tag :tag TAGS...`
 
-The application allows a user to add multiple tags to a single employee.  (e.g., “Intern”, “Developer”)
+This command allows a user to add multiple tags to a single employee.  (e.g., “Intern”, “Developer”)
 
 Example:
 
@@ -255,7 +264,7 @@ Tags employee 240001 with ‘Intern’ and ‘Developer’
 
 ### Add A Transaction <a name="transaction"></a>
 
-Adds a transaction to the specified person.
+Adds a transaction to the specified employee.
 
 Format:
 * `/transaction ID; AMOUNT; DESCRIPTION[; DATETIME]`
@@ -267,7 +276,7 @@ Examples:
 
 ### View Transaction Records of An Employee <a name="view"></a>
 
-This feature displays the transaction records of an existing employee.
+This feature displays the transaction records of the specified employee from the displayed employee list.
 
 Format: `/view ID`
 
