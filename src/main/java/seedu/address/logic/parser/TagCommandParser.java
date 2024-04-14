@@ -34,8 +34,6 @@ public class TagCommandParser implements Parser<TagCommand> {
         try {
             id = ParserUtil.parseId(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TagCommand.MESSAGE_USAGE));
-        } catch (IllegalArgumentException e) {
             throw new ParseException(Id.MESSAGE_CONSTRAINTS);
         }
 
