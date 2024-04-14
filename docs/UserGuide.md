@@ -173,12 +173,18 @@ Format:
 - `/add :name NAME :phone PHONE :email EMAIL :address ADDRESS :year YEAR_JOINED [:tag TAG]…`
   - Use the `/add` command followed by the employee’s details, preceded by PREFIX (_:name, :phone, :email, :address, :year, :tag_)
 
+**Note**:
+- Ensure that no duplicate tags are entered when providing multiple tags.
 
 Examples:
 
 - `/add John Doe; 91234567; johndoe@email.com; 12 Kent Ridge Dr; 2024; Finance`
 
+- `/add John Doe; 91234567; johndoe@email.com; 12 Kent Ridge Dr; 2024; Software Developer; Finance`
+
 - `/add :name John Doe :phone 91234567 :email johndoe@email.com :address 12 Kent Ridge Dr :year 2024 :tag Finance`
+
+- `/add :name John Doe :phone 91234567 :email johndoe@email.com :address 12 Kent Ridge Dr :year 2024 :tag Software Developer :tag Finance`
 
 ### Delete Employee <a name="delete"></a>
 This feature deletes the specified employee from the displayed employee list.
