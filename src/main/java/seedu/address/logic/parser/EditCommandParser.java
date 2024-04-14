@@ -34,7 +34,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         try {
             id = ParserUtil.parseId(argMultimap.getPreamble());
-        } catch (IllegalArgumentException e) {
+        } catch (ParseException e) {
             throw new ParseException(Id.MESSAGE_CONSTRAINTS);
         }
 
