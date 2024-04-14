@@ -25,7 +25,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/linnn-7.png" width="200px">
 
 [[github](http://github.com/linnn-7)]
-[[portfolio](team/linbin.md)]
+[[portfolio](team/linnn-7.md)]
 
 * Role: Developer
 * Responsibilities: UI
