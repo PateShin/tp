@@ -20,7 +20,7 @@ activate model MODEL_COLOR
 model -[MODEL_COLOR]-> logic : person
 deactivate model
 
-logic -[LOGIC_COLOR]> ui : showConfirmation(person)
+logic --[LOGIC_COLOR]> ui : showConfirmation(person)
 deactivate logic
 activate ui UI_COLOR
 
