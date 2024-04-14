@@ -30,7 +30,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
-        Id id;
 
         if ((!isPrefixPresent(argMultimap, PREFIX_NAME)
                 && !isPrefixPresent(argMultimap, PREFIX_PHONE)
@@ -41,11 +40,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 
-        try {
-            id = ParserUtil.parseId(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(Id.MESSAGE_CONSTRAINTS);
-        }
+        Id id = ParserUtil.parseId(argMultimap.getPreamble());
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
 
