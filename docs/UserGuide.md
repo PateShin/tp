@@ -218,8 +218,8 @@ This feature displays a list of entire employees currently stored in the PayBack
 
 Use the `/list` command to refresh the displayed list and ensure the user is viewing the full information.
 
-### Find An Employee <a name="find"></a>
-This feature allows a user to search for specific employees.
+### Find Employee(s) <a name="find"></a>
+This feature allows a user to search for matching employee(s) based on specific criteria.
 
 Use the `/find` command followed by the appropriate prefix and keyword:
 - `:id`, Search by employee ID.
@@ -297,11 +297,11 @@ As a command is typed into the command box, PayBack analyzes the input and sugge
 > **NOTE:**<br>
 Wait for a few seconds before entering a command in the text field.
 
-### Clear All Employees <a name="clear"></a>
+### Clear All Data <a name="clear"></a>
 
 Format: `/clear`
 
-Clear command to remove all employee data in PayBack.
+Clear command to remove all data from the PayBack system.
 
 > **NOTE:**<br>
 Use the `/clear` command with **_CAUTION_**, as it will permanently delete all data in the system without confirmation.

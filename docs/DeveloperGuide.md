@@ -346,216 +346,226 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add a new employee
-2.  User enters the name, phone number, email, and optionally, year joined
-3.  PayBack adds the new employee to the employee list
+1. User requests to add a new employee and enters the necessary details.
+2. PayBack adds the employee to the employee list.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The fields other than the year joined are not specified.
+* 1a. PayBack detects an error in the entered data.
 
-    * 2a1. PayBack shows an error message.
+  * 1a1. Payback shows an error message.
     
-      Use case resumes at Step 2.
-
-* 2b. The parameters are not specified in the correct order.
-
-    * 2b1. PayBack shows an error message.
-
-      Use case resumes at Step 2.
-
-* 2c. Some parameters are specified, some are not.
-
-    * 2c1. PayBack shows an error message.
-
-      Use case resumes at Step 2.
-
-* 2d. The information entered is not in the correct format.
-
-    * 2d1. PayBack shows an error message.
-
-      Use case resumes at Step 2.
-
-**Use case: Remove a person**
-
-**MSS**
-
-1. User requests to remove an employee
-2. User enters employee ID
-3. Payback displays details of the employee for confirmation
-4. User confirms removal of employee
-
-   Use case ends.
-
-**Extension**
-
-* 2a. Employee ID entered is invalid.
-
-  * 2a1. Payback shows an error message.
-    
-    Use case resumes at Step 2.
-
-* 4a. User cancels the removal of employee.
-
-  * 4a1. Payback acknowledges the cancellation.
-    
-    Use case ends.
-
-**Use case: Tag a person**
-
-**MSS**
-
-1. User requests to tag an employee
-2. User enters employee id and tags
-3. Payback displays details of the employee and tags to be added for confirmation
-4. User confirms tagging of employee
-
-   Use case ends.
-
-**Extension**
-
-* 2a. Employee ID entered is invalid.
-
-  * 2a1. Payback shows an error message.
-  
-    Use case resumes at step 2.
-  
-* 2b. Tag parameter(s) is/are not specified.
-
-  * 2b1. Payback shows an error message.
-    
-    Use case resumes at step 2.
-
-* 4a. User cancels tagging of employee.
-
-  * 4a1. Payback acknowledges the cancellation.
-    
-    Use case ends.
-
-**Use case: Find a person**
-
-**MSS**
-
-1. User types command with PREFIX
-2. User requests to find a specific employee in the list
-3. User requests to list persons
-4. PayBack shows a list of employees
-5. PayBack finds the employee
-
-    Use case ends.
-
-**Extensions**
-
-* 1a. The PREFIX command is unknown.
-  * 3a1. Payback shows an error message
-  
     Use case resumes at Step 1.
 
-* 2a. The given entered format is incorrect.
+* 1b. The employee already exists.
 
-    * 3a1. PayBack shows an error message.
+  * 1b1. PayBack shows an error message.
+        
+    Use case ends.
 
-      Use case resumes at step 2.
-
-* 2b. There are no employees found.
-
-    * 3b1. PayBack shows a not found message.
-
-      Use case resumes at Step 2.
-
-* 3a. The list is empty.
-
-  Use case ends.
-
-
-**Use case: List entire employees**
+**Use case: Delete an employee**
 
 **MSS**
 
-1.  User requests to list employees
-2.  PayBack shows a list of employees
+1. User requests to delete an employee and enters the necessary details.
+2. Payback shows the employee details and asks for confirmation to delete the employee.
+3. User confirms the deletion of employee.
+4. PayBack deletes the employee from the employee list together with all transactions associated with the employee.
 
     Use case ends.
 
-**Extensions**
+**Extension**
 
-* 2a. The list is empty.
+* 1a. PayBack detects an error in the entered data.
 
-  Use case ends.
+  * 1a1. Payback shows an error message.
+    
+    Use case resumes at Step 1.
+
+* 1b. The employee does not exist.
+
+  * 1b1. PayBack shows an error message.
+    
+    Use case resumes at Step 1.
+
+* 2a. User cancels the removal of employee.
+
+  * 2a1. PayBack acknowledges the cancellation.
+    
+    Use case ends.
 
 **Use case: Edit an employee**
 
 **MSS**
 
-1.  User requests to edit an employee's information
-2.  User enters the employee's ID and fields that need to be updated
-3.  PayBack changes the employee's information accordingly
+1. User requests to edit the details of an employee and enters the necessary details.
+2. PayBack edits the employee's details.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The ID is invalid.
+* 1a. PayBack detects an error in the entered data.
 
-    * 2a1. PayBack shows an error message.
+  * 1a1. PayBack shows an error message.
 
-      Use case resumes at Step 2.
+    Use case resumes at Step 1.
 
-* 2b. The field that need to be updated is a tag and user enters invalid tag index.
+* 1b. The employee does not exist.
 
-    * 2b1. PayBack shows an error message.
+  * 1b1. PayBack shows an error message.
 
-      Use case resumes at Step 2.
+    Use case resumes at Step 1.
 
-* 2c. The field that need to be updated is a tag and new tag name already exists.
+* 1c. The edited details are the same as the existing details.
 
-    * 2b1. PayBack shows an error message.
+  * 1c1. PayBack shows an error message.
 
-      Use case resumes at Step 2.
+    Use case resumes at Step 1.
 
-* 2d. The field that need to be updated is a tag and there is missing tag index/new tag name.
+* 1d. The edited details result in a duplicate employee.
 
-    * 2b1. PayBack shows an error message.
+  * 1d1. PayBack shows an error message.
 
-      Use case resumes at Step 2.
+    Use case resumes at Step 1.
+
+**Use case: List all employees**
+
+**MSS**
+
+1. User requests to list all employees.
+2. PayBack displays the list of all employees.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The employee list is empty.
+
+  * 1a1. PayBack displays an empty list.
+
+    Use case ends.
+
+**Use case: Find employee(s)**
+
+**MSS**
+
+1. User requests to find matching employee(s) based on search criteria and enters the necessary details.
+2. PayBack displays the matching employee(s) based on the search criteria.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. PayBack detects an error in the entered data.
+
+  * 1a1. PayBack shows an error message.
+
+    Use case resumes at Step 1.
+
+* 2a. No employee matches the search criteria.
+
+  * 2a1. PayBack displays an empty list.
+
+    Use case ends.
+
+**Use case: Tag an employee**
+
+**MSS**
+
+1. User requests to tag an employee and enters the necessary details.
+2. PayBack tags the employee with the specified tag(s).
+
+    Use case ends.
+
+**Extension**
+
+* 1a. PayBack detects an error in the entered data.
+
+  * 1a1. PayBack shows an error message.
+
+    Use case resumes at Step 1.
+
+* 1b. No employee matches the search criteria.
+
+  * 1b1. PayBack shows an error message.
+
+    Use case resumes at Step 1.
 
 **Use case: Add a transaction**
 
 **MSS**
 
-1. User requests to add a transaction to an employee
-2. User enters the employee's ID, amount, description, and optionally, date and time
-3. PayBack adds the transaction to the transaction list
+1. User requests to add a transaction to an employee and enters the necessary details.
+2. PayBack adds the transaction to the transaction list.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The fields other than the date and time are not specified.
+* 1a. PayBack detects an error in the entered data.
 
-    * 2a1. PayBack shows an error message.
+  * 1a1. PayBack shows an error message.
 
-      Use case resumes at Step 2.
+    Use case resumes at Step 1.
 
-* 2b. The parameters are not specified in the correct order.
+* 1b. The employee does not exist.
 
-    * 2b1. PayBack shows an error message.
+  * 1b1. PayBack shows an error message.
+    
+    Use case resumes at Step 1.
 
-      Use case resumes at Step 2.
+**Use case: View transaction records of an employee**
 
-* 2c. Some parameters are specified, some are not.
+**MSS**
 
-    * 2c1. PayBack shows an error message.
+1. User requests to view the transaction records of an employee and enters the necessary details.
+2. PayBack displays the transaction records of the employee.
 
-      Use case resumes at Step 2.
+    Use case ends.
 
-* 2d. The information entered is not in the correct format.
+**Extensions**
 
-    * 2d1. PayBack shows an error message.
+* 1a. PayBack detects an error in the entered data.
 
-      Use case resumes at Step 2.
+  * 1a1. PayBack shows an error message.
+
+    Use case resumes at Step 1.
+
+* 2a. The employee does not exist.
+
+  * 2a1. PayBack shows an error message.
+
+    Use case resumes at Step 1.
+
+**Use case: Clear all data**
+
+**MSS**
+
+1. User requests to clear all data.
+2. PayBack clears all data.
+
+    Use case ends.
+
+**Use case: View help page**
+
+**MSS**
+
+1. User requests to view the help page.
+2. PayBack displays the link to the help page.
+
+    Use case ends.
+
+**Use case: Exit the program**
+
+**MSS**
+
+1. User requests to exit the program.
+2. PayBack program exits.
+
+    Use case ends.
 
 ### Non-Functional Requirements <a name="non-functional-requirements"></a>
 
