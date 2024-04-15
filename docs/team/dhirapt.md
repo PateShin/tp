@@ -38,6 +38,7 @@ Given below are my contributions to the project.
         * Added the use case for the `/add` feature [\#26](https://github.com/AY2324S2-CS2103T-T12-4/tp/pull/26/files)
         * Added the use case for the `/transaction` feature [\#68](https://github.com/AY2324S2-CS2103T-T12-4/tp/pull/68/commits/4e1722d21aa9e781a2640046cca035e81137d6cb)
         * Modified all the use cases [\#187](https://github.com/AY2324S2-CS2103T-T12-4/tp/pull/187/files)
+        * Added the add new employee implementation details along with the sequence and activity diagrams [\#191](https://github.com/AY2324S2-CS2103T-T12-4/tp/pull/191/files)
 
 * **Community**:
     * PRs reviewed (with non-trivial review comments): [\#38](https://github.com/AY2324S2-CS2103T-T12-4/tp/pull/38), [\#40](https://github.com/AY2324S2-CS2103T-T12-4/tp/pull/40), [\#74](https://github.com/AY2324S2-CS2103T-T12-4/tp/pull/74), [\#75](https://github.com/AY2324S2-CS2103T-T12-4/tp/pull/75)
