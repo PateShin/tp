@@ -5,6 +5,7 @@ title: PayBack User Guide
 ![PayBackIcon](images/PaybackIcon.png)
 
 <a href="https://www.flaticon.com/free-icons/budget" title="budget icons">Budget icons created by Freepik - Flaticon</a>
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 <h1 style="font-size:25px;">Welcome Notes</h1>
 
 Dear company managers,
@@ -25,6 +26,7 @@ We recommend starting with:
 - **Key Features**: This section offers a detailed explanation of each feature, including command formats and examples.
 
 Thank you for choosing PayBack to optimise your company's management processes. We're committed to providing you with exceptional support along the way!
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 # Table of Contents
 1. [Product Information](#product-info)
@@ -59,6 +61,8 @@ Thank you for choosing PayBack to optimise your company's management processes. 
 8. [Closing](#closing)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+
 ## Product Information <a name="product-info"></a>
 
 Payback is a software designed to take the hassle out of contact management so you can focus on what’s important in your organisation -  financial transactions. Offering both Graphical User Interface (GUI) and Command Line Interface (CLI), you can be sure that it will be easy for most to learn and use.
@@ -77,6 +81,8 @@ Key features include:
 9. Autocompleting text box
 10. Clearing all employee information
 11. Exiting the program
+
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 ## Getting Started <a name="getting-started"></a>
 
@@ -102,6 +108,8 @@ Key features include:
 6. Refer to the [Key Features](#key-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+
 ## Main Interface <a name="main-interface"></a>
 ### User Command Panel: <a name="user-command-panel"></a>
 
@@ -136,6 +144,8 @@ For optimal display quality, the application window size is configured with spec
   <br>
 * Minimum Height: The window's height is set not to fall below 600 pixels.
 * Maximum Height: The height of the window is limited to a maximum of 700 pixels.
+
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 ## Key Features <a name="key-features"></a>
 PayBack Application offers a range of features to a company manager to manage employees. Before we delve into the key features, let’s take a look at the command formats and the parameters.
@@ -350,7 +360,7 @@ Format: `/exit`
 Exit command provides a way for users to safely close PayBack.
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 ## Troubleshooting <a name="troubleshooting"></a>
 
@@ -364,6 +374,8 @@ If you utilise multiple screens and relocate the application to a secondary scre
 When installing PayBack on another computer, you can replace the empty data file it generates (e.g., payback.json) with the file containing the data from your previous PayBack home folder. This will ensure that your existing data is seamlessly transferred to the new installation.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+
 ## Command Summary <a name="command-summary"></a>
 
 | Action          | Format, Examples                                                                                                                                                                                                                                                                        |
@@ -380,6 +392,8 @@ When installing PayBack on another computer, you can replace the empty data file
 | **Help**        | `/help`                                                                                                                                                                                                                                                                                 |
 | **Exit**        | `/exit`                                                                                                                                                                                                                                                                                 |
 
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+
 ## Support and Feedback <a name="support"></a>
 Dear Company Managers,
 
@@ -389,6 +403,8 @@ If you encounter any difficulties, have questions, or require assistance while u
 - Phone: +65 23142412
 
 We genuinely appreciate your partnership and look forward to serving you better with your continued support and feedback!
+
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 ## Closing <a name="closing"></a>
 As you conclude your journey of PayBack through this user guide, we want to express our gratitude for choosing us to streamline your company’s management processes. We hope the information provided will be valuable in helping you harness the full potential of PayBack.
