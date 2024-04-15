@@ -1,7 +1,6 @@
-
 ---
 layout: page
-title:PayBack User Guide
+title: PayBack User Guide
 
 ---
 <p align="center">
