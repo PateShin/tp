@@ -25,7 +25,17 @@ title: Developer Guide
    5. [Glossary](#glossary)
 7. [Appendix: Instructions for manual testing](#manual-testing)
    1. [Launch and shutdown](#launch-shutdown)
-   2. [Deleting a person](#deleting)
+   2. [Add Employee](#add)
+   3. [Deleting an employee](#deleting)
+   4. [Editing an employee](#editing)
+   5. [List All Employees](#list)
+   6. [Find Employee(s)](#find)
+   7. [Tag An Employee](#tag)
+   8. [Add A Transaction](#transaction)
+   9. [View Transaction Records of An Employee](#view)
+   10. [Clear All Data](#clear)
+   11. [Help](#help)
+   12. [Exit the Program](#exit)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -689,19 +699,82 @@ testers are expected to do more *exploratory* testing.
    1. Type `/exit` in the command panel and press `Enter`
    2. The program will be closed automatically
 
-### Deleting a person <a name="deleting"></a>
+### Add Employee <a name="add"></a>
 
-1. Deleting a person while all persons are being shown
+1. Adding new employees to the PayBack system and automatically generate an employee ID based on the year they joined and the last ID of that year.
+    1. Test cases: `/add John Doe; 91234567; johndoe@email.com; 12 Kent Ridge Dr; 2024; Finance`<br>
+        Expected: A new employee named John Doe is added to the list.
+    2. Test cases: `/add :name John Doe :phone 91234567 :email johndoe@email.com :address 12 Kent Ridge Dr :year 2024 :tag Finance`<br>
+       Expected: A new employee named John Doe is added to the list.
 
-   1. Prerequisites: List all persons using the `/list` command. Multiple persons in the list.
+### Deleting an employee <a name="deleting"></a>
 
-   1. Test case: `/delete 240001`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+1. Deleting an employee while all employees are being shown
 
-   1. Test case: `/delete 230002`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Prerequisites: List all employees using the `/list` command. Multiple employees in the list.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   2. Test case: `/delete 240001` followed by `Y` to confirm <br>
+      Expected: Employee with ID 240001 is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+
+   3. Test case: `/delete 230002`<br>
+      Expected: No employee is deleted. Error details shown in the status message. Status bar remains the same.
+
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-      
+### Editing an employee <a name="editing"></a>
+
+1. Editing an employee's information (the person must be shown in current list)
+   1. Prerequisites: List all persons using the `/list` command. Multiple persons in the list.
+   2. Test case: `/edit 240001 :name James`<br>
+      Expected: The name of employee with ID 240001 is changed to James.
+
+### List All Employees <a name="list"></a>
+
+1. Displaying a list of entire employees currently stored in the PayBack system.
+    1. Test case: `/list`<br>
+        Expected: List of employees displayed.
+
+### Find Employee(s) <a name="find"></a>
+
+1. Searching for matching employee(s) based on specific criteria.
+    1. Test case: `/find :name Patrick Star`<br>
+        Expected: Searches employees with the name ‘**Patrick Star**’.
+
+### Tag An Employee <a name="tag"></a>
+
+1. Adding `tags` to the specified employee from the displayed employee list.
+   1. Test case: `/tag 240001 :tag Intern :tag Developer`<br>
+      Expected: Employee 240001 is tagged with ‘Intern’ and ‘Developer’.
+
+### Add A Transaction <a name="transaction"></a>
+
+1. Adding a transaction to the specified employee.
+   1. Prerequisites: The employee should be in the list.
+   2. Test case: `/transaction 240001; 2000; Salary; 30/09/2021 12:00`<br>
+      Expected: A transaction is added to employee 240001.
+
+### View Transaction Records of An Employee <a name="view"></a>
+
+1. Displaying the transaction records of the specified employee from the displayed employee list.
+   1. Test case: `/view 240001`<br>
+      Expected: Transaction records of employee 240001 will be displayed on the right side of the employee list panel.
+
+### Clear All Data <a name="clear"></a>
+
+1. Removing all data from the PayBack system.
+    1. Test case: `/clear`<br>
+       Expected: All data from the PayBack system is cleared.
+
+### Help <a name="help"></a>
+
+1. Accessing help page.
+    1. Test case: `/help`<br>
+       Expected: A message explaining how to access the help page is shown.
+
+### Exit the Program <a name="exit"></a>
+
+1. Exiting the program.
+   1. Test case: `/exit`<br>
+      Expected: PayBack is safely closed.
+
