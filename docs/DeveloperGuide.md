@@ -348,6 +348,28 @@ The following activity diagram summarizes what happens when a user executes a `/
 
 ![EditTagActivityDiagram](images/EditTagActivityDiagram.png)
 
+### Deleting a specific employee <a name="deleting-employee"></a>
+
+#### Implementation <a name="implementation-delete-employee"></a>
+
+Given below is an example usage scenario and how the `/delete ID` mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time.
+
+Step 2. The user executes `/add NAME; PHONE; EMAIL; ADDRESS; YEAR_JOINED[; TAG]…` command to add a new employee.
+
+Step 3. The user executes `/delete ID` command to prompt confirmation message for deletion of employee.
+
+Step 4. The user executes `Y` command to confirm deletion of employee.
+
+The following sequence diagram shows how delete operation deletes a specific user:
+
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a `/delete ID` followed by `Y` or `N` command:
+
+![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops** <a name="documentation"></a>

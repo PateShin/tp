@@ -1,0 +1,20 @@
+@startuml
+skin rose
+skinparam ActivityFontSize 15
+skinparam ArrowFontSize 12
+start
+repeat
+  :User enters /delete command to delete an employee;
+  :PayBack reads user input;
+repeat while () is ([Invalid ID or ID does not exist])
+->[else];
+:PayBack prompts user for confirmation;
+if (user input) is ("Y") then
+  :PayBack deletes employee from employee list;
+  :PayBack deletes transactions which has employeeId = ID;
+else ("N")
+  :PayBack aborts deletion of employee;
+endif
+:PayBack displays updated employee list;
+stop
+@enduml
