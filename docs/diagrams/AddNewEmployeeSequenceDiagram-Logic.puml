@@ -1,0 +1,68 @@
+@startuml
+!include style.puml
+skinparam ArrowFontStyle plain
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PayBackParser" as PayBackParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant "a:AddCommand" as AddCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "m:Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("/add ... :tag Finance")
+activate LogicManager
+
+LogicManager -> PayBackParser : parseCommand(m, "/add ... :tag Finance")
+activate PayBackParser
+
+create AddCommandParser
+PayBackParser -> AddCommandParser : AddCommandParser(m)
+activate AddCommandParser
+
+AddCommandParser --> PayBackParser
+deactivate AddCommandParser
+
+PayBackParser -> AddCommandParser : parse(" :name ... :tag Finance")
+activate AddCommandParser
+
+create AddCommand
+AddCommandParser -> AddCommand
+activate AddCommand
+
+AddCommand --> AddCommandParser
+deactivate AddCommand
+
+AddCommandParser --> PayBackParser : a
+deactivate AddCommandParser
+
+PayBackParser --> LogicManager : a
+destroy AddCommandParser
+deactivate PayBackParser
+
+LogicManager -> AddCommand : execute(m)
+activate AddCommand
+
+AddCommand -> Model : addPerson(toAdd)
+activate Model
+
+Model --> AddCommand
+deactivate Model
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager : r
+deactivate AddCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

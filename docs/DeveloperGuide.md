@@ -179,6 +179,140 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Implemented\] Add new employee
+
+#### Implementation
+
+The proposed implementation of adding a new employee is facilitated by `AddCommand` and `AddCommandParser`. The `AddCommand` class encapsulates the logic for adding a new employee, while the `AddCommandParser` class is responsible for parsing the arguments and returning an `AddCommand` object.
+
+The `AddCommand` class implements the following operations:
+
+* `AddCommand#execute(Model model)` — Adds a new employee to the employee list in the `Model`.
+* `AddCommand#equals(Object other)` — Checks if two `AddCommand` objects are equal.
+* `AddCommand#toString()` — Returns a string representation of the `AddCommand`.
+
+The `AddCommandParser` class implements the following operations:
+
+* `AddCommandParser#parse(String args)` — Parses the arguments and returns an `AddCommand` object.
+* `AddCommandParser#arePrefixesPresent(ArgumentMultimap argMultimap, Prefix... prefixes)` — Checks if the specified prefixes are present in the argument multimap.
+
+Given below is an example usage scenario and how the add new employee mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `Model` will be initialized with the initial employee list.
+
+Step 2. The user executes `/add :name John Doe :phone 91234567 :email johndoe@email.com :address 12 Kent Ridge Dr :year 2024 :tag Finance` command to add a new employee with the specified details. The `AddCommandParser` will parse the arguments and return an `AddCommand` object.
+
+Step 3. The `AddCommand` object will be executed by the `Logic` component, which will add the new employee to the employee list in the `Model`.
+
+The following sequence diagram shows how an add new employee operation goes through the `Logic` component:
+
+![AddSequenceDiagram](images/AddNewEmployeeSequenceDiagram-Logic.png)
+
+Similarly, how an add new employee operation goes through the `Model` component is shown below:
+
+![AddSequenceDiagram](images/AddNewEmployeeSequenceDiagram-Model.png)
+
+The following activity diagram summarizes what happens when a user executes an `/add` command:
+
+![AddNewEmployeeActivityDiagram](images/AddNewEmployeeActivityDiagram.png)
+
+The `AddCommand` class is designed to be easily extensible. For example, if a new field is added to the `Person` class, the `AddCommand` class can be easily modified to accommodate the new field.
+
+#### Design considerations:
+
+**Aspect: How `/add` executes:**
+
+* **Alternative 1 (current choice):** Enter all details at once.
+  * Pros: Easy to implement.
+  * Cons: May be overwhelming for users who are not familiar with the system.
+
+* **Alternative 2:** Enter details one by one.
+  * Pros: Provides a more guided experience.
+  * Cons: May be slower for users who are comfortable with the system.
+
+### \[Proposed\] Undo/redo feature
+
+#### Proposed Implementation
+
+The proposed undo/redo mechanism is facilitated by `VersionedPayBack`. It extends `PayBack` with an undo/redo history, stored internally as an `payBackStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+
+* `VersionedPayBack#commit()` — Saves the current employee state in its history.
+* `VersionedPayBack#undo()` — Restores the previous employee state from its history.
+* `VersionedPayBack#redo()` — Restores a previously undone employee state from its history.
+
+These operations are exposed in the `Model` interface as `Model#commitPayBack()`, `Model#undoPayBack()` and `Model#redoPayBack()` respectively.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `VersionedPayBack` will be initialized with the initial employee state, and the `currentStatePointer` pointing to that single employee state.
+
+![UndoRedoState0](images/UndoRedoState0.png)
+
+Step 2. The user executes `delete 5` command to delete the 5th person in the employee. The `delete` command calls `Model#commitPayBack()`, causing the modified state of the employee after the `delete 5` command executes to be saved in the `payBackStateList`, and the `currentStatePointer` is shifted to the newly inserted employee state.
+
+![UndoRedoState1](images/UndoRedoState1.png)
+
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitPayBack()`, causing another modified employee state to be saved into the `payBackStateList`.
+
+![UndoRedoState2](images/UndoRedoState2.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitPayBack()`, so the employee state will not be saved into the `PayBackStateList`.
+
+</div>
+
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoPayBack()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous employee state, and restores the employee to that state.
+
+![UndoRedoState3](images/UndoRedoState3.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial PayBack state, then there are no previous PayBack states to restore. The `undo` command uses `Model#canUndoPayBack()` to check if this is the case. If so, it will return an error to the user rather
+than attempting to perform the undo.
+
+</div>
+
+The following sequence diagram shows how an undo operation goes through the `Logic` component:
+
+![UndoSequenceDiagram](images/UndoSequenceDiagram-Logic.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+Similarly, how an undo operation goes through the `Model` component is shown below:
+
+![UndoSequenceDiagram](images/UndoSequenceDiagram-Model.png)
+
+The `redo` command does the opposite — it calls `Model#redoPayBack()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the employee to that state.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `payBackStateList.size() - 1`, pointing to the latest employee state, then there are no undone PayBack states to restore. The `redo` command uses `Model#canRedoPayBack()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+
+</div>
+
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the employee, such as `list`, will usually not call `Model#commitPayBack()`, `Model#undoPayBack()` or `Model#redoPayBack()`. Thus, the `payBackStateList` remains unchanged.
+
+![UndoRedoState4](images/UndoRedoState4.png)
+
+Step 6. The user executes `clear`, which calls `Model#commitPayBack()`. Since the `currentStatePointer` is not pointing at the end of the `payBackStateList`, all employee states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+
+![UndoRedoState5](images/UndoRedoState5.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/CommitActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How undo & redo executes:**
+
+* **Alternative 1 (current choice):** Saves the entire employee list.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Individual command knows how to undo/redo by
+  itself.
+  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
+
+_{more aspects and alternatives to be added}_
 
 ### Editing a specific tag <a name="editing-tag"></a>
 
