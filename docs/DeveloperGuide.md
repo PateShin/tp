@@ -247,7 +247,7 @@ The `AddCommand` class is designed to be easily extensible. For example, if a ne
   * Pros: Provides a more guided experience.
   * Cons: May be slower for users who are comfortable with the system.
 
-### Editing a specific tag <a name="editing-tag"></a>
+### \[Implemented\] Editing a specific tag <a name="editing-tag"></a>
 
 #### Design considerations: <a name="design-consideration-edit-tag"></a>
 
@@ -281,7 +281,7 @@ The following activity diagram summarizes what happens when a user executes a `/
 
 ![EditTagActivityDiagram](images/EditTagActivityDiagram.png)
 
-### Deleting a specific employee <a name="deleting-employee"></a>
+### \[Implemented\] Deleting a specific employee <a name="deleting-employee"></a>
 
 #### Implementation <a name="implementation-delete-employee"></a>
 
