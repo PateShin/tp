@@ -13,9 +13,16 @@ title: Developer Guide
    5. [Storage Component](#storage-component)
    6. [Common Classes](#common-classes)
 4. [Implementations](#implementation)
-   1. [Editing a specific tag](#editing-tag)
+   1. [Add new employee](#adding-new-employee)
+      1. [Implementation](#implementation-add-new-employee)
+      2. [Design considerations](#design-consideration-add-employee)
+   2. [Editing a specific tag](#editing-tag)
       1. [Design considerations](#design-consideration-edit-tag)
       2. [Implementation](#implementation-edit-tag)
+   3. [Deleting a specific employee](#deleting-employee)
+      1. [Implementation](#implementation-delete-employee)
+   4. [Finding a specific employee with name](#finding-employee-name)
+      1. [Implementation](#implementation-fiding-employee-name)
 5. [Documentation, logging, testing, configuration, dev-ops](#documentation)
 6. [Appendix: Requirements](#requirements)
    1. [Product scope](#product-scope)
@@ -189,9 +196,9 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Implemented\] Add new employee
+### \[Implemented\] Add new employee <a name="adding-new-employee"></a>
 
-#### Implementation
+#### Implementation <a name="implementation-add-new-employee"></a>
 
 The proposed implementation of adding a new employee is facilitated by `AddCommand` and `AddCommandParser`. The `AddCommand` class encapsulates the logic for adding a new employee, while the `AddCommandParser` class is responsible for parsing the arguments and returning an `AddCommand` object.
 
@@ -228,7 +235,7 @@ The following activity diagram summarizes what happens when a user executes an `
 
 The `AddCommand` class is designed to be easily extensible. For example, if a new field is added to the `Person` class, the `AddCommand` class can be easily modified to accommodate the new field.
 
-#### Design considerations:
+#### Design considerations: <a name="design-consideration-add-employee"></a>
 
 **Aspect: How `/add` executes:**
 
@@ -239,7 +246,6 @@ The `AddCommand` class is designed to be easily extensible. For example, if a ne
 * **Alternative 2:** Enter details one by one.
   * Pros: Provides a more guided experience.
   * Cons: May be slower for users who are comfortable with the system.
-
 
 ### Editing a specific tag <a name="editing-tag"></a>
 
@@ -296,6 +302,28 @@ The following sequence diagram shows how delete operation deletes a specific use
 The following activity diagram summarizes what happens when a user executes a `/delete ID` followed by `Y` or `N` command:
 
 ![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
+
+### Finding a specific emplyoee <a name="finding-employee-name"></a>
+
+#### Implementation <a name="implementation-fiding-employee-name"></a>
+
+Given below is an example usage scenario and how the `/find :name KEYWORD` mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time.
+
+Step 2. The user executes `/add NAME; PHONE; EMAIL; ADDRESS; YEAR_JOINED[; TAG]…` command to add a new employee.
+
+Step 3: The user executes `/find :name KEYWORD` command to find the employee who contains the `KEYWORD`.
+
+Step 5: Show the updated employee panel list containing the employee who matches the `KEYWORD`. 
+
+The following sequence diagram shows how find operation finds a specific employee:
+
+![FindEmployeeNameSequenceDiagram](images/FindEmployeeNameSequenceDiagram.png)
+
+The following activity diagram what happens when a user executes a `/find :name KEYWORD`.
+
+![FindEmployeeNameActivityDiagram](images/FindEmployeeNameActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
