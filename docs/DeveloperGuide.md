@@ -303,7 +303,7 @@ The following activity diagram summarizes what happens when a user executes a `/
 
 ![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
 
-### Finding a specific emplyoee <a name="finding-employee-name"></a>
+### \[Implemented\] Finding a specific emplyoee <a name="finding-employee-name"></a>
 
 #### Implementation <a name="implementation-fiding-employee-name"></a>
 
