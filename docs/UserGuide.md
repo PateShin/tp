@@ -164,8 +164,6 @@ PayBack Application offers a range of features to a company manager to manage em
 | DESCRIPTION | Transaction's description            | Must not be blank                                                                                                     |
 | DATETIME    | Transaction's date and time          | Must be in the format of dd/MM/yyyy HH:mm and must be a valid date. The year should be greater than or equal to 2010. |
 
-<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
-
 ### Command formats:
 - Words in UPPER_CASE are the parameters to be supplied by the user.
 - Items in square brackets are optional.
