@@ -5,7 +5,7 @@ skinparam ArrowFontStyle plain
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":PayBackParser" as PayBackParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
+participant ":DeleteConfirmationCommandParser" as DeleteConfirmationCommandParser LOGIC_COLOR
 participant ":ConfirmationStageParser" as ConfirmationStageParser LOGIC_COLOR
 participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
 participant "c:DeleteConfirmationCommand" as DeleteConfirmationCommand LOGIC_COLOR
@@ -22,28 +22,28 @@ activate LogicManager
 LogicManager -> PayBackParser : parseCommand("/delete 240001")
 activate PayBackParser
 
-create DeleteCommandParser
-PayBackParser -> DeleteCommandParser
-activate DeleteCommandParser
+create DeleteConfirmationCommandParser
+PayBackParser -> DeleteConfirmationCommandParser
+activate DeleteConfirmationCommandParser
 
-DeleteCommandParser --> PayBackParser
-deactivate DeleteCommandParser
+DeleteConfirmationCommandParser --> PayBackParser
+deactivate DeleteConfirmationCommandParser
 
-PayBackParser -> DeleteCommandParser : parse("240001")
-activate DeleteCommandParser
+PayBackParser -> DeleteConfirmationCommandParser : parse("240001")
+activate DeleteConfirmationCommandParser
 
 create DeleteConfirmationCommand
-DeleteCommandParser -> DeleteConfirmationCommand
+DeleteConfirmationCommandParser -> DeleteConfirmationCommand
 activate DeleteConfirmationCommand
 
-DeleteConfirmationCommand --> DeleteCommandParser :
+DeleteConfirmationCommand --> DeleteConfirmationCommandParser :
 deactivate DeleteConfirmationCommand
 
-DeleteCommandParser --> PayBackParser : c
-deactivate DeleteCommandParser
+DeleteConfirmationCommandParser --> PayBackParser : c
+deactivate DeleteConfirmationCommandParser
 
-DeleteCommandParser -[hidden]-> PayBackParser
-destroy DeleteCommandParser
+DeleteConfirmationCommandParser -[hidden]-> PayBackParser
+destroy DeleteConfirmationCommandParser
 
 PayBackParser --> LogicManager : c
 deactivate PayBackParser
@@ -51,7 +51,7 @@ deactivate PayBackParser
 LogicManager -> DeleteConfirmationCommand : execute(m)
 activate DeleteConfirmationCommand
 
-DeleteConfirmationCommand -> Model : getPerson(240001)
+DeleteConfirmationCommand -> Model : setLastMentionedPerson(240001)
 activate Model
 
 Model --> DeleteConfirmationCommand : person
@@ -60,8 +60,8 @@ deactivate Model
 DeleteConfirmationCommand --> LogicManager : "Confirm Delete (Y/N)?"
 deactivate DeleteConfirmationCommand
 
-[-> LogicManager : "Y"
-LogicManager -> ConfirmationStageParser : parseCommand(m, "Y")
+[-> LogicManager : execute("Y")
+LogicManager -> ConfirmationStageParser : parseCommand("Y")
 activate ConfirmationStageParser
 
 create DeleteCommand
@@ -78,7 +78,7 @@ destroy ConfirmationStageParser
 LogicManager -> DeleteCommand : execute(m)
 activate DeleteCommand
 
-DeleteCommand -> Model : getPerson(240001)
+DeleteCommand -> Model : getLastMentionedPerson(240001)
 activate Model
 
 Model --> DeleteCommand : person
@@ -97,6 +97,12 @@ Model --> DeleteCommand : transactions
 deactivate Model
 
 DeleteCommand -> Model : deleteTransactions(transactions)
+activate Model
+
+Model --> DeleteCommand
+deactivate Model
+
+DeleteCommand -> Model : setLastMentionedPerson(null)
 activate Model
 
 Model --> DeleteCommand
