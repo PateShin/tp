@@ -2,7 +2,7 @@
 layout: page
 title: PayBack User Guide
 ---
-![PayBackIcon](images/PaybackIcon.png)
+<img src="images/PaybackIcon.png" alt="PayBackIcon" width="400" />
 
 <a href="https://www.flaticon.com/free-icons/budget" title="budget icons">Budget icons created by Freepik - Flaticon</a>
 <div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
@@ -94,7 +94,7 @@ Key features include:
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar payback.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+<img src="images/Ui.png" alt="Ui" width="400" />
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`/help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -113,26 +113,28 @@ Key features include:
 ## Main Interface <a name="main-interface"></a>
 ### User Command Panel: <a name="user-command-panel"></a>
 
-![UserCommandPanel](images/UserCommandPanel.png)
+<img src="images/UserCommandPanel.png" alt="UserCommandPanel" width="400" />
 
 You can use this panel to interact with Payback by typing in your commands!
 
 ### Command Result/Guidance: <a name="command"></a>
 
-![CommandResult](images/CommandResult.png)
+<img src="images/CommandResult.png" alt="CommandResult" width="400" />
 
 Upon pressing Enter, you will be presented with the outcomes of your commands. In the event of any errors in the command format, you will receive guidance to help rectify the issue.
 
 
 ### Employee List <a name="employee-list"></a>
 
-![EmployeeList](images/EmployeeList.png)
+<img src="images/EmployeeList.png" alt="EmployeeList" width="400" />
+
 
 All employee information is conveniently displayed here, allowing you to easily access and review all relevant details in a straightforward manner.
 
 ### Transaction Panel <a name="transaction-panel"></a>
 
-![TransactionPanel](images/TransactionPanel.png)
+<img src="images/TransactionPanel.png" alt="TransactionPanel" width="400" />
+
 
 The transaction records corresponding to the employee with ID you provided are shown here.
 
@@ -144,7 +146,6 @@ For optimal display quality, the application window size is configured with spec
   <br>
 * Minimum Height: The window's height is set not to fall below 600 pixels.
 * Maximum Height: The height of the window is limited to a maximum of 700 pixels.
-
 <div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 ## Key Features <a name="key-features"></a>
@@ -162,6 +163,8 @@ PayBack Application offers a range of features to a company manager to manage em
 | AMOUNT      | Transaction's amount                 | Must be a positive number with at most 2 decimal places and should not exceed 9,999,999,999,999.99                    |
 | DESCRIPTION | Transaction's description            | Must not be blank                                                                                                     |
 | DATETIME    | Transaction's date and time          | Must be in the format of dd/MM/yyyy HH:mm and must be a valid date. The year should be greater than or equal to 2010. |
+
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 ### Command formats:
 - Words in UPPER_CASE are the parameters to be supplied by the user.
@@ -296,7 +299,7 @@ This feature displays the transaction records of the specified employee from the
 
 Format: `/view ID`
 
-![view_transaction](images/ViewTransaction.png)
+<img src="images/ViewTransaction.png" alt="view_transaction" width="400" />
 
 Transaction records will be displayed on the right side of the employee list panel, as shown above.
 
@@ -304,7 +307,7 @@ Transaction records will be displayed on the right side of the employee list pan
 
 Auto-complete feature allows to enter command quickly and accurately by suggesting possible completions as typing.
 
-![AutoComplete](images/AutoComplete.png)
+<img src="images/AutoComplete.png" alt="AutoComplete" width="400" />
 
 #### How it works:
 As a command is typed into the command box, PayBack analyzes the input and suggests possible completions based on existing commands, taking the following inputs for the command.
@@ -337,7 +340,7 @@ Format: `/help`
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
+<img src="images/helpMessage.png" alt="help_message" width="400" />
 
 ### Save Data <a name="save-data"></a>
 
