@@ -189,13 +189,13 @@ Format:
 
 Examples:
 
-- `/add John Doe; 91234567; johndoe@email.com; 12 Kent Ridge Dr; 2024; Finance`
+`/add John Doe; 91234567; johndoe@email.com; 12 Kent Ridge Dr; 2024; Finance`
 
-- `/add John Doe; 91234567; johndoe@email.com; 12 Kent Ridge Dr; 2024; Software Developer; Finance`
+`/add John Doe; 91234567; johndoe@email.com; 12 Kent Ridge Dr; 2024; Software Developer; Finance`
 
-- `/add :name John Doe :phone 91234567 :email johndoe@email.com :address 12 Kent Ridge Dr :year 2024 :tag Finance`
+`/add :name John Doe :phone 91234567 :email johndoe@email.com :address 12 Kent Ridge Dr :year 2024 :tag Finance`
 
-- `/add :name John Doe :phone 91234567 :email johndoe@email.com :address 12 Kent Ridge Dr :year 2024 :tag Software Developer :tag Finance`
+`/add :name John Doe :phone 91234567 :email johndoe@email.com :address 12 Kent Ridge Dr :year 2024 :tag Software Developer :tag Finance`
 
 ### Delete Employee <a name="delete"></a>
 This feature deletes the specified employee from the displayed employee list.
@@ -288,8 +288,10 @@ Format:
 * `/transaction :id ID :amount AMOUNT :description DESCRIPTION [:datetime DATETIME]`
 
 Examples:
-* `/transaction 240001; 2000; Salary; 30/09/2021 12:00`
-* `/transaction :id 240001 :amount 2000 :description Salary :datetime 30/09/2021 12:00`
+
+`/transaction 240001; 2000; Salary; 30/09/2021 12:00`
+
+`/transaction :id 240001 :amount 2000 :description Salary :datetime 30/09/2021 12:00`
 
 ### View Transaction Records of An Employee <a name="view"></a>
 
