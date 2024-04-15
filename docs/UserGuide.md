@@ -1,12 +1,18 @@
+
 ---
 layout: page
-title: PayBack User Guide
+title: <p align="center">
+PayBack User Guide
+</p>
 ---
+<p align="center">
 <img src="images/PaybackIcon.png" alt="PayBackIcon" width="400" />
+</p>
 
 <a href="https://www.flaticon.com/free-icons/budget" title="budget icons">Budget icons created by Freepik - Flaticon</a>
 <div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
-<h1 style="font-size:25px;">Welcome Notes</h1>
+
+# Welcome Notes
 
 Dear company managers,
 
