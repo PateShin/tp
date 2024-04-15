@@ -315,7 +315,9 @@ Step 2. The user executes `/add NAME; PHONE; EMAIL; ADDRESS; YEAR_JOINED[; TAG]â
 
 Step 3: The user executes `/find :name KEYWORD` command to find the employee who contains the `KEYWORD`.
 
-The following steps will show the updated employee panel list containing the employee who matches the `KEYWORD`. 
+Step 5: Show the updated employee panel list containing the employee who matches the `KEYWORD`. 
+
+The following sequence diagram shows how find operation finds a specific employee:
 
 ![FindEmployeeNameSequenceDiagram](images/FindEmployeeNameSequenceDiagram.png)
 
