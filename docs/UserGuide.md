@@ -1,9 +1,8 @@
 
 ---
 layout: page
-title: <p align="center">
-PayBack User Guide
-</p>
+title:PayBack User Guide
+
 ---
 <p align="center">
 <img src="images/PaybackIcon.png" alt="PayBackIcon" width="400" />
