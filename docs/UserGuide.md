@@ -2,9 +2,10 @@
 layout: page
 title: PayBack User Guide
 ---
-![PayBackIcon](images/PaybackIcon.png)
+<img src="images/PaybackIcon.png" alt="PayBackIcon" width="400" />
 
 <a href="https://www.flaticon.com/free-icons/budget" title="budget icons">Budget icons created by Freepik - Flaticon</a>
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 <h1 style="font-size:25px;">Welcome Notes</h1>
 
 Dear company managers,
@@ -25,6 +26,7 @@ We recommend starting with:
 - **Key Features**: This section offers a detailed explanation of each feature, including command formats and examples.
 
 Thank you for choosing PayBack to optimise your company's management processes. We're committed to providing you with exceptional support along the way!
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 # Table of Contents
 1. [Product Information](#product-info)
@@ -59,6 +61,8 @@ Thank you for choosing PayBack to optimise your company's management processes. 
 8. [Closing](#closing)
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+
 ## Product Information <a name="product-info"></a>
 
 Payback is a software designed to take the hassle out of contact management so you can focus on what’s important in your organisation -  financial transactions. Offering both Graphical User Interface (GUI) and Command Line Interface (CLI), you can be sure that it will be easy for most to learn and use.
@@ -78,6 +82,8 @@ Key features include:
 10. Clearing all employee information
 11. Exiting the program
 
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+
 ## Getting Started <a name="getting-started"></a>
 
 1. Ensure you have Java `11` or above installed in your Computer.
@@ -88,7 +94,7 @@ Key features include:
 
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar payback.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
-   ![Ui](images/Ui.png)
+<img src="images/Ui.png" alt="Ui" width="400" />
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`/help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
@@ -102,29 +108,33 @@ Key features include:
 6. Refer to the [Key Features](#key-features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+
 ## Main Interface <a name="main-interface"></a>
 ### User Command Panel: <a name="user-command-panel"></a>
 
-![UserCommandPanel](images/UserCommandPanel.png)
+<img src="images/UserCommandPanel.png" alt="UserCommandPanel" width="400" />
 
 You can use this panel to interact with Payback by typing in your commands!
 
 ### Command Result/Guidance: <a name="command"></a>
 
-![CommandResult](images/CommandResult.png)
+<img src="images/CommandResult.png" alt="CommandResult" width="400" />
 
 Upon pressing Enter, you will be presented with the outcomes of your commands. In the event of any errors in the command format, you will receive guidance to help rectify the issue.
 
 
 ### Employee List <a name="employee-list"></a>
 
-![EmployeeList](images/EmployeeList.png)
+<img src="images/EmployeeList.png" alt="EmployeeList" width="400" />
+
 
 All employee information is conveniently displayed here, allowing you to easily access and review all relevant details in a straightforward manner.
 
 ### Transaction Panel <a name="transaction-panel"></a>
 
-![TransactionPanel](images/TransactionPanel.png)
+<img src="images/TransactionPanel.png" alt="TransactionPanel" width="400" />
+
 
 The transaction records corresponding to the employee with ID you provided are shown here.
 
@@ -136,6 +146,7 @@ For optimal display quality, the application window size is configured with spec
   <br>
 * Minimum Height: The window's height is set not to fall below 600 pixels.
 * Maximum Height: The height of the window is limited to a maximum of 700 pixels.
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 ## Key Features <a name="key-features"></a>
 PayBack Application offers a range of features to a company manager to manage employees. Before we delve into the key features, let’s take a look at the command formats and the parameters.
@@ -152,6 +163,8 @@ PayBack Application offers a range of features to a company manager to manage em
 | AMOUNT      | Transaction's amount                 | Must be a positive number with at most 2 decimal places and should not exceed 9,999,999,999,999.99                    |
 | DESCRIPTION | Transaction's description            | Must not be blank                                                                                                     |
 | DATETIME    | Transaction's date and time          | Must be in the format of dd/MM/yyyy HH:mm and must be a valid date. The year should be greater than or equal to 2010. |
+
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 ### Command formats:
 - Words in UPPER_CASE are the parameters to be supplied by the user.
@@ -286,7 +299,7 @@ This feature displays the transaction records of the specified employee from the
 
 Format: `/view ID`
 
-![view_transaction](images/ViewTransaction.png)
+<img src="images/ViewTransaction.png" alt="view_transaction" width="400" />
 
 Transaction records will be displayed on the right side of the employee list panel, as shown above.
 
@@ -294,7 +307,7 @@ Transaction records will be displayed on the right side of the employee list pan
 
 Auto-complete feature allows to enter command quickly and accurately by suggesting possible completions as typing.
 
-![AutoComplete](images/AutoComplete.png)
+<img src="images/AutoComplete.png" alt="AutoComplete" width="400" />
 
 #### How it works:
 As a command is typed into the command box, PayBack analyzes the input and suggests possible completions based on existing commands, taking the following inputs for the command.
@@ -327,7 +340,7 @@ Format: `/help`
 
 Shows a message explaining how to access the help page.
 
-![help message](images/helpMessage.png)
+<img src="images/helpMessage.png" alt="help_message" width="400" />
 
 ### Save Data <a name="save-data"></a>
 
@@ -350,7 +363,7 @@ Format: `/exit`
 Exit command provides a way for users to safely close PayBack.
 
 --------------------------------------------------------------------------------------------------------------------
-
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 ## Troubleshooting <a name="troubleshooting"></a>
 
@@ -364,6 +377,8 @@ If you utilise multiple screens and relocate the application to a secondary scre
 When installing PayBack on another computer, you can replace the empty data file it generates (e.g., payback.json) with the file containing the data from your previous PayBack home folder. This will ensure that your existing data is seamlessly transferred to the new installation.
 
 --------------------------------------------------------------------------------------------------------------------
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+
 ## Command Summary <a name="command-summary"></a>
 
 | Action          | Format, Examples                                                                                                                                                                                                                                                                        |
@@ -380,6 +395,8 @@ When installing PayBack on another computer, you can replace the empty data file
 | **Help**        | `/help`                                                                                                                                                                                                                                                                                 |
 | **Exit**        | `/exit`                                                                                                                                                                                                                                                                                 |
 
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
+
 ## Support and Feedback <a name="support"></a>
 Dear Company Managers,
 
@@ -389,6 +406,8 @@ If you encounter any difficulties, have questions, or require assistance while u
 - Phone: +65 23142412
 
 We genuinely appreciate your partnership and look forward to serving you better with your continued support and feedback!
+
+<div style="page-break-after: always; visibility: hidden"> \pagebreak </div>
 
 ## Closing <a name="closing"></a>
 As you conclude your journey of PayBack through this user guide, we want to express our gratitude for choosing us to streamline your company’s management processes. We hope the information provided will be valuable in helping you harness the full potential of PayBack.

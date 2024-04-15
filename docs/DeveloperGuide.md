@@ -32,7 +32,17 @@ title: Developer Guide
    5. [Glossary](#glossary)
 7. [Appendix: Instructions for manual testing](#manual-testing)
    1. [Launch and shutdown](#launch-shutdown)
-   2. [Deleting a person](#deleting)
+   2. [Add Employee](#add)
+   3. [Deleting an employee](#deleting)
+   4. [Editing an employee](#editing)
+   5. [List All Employees](#list)
+   6. [Find Employee(s)](#find)
+   7. [Tag An Employee](#tag)
+   8. [Add A Transaction](#transaction)
+   9. [View Transaction Records of An Employee](#view)
+   10. [Clear All Data](#clear)
+   11. [Help](#help)
+   12. [Exit the Program](#exit)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -83,7 +93,7 @@ The bulk of the app's work is done by the following four components:
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `/delete 240001`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/DeleteSequenceDiagram.png" width="574" />
 
 Each of the four main components (also shown in the diagram above),
 
@@ -125,13 +135,13 @@ The sequence diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `/delete 240001` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteConfirmationCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline continues till the end of diagram.
 </div>
 
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it is passed to an `PayBackParser` object which in turn creates a parser that matches the command (e.g., `DeleteCommandParser`) and uses it to parse the command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteCommand`) which is executed by the `LogicManager`.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `DeleteConfirmationCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to delete a person).<br>
    Note that although this is shown as a single step in the diagram above (for simplicity), in the code it can take several interactions (between the command object and the `Model`) to achieve.
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -305,7 +315,9 @@ Step 2. The user executes `/add NAME; PHONE; EMAIL; ADDRESS; YEAR_JOINED[; TAG]�
 
 Step 3: The user executes `/find :name KEYWORD` command to find the employee who contains the `KEYWORD`.
 
-The following steps will show the updated employee panel list containing the employee who matches the `KEYWORD`. 
+Step 5: Show the updated employee panel list containing the employee who matches the `KEYWORD`. 
+
+The following sequence diagram shows how find operation finds a specific employee:
 
 ![FindEmployeeNameSequenceDiagram](images/FindEmployeeNameSequenceDiagram.png)
 
@@ -632,19 +644,82 @@ testers are expected to do more *exploratory* testing.
    1. Type `/exit` in the command panel and press `Enter`
    2. The program will be closed automatically
 
-### Deleting a person <a name="deleting"></a>
+### Add Employee <a name="add"></a>
 
-1. Deleting a person while all persons are being shown
+1. Adding new employees to the PayBack system and automatically generate an employee ID based on the year they joined and the last ID of that year.
+    1. Test cases: `/add John Doe; 91234567; johndoe@email.com; 12 Kent Ridge Dr; 2024; Finance`<br>
+        Expected: A new employee named John Doe is added to the list.
+    2. Test cases: `/add :name John Doe :phone 91234567 :email johndoe@email.com :address 12 Kent Ridge Dr :year 2024 :tag Finance`<br>
+       Expected: A new employee named John Doe is added to the list.
 
-   1. Prerequisites: List all persons using the `/list` command. Multiple persons in the list.
+### Deleting an employee <a name="deleting"></a>
 
-   1. Test case: `/delete 240001`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+1. Deleting an employee while all employees are being shown
 
-   1. Test case: `/delete 230002`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   1. Prerequisites: List all employees using the `/list` command. Multiple employees in the list.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   2. Test case: `/delete 240001` followed by `Y` to confirm <br>
+      Expected: Employee with ID 240001 is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+
+   3. Test case: `/delete 230002`<br>
+      Expected: No employee is deleted. Error details shown in the status message. Status bar remains the same.
+
+   4. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-      
+### Editing an employee <a name="editing"></a>
+
+1. Editing an employee's information (the person must be shown in current list)
+   1. Prerequisites: List all persons using the `/list` command. Multiple persons in the list.
+   2. Test case: `/edit 240001 :name James`<br>
+      Expected: The name of employee with ID 240001 is changed to James.
+
+### List All Employees <a name="list"></a>
+
+1. Displaying a list of entire employees currently stored in the PayBack system.
+    1. Test case: `/list`<br>
+        Expected: List of employees displayed.
+
+### Find Employee(s) <a name="find"></a>
+
+1. Searching for matching employee(s) based on specific criteria.
+    1. Test case: `/find :name Patrick Star`<br>
+        Expected: Searches employees with the name ‘**Patrick Star**’.
+
+### Tag An Employee <a name="tag"></a>
+
+1. Adding `tags` to the specified employee from the displayed employee list.
+   1. Test case: `/tag 240001 :tag Intern :tag Developer`<br>
+      Expected: Employee 240001 is tagged with ‘Intern’ and ‘Developer’.
+
+### Add A Transaction <a name="transaction"></a>
+
+1. Adding a transaction to the specified employee.
+   1. Prerequisites: The employee should be in the list.
+   2. Test case: `/transaction 240001; 2000; Salary; 30/09/2021 12:00`<br>
+      Expected: A transaction is added to employee 240001.
+
+### View Transaction Records of An Employee <a name="view"></a>
+
+1. Displaying the transaction records of the specified employee from the displayed employee list.
+   1. Test case: `/view 240001`<br>
+      Expected: Transaction records of employee 240001 will be displayed on the right side of the employee list panel.
+
+### Clear All Data <a name="clear"></a>
+
+1. Removing all data from the PayBack system.
+    1. Test case: `/clear`<br>
+       Expected: All data from the PayBack system is cleared.
+
+### Help <a name="help"></a>
+
+1. Accessing help page.
+    1. Test case: `/help`<br>
+       Expected: A message explaining how to access the help page is shown.
+
+### Exit the Program <a name="exit"></a>
+
+1. Exiting the program.
+   1. Test case: `/exit`<br>
+      Expected: PayBack is safely closed.
+
